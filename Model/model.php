@@ -22,7 +22,7 @@ function getPost($postId)
 /** Renvoie la liste des commentaires associés à un billet */
 function getComment($postId) {
     $db = getDb();
-    $comments = $db->prepare('SELECT post_id as id, post_title as title, post_content as content, post_date as date FROM posts WHERE post_id=?');
+    $comments = $db->prepare('SELECT comment_id as id, comment_author as author, comment_title as title, comment_content as content, comment_date as date FROM comments WHERE post_id=?');
     $comments->execute(array($postId));
     return $comments;
 }

@@ -9,11 +9,12 @@
     <div id="container">
         <header>
             <a href="index.php"><h1 id="bookTitle">Billet simple pour l'Alaska de Jean Forteroche</h1></a>
-            <p>Bienvenue!<br>A travers ce blog,vous allez pouvoir découvrir mon nouveau.</p>
+            <p>Bienvenue!<br>A travers ce blog,vous allez pouvoir découvrir mon nouveau roman "Billet simple pour l'Alaska".</p>
         </header>
         <div id="content">
             <?= $content ?>
         </div>
+        <hr>
         <footer id="footer">
             Mentions légales
         </footer>
