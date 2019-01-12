@@ -7,7 +7,6 @@ abstract class Database{
 
     private static $db;
     
-
     // Exécuter une requête sql 
     protected function runReq($req, $params = [])
     {
@@ -22,7 +21,6 @@ abstract class Database{
     {
         $result = self::getDb()->prepare($req);
         $result->execute($params[0]);
-        
         return $result->fetch(PDO::FETCH_ASSOC);
     }
 
