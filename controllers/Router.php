@@ -5,90 +5,96 @@ Autoloader::register();
 
 class Router {
 
-    private $_ctrl;
-    private $_view;
+    private $url;
+    private $routes = [];
 
-    // public function routeReq()
+    public function __construct($url)
+    {
+        $this->url = $url;
+    }
+
+    public function get($path, $callable)
+    {
+        $route =new Route($path, $callable);
+        $this->routes['GET'][] = $route;
+
+        return $route;
+    }
+
+    public function post($path, $callable)
+    {
+        $route =new Route($path, $callable);
+        $this->routes['POST'][] = $route;
+
+        return $route;
+    }
+
+    public function run()
+    {
+        // echo '<pre>';
+        // echo print_r($this->routes);
+        // echo '</pre>';
+        if(!isset($this->routes[$_SERVER['REQUEST_METHOD']]))
+        {
+            throw new Exception('aucune requête serveur ne correspond');
+        }
+        foreach ($this->routes[$_SERVER['REQUEST_METHOD']] as $route) {
+            if($route->match($this->url))
+            {
+               return $route->call();
+            }
+        }
+        throw new Exception('aucune route ne correspond');
+    }
+
+
+
+
+
+
+
+
+    // public function routeReq() 
     // {
     //     try
     //     {
     //         $url = [''];
 
-    //         if(isset($_GET['url']))
+    //         if (isset($_GET['action'])) 
     //         {
-    //             $url = explode('/', filter_var($_GET['url'], FILTER_SANITIZE_URL));
-    //             // print_r($url);
-                
-    //             // $controller = ucfirst(strlower($url[0]));
-    //             // $controllerClass = "Controller".$controller;
-    //             $controller = ucfirst(strtolower($url[0]));
-    //             $controllerClass = $controller."Controller";
-    //             $controllerFile = "controllers/".$controllerClass.".php";
-                
-    //             if(file_exists($controllerFile))
+    //             if ($_GET['action'] == 'post') 
     //             {
-    //                 require_once($controllerFile);
-    //                 $this->_ctrl = new $controllerClass($url);
+    //                 if (isset($_GET['id'])) 
+    //                 {
+    //                     $postId = intval($_GET['id']);
+    //                 }    
+    //                     if ($postId != 0) 
+    //                     {    
+    //                         $this->ctrl = new postController($postId);        
+    //                     }
+    //                     else
+    //                     {
+    //                         throw new Exception("Identifiant de l'épisode non valide");
+    //                     }  
+    //                 }
+    //                 else
+    //                 {
+    //                     throw new Exception("Action non valide");
+    //                 }
     //             }
-    //
-    //             else
-    //             {
-    //                 throw new Exception('Page introuvable');
-    //             }
-    //         }
-    //         else 
-    //         {
-    //             require_once('controllers/HomeController.php');
-    //             $this->_ctrl = new HomeController($url);
+    //         else
+    //         { 
+    //             $this->ctrl = new homeController($url);  
     //         }
     //     }
-    //     catch(Exception $e)
-    //     {
-    //         $errorMsg = $e->getMessage();
-    //         require_once('views/viewError.php');
+    //     catch(Exception $e){
+    //         $this->error($e->getMessage());
     //     }
     // }
-    public function routeReq() 
-    {
-        try
-        {
-            $url = [''];
 
-            if (isset($_GET['action'])) 
-            {
-                if ($_GET['action'] == 'post') 
-                {
-                    if (isset($_GET['id'])) 
-                    {
-                        $postId = intval($_GET['id']);
-                    }    
-                        if ($postId != 0) 
-                        {    
-                            $this->ctrl = new postController($postId);        
-                        }
-                        else
-                        {
-                            throw new Exception("Identifiant de l'épisode non valide");
-                        }  
-                    }
-                    else
-                    {
-                        throw new Exception("Action non valide");
-                    }
-                }
-            else
-            { 
-                $this->ctrl = new homeController($url);  
-            }
-        }
-        catch(Exception $e){
-            $this->error($e->getMessage());
-        }
-    }
-
-    private function error($msgError)
-    {
-        $view = new View("Error");
-        $view->generate(array('msgError' => $msgError));
-    } 
+    // private function error($msgError)
+    // {
+    //     $view = new View("Error");
+    //     $view->generate(array('msgError' => $msgError));
+    // } 
 }

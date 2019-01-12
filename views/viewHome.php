@@ -7,7 +7,7 @@
         <time><?= $post->date() ?></time>  
     </header>
     <p><?= $post->content() ?></p>
-    <a href="<?='index.php?action=post&id='. $post->id() ?>">Lire la suite</a>
+    <a href="<?='index.php?url=post&id='. $post->id() ?>">Lire la suite</a>
     <?php endforeach; ?>
 </article>
 
