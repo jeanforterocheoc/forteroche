@@ -62,7 +62,7 @@ class Post
     public function id()
     {
         return $this->post_id;
-        // var_dump($this->post_id);
+        
     }
 
     public function title()

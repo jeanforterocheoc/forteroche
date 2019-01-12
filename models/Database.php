@@ -6,15 +6,26 @@ Autoloader::register();
 abstract class Database{
 
     private static $db;
+    
 
     // Exécuter une requête sql 
     protected function runReq($req, $params = [])
     {
-            $result = self::getDb()->prepare($req);
-            $result->execute($params);
-        
+        $result = self::getDb()->prepare($req);
+        $result->execute($params);
+
         return $result->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    // Exécute la requête pour l'affichage du contenu d'un billet
+    protected function fetch($req, $params = [])
+    {
+        $result = self::getDb()->prepare($req);
+        $result->execute($params);
+        
+        return $result->fetch(PDO::FETCH_ASSOC);
+    }
+
 
     // Connexion à la base de données et gestion des erreurs
     private static function getDb()
