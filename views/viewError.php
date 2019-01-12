@@ -1,0 +1,1 @@
+<h2> Erreur : <?= $msgError ?></h2>
