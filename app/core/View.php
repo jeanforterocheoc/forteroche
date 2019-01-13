@@ -23,7 +23,7 @@ class View
         // var_dump($file);
         $this->file = $file .strtolower($action).'.php';
         // var_dump($controller);
-        if(($controller == "admin/") | ($controller == "user/"))
+        if(($controller == "chapter/") |($controller == "comment/")| ($controller == "user/"))
         {
             $this->template = 'templateAdmin.php';
         }

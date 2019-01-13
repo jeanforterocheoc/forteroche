@@ -13,26 +13,24 @@
             </section>     
         </article>
         <hr />
-
-        <header>
-            <h2 class="comment">Commentaires à propos du chapitre : <?= htmlspecialchars($postComment->title()) ?></h2>  
-        </header>
+        <h4 class="postComment">Commentaires</h4>
         <?php foreach ($comments as $comment): ?> 
             <p><?= htmlspecialchars($comment->author()) ?></P>    
             <p><?= htmlspecialchars($comment->date()) ?></P>
             <p><?= htmlspecialchars($comment->content()) ?></p>
-            <!-- <p><a href="<?='post/moderateComment/'. htmlspecialchars($comment->id()) ?>" class="btn btn-outline-warning btn-sm" role="button">Signalez</a></p> -->
-            <!-- <p><a href="" class="show-window" role="button">Signalez</a></p> -->
-            <div id="resultat"></div>
-            <form name= "multiform" id="multiform" action="<?='post/moderateComment/'. htmlspecialchars($comment->id()) ?>" method="post" enctype="multipart/form-data">
-                <input type="hidden" name="comment_report" id="comment_report" value="<?=$comment->report()?>">
-                <input type="hidden" name="id"  value="<?=$comment->id()?>">
-                <button type="submit" name="btnReport" id="btnReport" class="show-window">Signalez</button>
-            </form>
+            <p><a href="" class="show-window"  role="button">Signalez</a></p>
+        
 
-            <?php endforeach; ?>
+        <form name= "multiform" id="multiform" action="<?='post/moderateComment/'. htmlspecialchars($comment->id()) ?>" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="comment_report" id="comment_report" value="<?=$comment->report()?>">
+            <input type="hidden" name="id"  value="<?=$comment->id()?>">
+            <button type="submit" name="btnReport" id="btnReport">Signalez</button>
+        </form>
+
+        <?php endforeach; ?>
+
         <hr />
-
+        <h4 class="addComment">Laissez votre commentaire</h4>
         <!-- Formulaire pour le commentaire user -->
         <form class="form-signin" action="<?='post/addComment/'. htmlspecialchars($postComment->id()) ?>" method="post">
             <div class="form-group">
@@ -53,19 +51,19 @@
     <!-- Fenêtre modale -->
     <div class="window-bg">
         <div class="window">
-            <div class="window">
-                <p class="window-title">Fenêtre modale!</p>
-                <div class="window-content"></div>
-                <div class="window-buttons">
-                    <a href="" class="button window-close">Fermer</a>
-                </div>
+            <p class="window-title">Fenêtre modale!</p>
+            <div class="window-content"></div>
+            <div class="window-buttons">
+                <a href="" class="button window-close">Fermer</a>
             </div>
         </div>
     </div>
 
     
+        
+ 
     <script type="text/javascript" src="public/js/modal.js" ></script>
-    <script type="text/javascript" src="public/js/report.js"></script> 
+    <!-- <script type="text/javascript" src="public/js/report.js"></script>  -->
 
 
 

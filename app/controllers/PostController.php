@@ -44,10 +44,13 @@ class PostController extends Controller
     // Signale un commentaire pour modération
     public function moderateComment()
     {
-        // var_dump($_SERVER);
+        // echo 'J\'apparais dans la fenêtre modale!';
+        // // var_dump($_SERVER);
         $this->commentManager = new commentManager();
 
         $id = $this->request->getParam("id");
+        
+
         $comment = $this->commentManager->getComment($id);
         // $reportingMsg = "";
 
@@ -61,6 +64,6 @@ class PostController extends Controller
             // }
         }   
         // $this->render('Moderate', array('moderateComment' => $comment, 'reportingMsg' => $reportingMsg));
-        // $this->render('Moderate', array('moderateComment' => $comment)); 
+        // $this->render('Moderate', array('comment' => $comment)); 
     }  
 }

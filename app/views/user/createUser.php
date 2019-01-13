@@ -11,20 +11,25 @@
       
       <div class="form-label-group">
         <label for="username">Nom d'utilisateur</label>
-        <input type="text" class="form-control" name="username" id="username" placeholder="Nom d'utilisateur" required>
+        <input type="text" class="form-control" name="username" id="username" required>
       </div>
 
       <div class="form-label-group">
         <label for="password">Mot de passe</label>
-        <input type="password" class="form-control" name="password" id="password" placeholder="Mot de passe" required>
+        <input type="password" class="form-control" name="password" id="password" required>
+      </div>
+
+      <div class="form-label-group">
+        <label for="passwordConfirm">Confirmer le mot de passe</label>
+        <input type="password" class="form-control" name="passwordConfirm" id="passwordConfirm" required>
       </div>
 
        <div class="form-label-group">
         <label for="email">Adresse mail</label>
-        <input type="email" class="form-control" name="email" id="email" placeholder="email" required>
+        <input type="email" class="form-control" name="email" id="email" required>
       </div>
 
-       <button class="btn btn-lg btn-primary " type="submit" name="login" id="login">Créer profil</button>
+       <button class="btn btn-sm btn-primary " type="submit" name="login" id="login">Créer profil</button>
       
       <p class="mt-5 mb-3 text-muted text-center">&copy; 2018-2019</p>
     </form> 

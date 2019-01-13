@@ -1,4 +1,4 @@
-$("#multiform").submit(function(e){
+$('#show-window').click(function(e){
     var formObj = $(this);
     var formURL = formObj.attr("action");
     var formData = new FormData(this);
@@ -20,7 +20,7 @@ $("#multiform").submit(function(e){
     });
     e.preventDefault();
 });
-$('#btnReport').click(function(){
+$('#show-window').click(function(){
     $("#multiform").submit();
     $(this).attr("disabled", "disabled");
 })

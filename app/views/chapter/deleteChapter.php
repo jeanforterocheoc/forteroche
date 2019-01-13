@@ -13,7 +13,7 @@
         <p><?= $deleteChapter->content() ?></p>  
     </article>
 
-    <form action="admin/deleteChapter/<?= htmlspecialchars($deleteChapter->id()) ?>" method="post">
+    <form action="chapter/deleteChapter/<?= htmlspecialchars($deleteChapter->id()) ?>" method="post">
         <button type="submit" name="supprimer" id="supprimer">Confirmer</button>
     </form>
 </div>

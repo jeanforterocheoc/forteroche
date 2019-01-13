@@ -4,7 +4,7 @@ namespace App\Models\manager;
 use App\Models\Database;
 use App\Models\Post;
 
-class AdminManager extends Database
+class ChapterManager extends Database
 { 
 
      // Affiche l'ensemble des chapitres
@@ -52,6 +52,34 @@ class AdminManager extends Database
         $req = 'DELETE FROM posts WHERE post_id = ?';
         $result = $this->ina($req, [$postId]);
         return $result;
+    }
+
+    /**
+     * Compte la totalité des chapitres enregistrés dans la bdd
+     */
+    public function countChapters()
+    {
+        $nbChapterss='';
+        $req = 'SELECT COUNT(*) AS nbChapters  FROM posts';
+        $result = $this->runReq($req);
+        if(!$result){
+            return $nbChapters;
+        }
+        foreach($result as $value){
+            $nbChapters = $value['nbChapters'];
+        }
+        // var_dump($nbChapters);
+        // exit;
+        return $nbChapters;
+    }
+
+    /**
+     * Permet de définir le nombre de chapitres affichés par page
+     */
+    public function countPages($nbChapters, $perPage)
+    {
+        $nbPages = ceil($nbChapters / $perPage);
+        return $nbPages;
     }
 
 }

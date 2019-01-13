@@ -4,14 +4,14 @@
 <div class="container">
     <div>
         <h4>Les chapitres</h4><br>
-        <p><a href="admin/allChapters">Tous les chapitres</a></p><br>
-        <p><a href="admin/newChapter">Rédiger un nouveau chapitre</a></p><br>
+        <p><a href="chapter/allChapters">Tous les chapitres</a></p><br>
+        <p><a href="chapter/newChapter">Rédiger un nouveau chapitre</a></p><br>
     </div>
     <hr>
     <div>
         <h4>Les commentaires</h4><br>
-        <p><a href="admin/allComments">L'ensemble des commentaires</a></p><br>
-        <p><a href="admin/commentsReported">Voir les signalements</a></p><br>
+        <p><a href="comment/allComments">L'ensemble des commentaires</a></p><br>
+        <p><a href="comment/commentsReported">Voir les signalements</a></p><br>
     </div>
     <hr>
     <div>

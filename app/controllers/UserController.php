@@ -24,6 +24,7 @@ class UserController extends SecureController
             $user = $this->userManager->newUser(
                     $this->request->getParam("username"),
                     $this->request->getParam("password"),
+                    $this->request->getParam("passwordConfirm"),
                     $this->request->getParam("email")
                     );
         }
