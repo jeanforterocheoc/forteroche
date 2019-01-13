@@ -50,6 +50,7 @@ class PostController extends Controller
 
             $this->commentManager = new commentManager();
             $comment = $this->commentManager->addComment($chapterId, $author, $content);// Ajout dans bdd
+            
           }
           // else {
           //   $this->messages = new Messages;

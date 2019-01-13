@@ -1,27 +1,18 @@
-$(document).ready(function(){
-  $('.submit-commentUser').click(function() {
-    console.log('Hello');
+setInterval(function(){
+  $("#comments_user").load("PostController.php",function(){});
+},1000);
 
-    var author = $('#author').val();
-    var content = $('#content').val();
-    var postId = $('#postId').val();
-    var dataString = 'author=' + author + '&content=' + content + '&postId=' + postId;
-    $("#flash").show();
-    $("#flash").fadeIn(400).html('<img src="../images/ajax-loader.gif" align="absmiddle">&nbsp;<span class="loading">Loading Comment...</span>');
-    $.ajax({
-      type: "POST",
-      url: 'post/addComment' + postId,
-      data: dataString,
-      cache: false,
-      success: function(html){
-        $("ol#update").append(html);
-        $("ol#update li:last").fadeIn("slow");
-        document.getElementById('author').value='';
-        document.getElementById('content').value='';
-        $("#author").focus();
-        $("#flash").hide();
-      }
-    });
+$("#submit").click(function(){
+  var name = $("#name").val();
+  var message = $("#message").val();
+
+  $("name").val("");
+  $("message").val("");
+
+  $.ajax({
+    async: false,
+    type: 'GET',
+    url: 'post/postComment?name='+name+'&message='+message
   });
-  return false;
+
 });
