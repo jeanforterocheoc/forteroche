@@ -25,7 +25,7 @@ class AuthController extends Controller
                             $this->redirection('User', 'userAdmin');
                         } else {
                             $this->messages = new Messages;
-                            $this->messages->setMsg('Pas bon.', 'error');
+                            $this->messages->setMsg('Les identifiants n\'existent pas.', 'error');
                         }
                     }else {
                         $this->messages = new Messages;

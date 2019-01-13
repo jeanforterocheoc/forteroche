@@ -60,32 +60,28 @@ class UserController extends Controller
         $this->render('forgetPass');     
     }
 
-    // Création du code de vérification et envoie par mail
+    // Création du code de vérification et envoyé par mail
     public function recoveryMail()
     {
         // var_dump($_SESSION['recup_mail']);
         $recup_mail = $_SESSION['recup_mail'];
-        if ($recup_mail) {
+        if ($recup_mail ) {
             $recup_code = "";
-            for ($i=0; $i < 8; $i++) {
-                $recup_code .=mt_rand(0, 9);
+            for ($i=1; $i < 9; $i++) {
+                $recup_code .=mt_rand(1, 9);
             }
             $this->request->getSession()->setAttribut("recup_code", $recup_code);
             $this->userManager = new UserManager;
             $email_recup_exist = $this->userManager->emailRecupExist($recup_mail);
-            if ($email_recup_exist == 1) {
-                $recup_insert = $this->userManager->recupUpdate($recup_code, $recup_mail);
-            } else {
+            if ($email_recup_exist == 0) {
                 $recup_insert = $this->userManager->recupInsert($recup_mail, $recup_code);
+                $sendmail = $this->userManager->sendMail($recup_code);
             }
-            $sendmail = $this->userManager->sendMail($recup_code);
             $this->verifCode($recup_code);
-            
         }
-        // $this->render('recoveryMail');
     }
 
-
+    // Vérification du code transmis 
     public function verifCode($recup_code)
     { 
         // var_dump($recup_code);
@@ -98,7 +94,6 @@ class UserController extends Controller
                 if($is_Code == 1){
                     $this->redirection('User', 'newPass');
                      $del_email = $this->userManager->delMail($recup_mail);
-               
                 }else{
                     $this->messages = new Messages;
                     $this->messages->setMsg('Code incorrect !', 'error');
@@ -106,14 +101,40 @@ class UserController extends Controller
             }else{
                 $this->messages = new Messages;
                 $this->messages->setMsg('Veuillez entrer votre code', 'error');
-            }
-               
+            }     
         }
         $this->render('recoveryMail');
     }
 
+
     public function newPass()
     {
+        if(isset($_POST['validate_submit'])){
+            if(isset($_POST['newPass']) && !empty($_POST['newPass'])){
+                if(isset($_POST['newPassVerif']) && !empty($_POST['newPassVerif'])){
+                    $newPass = htmlspecialchars($_POST['newPass']);
+                    $newPassVerif = htmlspecialchars($_POST['newPassVerif']);
+                    if($newPass == $newPassVerif){
+                        $this->request->getSession()->setAttribut("newPass", $newPass);
+                        $this->userManager = new UserManager;
+                        $newPass = $_SESSION['newPass'];
+                        $email = $_SESSION['recup_mail'];
+                        $createNewPass = $this->userManager->createNewPass($newPass,$email);
+                        $this->redirection('user', 'userAdmin');
+                    }else {
+                        $this->messages = new Messages;
+                        $this->messages->setMsg('Les mots de passe ne correspondent pas!', 'error');
+                    }
+                }else {
+                    $this->messages = new Messages;
+                    $this->messages->setMsg('Veuillez confirmer votre nouveau mot de passe', 'error');
+                }
+            }else {
+                $this->messages = new Messages;
+                $this->messages->setMsg('Veuillez indiquer votre nouveau mot de passe', 'error');
+            }
+
+        }
         $this->render('newPass');
 
     }

@@ -23,6 +23,16 @@ class UserManager extends Database
         return $result;
     }
 
+    // Création d'un nouveau mot de passe
+    public function createNewPass($newPass,$email)
+    {
+        
+        $newPassHash = password_hash($newPass, PASSWORD_DEFAULT);
+        $req = 'UPDATE users SET password = ? WHERE email = ?';
+        $result = $this->ina($req, [$newPassHash, $email]);
+        return $result;
+    }
+
 
 /**
  * REINITIALISATION DU MOT DE PASSE

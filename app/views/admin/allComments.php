@@ -3,6 +3,7 @@
 
  <!-- Tous les commentaires insérés dans un tableau -->
 <div class="container-fluid">
+    <h2>Voici l'intégralité des commentaires:</h2><br>
     <table class="table table-dark">
         <thead>
             <tr>

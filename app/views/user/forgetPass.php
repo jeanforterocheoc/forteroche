@@ -9,7 +9,7 @@
         <input type="email" name="recup_mail" id="recup_mail" placeholder="Votre adresse mail" >
     </div>
     <br>
-    <button class="btn btn-sm btn-primary " type="submit" name="recup_submit" id="recup_submit">Validez</button>    
+    <button class="btn btn-sm btn-primary " type="submit" name="recup_submit" ">Validez</button>    
 </form>
  
   

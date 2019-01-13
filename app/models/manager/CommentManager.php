@@ -22,7 +22,6 @@ class CommentManager extends Database
             $comments[] = new Comment($comment);
         }
         return $comments;  
-
     }
 
     /**
@@ -31,10 +30,10 @@ class CommentManager extends Database
     public function commentsAll($currentPage, $perPage)
     {
         $comments = [];
-        
         $req = 'SELECT comment_id as id, post_id as postId, comment_author as author, comment_content as content, DATE_FORMAT(comment_date, \'%d/%m/%Y\') as date, comment_report as report 
                 FROM comments 
-                ORDER BY comment_id  
+                ORDER BY comment_id 
+                DESC 
                 LIMIT '.(($currentPage - 1) * $perPage).','.$perPage.'';
 
                 $result = $this->runReq($req,[$currentPage, $perPage]);
