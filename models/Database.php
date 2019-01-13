@@ -1,8 +1,8 @@
 <?php
 
-abstract class Database{
+ class Database{
 
-    private static $db;
+    protected static $db;
     
     // Exécuter une requête sql 
     protected function runReq($req, $params = [])

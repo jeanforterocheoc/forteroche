@@ -10,7 +10,8 @@ Autoloader::register();
 $router = new Router($_GET['url']);
 
 
-$router->get('/home/posts', 'Home#posts');
+// $router->get('/home/posts', 'Home#posts');
+$router->get('/home/posts', 'Home#firstPage');
 $router->get('/post/:id', 'Post#post');
 
 

@@ -15,7 +15,6 @@ class Post extends Model
         {
             $this->post_id = $postId;
         }
-        
     }
 
     public function setTitle($title)

@@ -2,23 +2,36 @@
 
 class HomeController extends Controller 
 {
+    private $homeManager;
 
-    private $postManager;
-    
     public function __construct()
     {
-         $this->posts();
+        $this->firstPage();
     }
-    
-    
-    public function posts()
+
+    public function firstPage()
     {
-        $this->postManager = new PostManager;
-        $posts = $this->postManager->getAll();
-        
-        $this->render('Home', array('posts' => $posts));
-              
+        $this->homeManager = new HomeManager;
+        $homePost = $this->homeManager->homePost();
+
+        $this->render('Home', array('firstPage' => $homePost));
     }
+
+
+    // private $postManager;
+    
+    // public function __construct()
+    // {
+    //      $this->posts();
+    // }
+    
+    // public function posts()
+    // {
+    //     $this->postManager = new PostManager;
+    //     $posts = $this->postManager->getAll();
+        
+    //     $this->render('Home', array('posts' => $posts));     
+    // }
 
     
 }
