@@ -1,9 +1,11 @@
-<?php session_start();
+<?php
 
-require_once ('../app/Autoloader.php');
-Autoloader::register();
+session_start();
+// require_once ('../app/Autoloader.php');
+// Autoloader::register();
+require_once ('../vendor/autoload.php');
 
-$router = new Router();
+$router = new App\Core\Router();
 $router->run();
 
 

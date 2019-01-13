@@ -2,6 +2,9 @@
 /**
  * Cette classe stocke l'ensemble des paramètres de la requête de l'utilisateur 
  */
+
+namespace App\Core;
+
 class Request
 {
 

@@ -3,7 +3,7 @@ class CommentManager extends Database
 {
     
     // Renvoie tous les commentaires par ordre de signalement
-    public function getAllComments()
+    public function getAllCommentsPerReport()
     {
         $comments = [];
         $req = 'SELECT comment_id as id, post_id as postId, comment_author as author, comment_content as content, comment_date as date, comment_report as report 

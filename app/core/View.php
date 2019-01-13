@@ -1,5 +1,6 @@
 <?php
-
+namespace App\Core;
+use App\Controllers\HomeController;
 class View 
 {
     private $file;
@@ -8,9 +9,15 @@ class View
     public function __construct($action, $controller) 
     {
         $file = '../app/views/';
-        $file = $file . strtolower($controller). "/";
+        
+        // $file = $file.strtolower($controller);
+        // var_dump($file);
+        // var_dump($action);
         $file = str_replace('controller', '', $file);
-        $this->file = $file .$action.'.php';
+        
+        $this->file = $file.$action.'.php';
+        // $this->file = $file .strtolower($action).'.php';
+
         // var_dump($controller);
         if(($controller == "AdminController") | ($controller == "UserController"))
         {
@@ -49,7 +56,7 @@ class View
 
             return ob_get_clean();
         }else{
-            throw new Exception('Le fichier ' .$file. ' est introuvable.' );
+            throw new \Exception('Le fichier ' .$file. ' est introuvable.' );
         }
     }
 

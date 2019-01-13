@@ -1,4 +1,6 @@
 <?php
+namespace App\Models;
+use App\Core\Config;
 
  class Database{
 
@@ -10,7 +12,7 @@
         $result = self::getDb()->prepare($req);
         $result->execute($params);
 
-        return $result->fetchAll(PDO::FETCH_ASSOC);
+        return $result->fetchAll(\PDO::FETCH_ASSOC);
     }
 
     // Méthode pour insert into car sinon erreur fatale avec un fetch 
@@ -28,7 +30,7 @@
         $result = self::getDb()->prepare($req);
         $result->execute($params);
         
-        return $result->fetch(PDO::FETCH_ASSOC);
+        return $result->fetch(\PDO::FETCH_ASSOC);
     }
 
 
@@ -42,10 +44,10 @@
             $login = Config::get('login');
             $pwd = Config::get('pwd');
             
-            $options = [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION];
+            $options = [\PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION];
             
             // Création de la connexion
-            self::$db = new PDO ($dsn, $login, $pwd, $options); 
+            self::$db = new \PDO ($dsn, $login, $pwd, $options); 
         }
         return self::$db;
     }  

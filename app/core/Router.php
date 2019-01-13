@@ -1,4 +1,7 @@
 <?php
+namespace App\Core;
+use App\Core\Controller;
+use App\Controllers\HomeController;
 
 class Router 
 {
@@ -39,12 +42,19 @@ class Router
 
         // Création du nom du fichier du contrôleur
         $controllerClass = $controller . 'Controller' ;
-        $controllerFile =  '../app/controllers/'  . $controllerClass . '.php';
+        // $controllerFile =  '../app/controllers/'  . $controllerClass . '.php';
+        $controllerFile =  '..\\app\\controllers\\'  . $controllerClass . '.php';
+
+        // $controllerFile =  '../app/Acme/controllers/'  . $controllerClass . '.php';
+        $ctrl = 'App\\Controllers\\'. $controllerClass;
+
+
 
         if (!file_exists($controllerFile)) {
-                throw new Exception("File '$controllerFile' not found");
+                throw new \Exception("File '$controllerFile' not found");
             }
-            $controller = new $controllerClass();
+            // $controller = new $controllerClass();
+            $controller = new $ctrl();
             $controller->setRequest($request);
             
             return $controller;

@@ -1,5 +1,8 @@
 <?php
 
+namespace App\Core;
+use App\Core\View;
+
 abstract class Controller 
 {
   private $action;
@@ -31,6 +34,9 @@ abstract class Controller
     // var_dump($controllerClass);
 
     $controller = str_replace("../blog_forteroche/Controller/", "", $controllerClass);
+    // $controller = str_replace("../blog_forteroche/Controller/", "", $controllerClass);
+    var_dump($controller);
+
     
     $view = new View($action, $controller); 
     $view->generate($params);

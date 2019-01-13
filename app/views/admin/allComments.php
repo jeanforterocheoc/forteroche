@@ -28,7 +28,7 @@
             <td>
                 <form action="<?='admin/validate/'. htmlspecialchars($comment->id()) ?>" method="post">
                     <input type="hidden" name="comment_id" value="<?=$comment->report()?>">
-                    <button type="submit" class="btn btn-success btn-sm" name="validate" id="validate">Approuver</button>
+                    <button type="submit" class="btn btn-success btn-sm" name="validate" id="validate">Approuver</button>   
                     <button type="submit" class="btn btn-danger btn-sm" name="delete" id="delete">Supprimer</button> 
                 </form>
             </td>
@@ -37,7 +37,6 @@
         </tbody>
     </table>
 </div>
-
 <!--Pagination  -->
 <div class="row">
     <div class="col-lg-12">

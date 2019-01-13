@@ -1,4 +1,8 @@
 <?php
+namespace App\Models\manager;
+use App\Models\Database;
+use App\Models\Post;
+
 class HomeManager extends Database
 { 
 public function homePost()

@@ -1,15 +1,21 @@
 <?php
-
-// Charge automatiquement les classes
+namespace Acme\blog_forteroche;
+/**
+* Charge automatiquement les classes  
+*/
 class Autoloader 
 {
-    // Enregistre les classes appellées
+    /** 
+     * Enregistre les classes appellées
+     */
     public static function register()
     {
         spl_autoload_register(array(__CLASS__, 'autoload'));
     }
 
-    // Inclut la classe appellée
+    /**
+     * Inclut la classe appellée  
+     */
     private static function autoload($class)
     {
         $class = str_replace('blog_forteroche\\', '', $class);
@@ -35,6 +41,5 @@ class Autoloader
         elseif(file_exists('../app/views/'.$class.'.php')){
             require '../app/views/'.$class.'.php';
         }
-        
     }
 }

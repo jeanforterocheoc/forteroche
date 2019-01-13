@@ -53,9 +53,6 @@ class PostController extends Controller
             // $this->messages->setMsg('Le signalement a été transmis!', 'success');
             if(isset($_POST['btnReport'])){
                 
-                // $this->messages = new Messages;
-                // $this->messages->setMsg('Le signalement a été transmis!', 'success');
-                
                 // $this->redirection('Posts', 'posts');
             }
         }   
