@@ -15,8 +15,6 @@ class CommentManager extends Database
             $comments[] = new Comment($comment);
         }
         return $comments;  
-
-
     }
 
     // Ajoute un commentaire dans la BDD
@@ -26,8 +24,6 @@ class CommentManager extends Database
         $result = $this->ina($req, [$postId, $author, $content]);
     
         return $result;
-        
-
     }
 
     

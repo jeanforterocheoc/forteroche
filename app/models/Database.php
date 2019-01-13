@@ -13,7 +13,7 @@
         return $result->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    // Méthode pour insert into car sinon erreur fatale avec un fetch
+    // Méthode pour insert into car sinon erreur fatale avec un fetch 
     protected function ina($req, $params = [])
     {
         $result = self::getDb()->prepare($req);

@@ -13,10 +13,11 @@ class PostController extends Controller
 
         $post = $this->postManager->getOne($postId);
         $comments = $this->commentManager->getComments($postId);
-        // $comment = $this->commentManager->addComment();
+
         $this->render('Post', array('postComment' => $post, 'comments' => $comments));
     }
 
+    // Permet d'ajouter un commentaire
     public function addComment()
     {
         print_r($this->request);
@@ -28,6 +29,12 @@ class PostController extends Controller
         $this->commentManager = new commentManager();
 
         $comment = $this->commentManager->addComment($postId, $author, $content);
+
+    }
+
+    // Signale un commentaire pour modération
+    public function moderation()
+    {
 
     }
 }

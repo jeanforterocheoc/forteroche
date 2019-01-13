@@ -18,7 +18,6 @@
     <p><?= htmlspecialchars($comment->content()) ?></p>
 <?php endforeach; ?>
  <hr />
- <!-- <form  method="post" action="post/addComment/"> -->
  <form action="<?='post/addComment/'. htmlspecialchars($postComment->id()) ?>" method="post">
     <label for="author">Votre pseudo</label><br>
     <input type="text" name="author" id="author" placeholder="Votre pseudo"><br><br>
@@ -27,6 +26,7 @@
     <input type="hidden" name="postId" value="<?php echo $_GET['id'] ?>">
     <button type="submit">Envoyer</button>
 </form>
+
 
 
 

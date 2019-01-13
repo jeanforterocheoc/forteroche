@@ -4,12 +4,6 @@ class PostsController extends Controller
 {
     private $postsManager;
     
-    // public function __construct()
-    // {
-    //      $this->posts();
-    // }
-    
-    
     public function posts()
     {
         $this->postsManager = new PostsManager();
