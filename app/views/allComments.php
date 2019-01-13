@@ -1,5 +1,5 @@
  <?php $this->title = "Tous les commentaires" ?>
- <p><a href="admin/homeAdmin">Accueil administration</a></p>
+ <p><a href="user/userAdmin">Accueil administration</a></p>
  
  <div class="container-fluid">
     <table class="table table-dark">

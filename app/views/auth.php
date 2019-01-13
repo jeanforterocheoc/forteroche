@@ -20,18 +20,18 @@
 
   <body class="text-center">
 
-    <form class="form-signin" action="<?='admin/homeAdmin'?>" method="post">
+    <form class="form-signin" action="<?='user/userAdmin'?>" method="post">
       <div class="text-center mb-4">
         <h1 class="h3 mb-3 font-weight-normal">Merci d'indiquer vos identifiants</h1>
       </div>
 
       <div class="form-label-group">
-        <input type="text" class="form-control" name="username" id="username" placeholder="Pseudo">
+        <input type="text" class="form-control" name="username" id="username" placeholder="Pseudo" required>
         <label for="username">Pseudo</label>
       </div>
 
       <div class="form-label-group">
-        <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+        <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
         <label for="password">Password</label>
       </div>
 

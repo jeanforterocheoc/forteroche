@@ -1,6 +1,6 @@
 <?php
 
-class AdminController extends Controller
+class AdminController extends ControllerAdmin
 {
     private $adminManager;
     private $commentManager;
@@ -108,30 +108,5 @@ class AdminController extends Controller
         $commentId = $this->request->getParam("id");
         $this->commentManager->deleteComment($commentId);
         $this->redirection('admin', 'allComments');
-    }
-
-    /** PROFIL */
-
-    // Profil Admin  admin/homeAdmin
-    public function homeAdmin()
-    {     
-        if ($this->request->paramExist('username') && $this->request->paramExist('password')) {
-            $this->adminManager = new AdminManager;
-                
-            $user = $this->adminManager->getUser(
-                    $this->request->getParam("username"),
-                    $this->request->getParam("password")
-                    );
-                
-            // Vérifie si utilisateur identifié dans la bdd ('username' => admin)       
-            if (null != $user) {
-                $_SESSION['admin'] = $user;
-                $this->render('Admin', array('homeAdmin' => $user));
-            }else {
-                echo ('Les identifiants sont incorrects.');
-            }         
-        }else {
-            echo ('Veuillez remplir tous les champs !');
-        }                
-    }
+    } 
 }
