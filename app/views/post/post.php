@@ -1,6 +1,6 @@
+<?php $this->title = $postComment->title() ?>
 <?php use App\models\Messages; ?>
 <?php Messages::displayMsg()?>
-<!-- <?php $this->title = $postComment->title() ?> -->
 
     <div class="container-fluid">
         <article>
@@ -15,6 +15,7 @@
             </section>
         </article>
         <hr>
+        
         <!-- Fil de commentaires -->
         <h4 class="postComment">Commentaires</h4>
           <?php foreach ($comments as $comment): ?>
@@ -29,6 +30,27 @@
               Signaler
               </button>
           <?php endforeach; ?>
+
+          <!-- Fenêtre modale -->
+          <div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="title-report" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="title-report">Confirmer le signalement</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+                  <div class="modal-body">
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-primary submit-reporting">Valider</button>
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                  </div>
+                  </div>
+                  <input type="hidden" name="id" id="commentId"  value="">
+              </div>
+          </div>
 
         <!--Pagination  -->
         <div class="row">
@@ -66,29 +88,6 @@
                         </li>
                     <?php endif; ?>
                 </ul>
-            </div>
-        </div>
-
-
-
-        <!-- Fenêtre modale -->
-        <div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="title-report" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="title-report">Confirmer un signalement</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary submit-reporting">Valider</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                </div>
-                </div>
-                <input type="hidden" name="id" id="commentId"  value="">
             </div>
         </div>
 
