@@ -8,6 +8,8 @@ class Session
     public function start()
     {
         session_start();
+        // var_dump($_SESSION);
+
     }
 
     /**

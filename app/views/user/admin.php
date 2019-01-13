@@ -12,7 +12,9 @@
         <h3>Les commentaires</h3>
         <p><a href="admin/allComments">L'ensemble des commentaires</a></p><br>
     </div>
-    
+    <hr>
+    <p><a href="user/createUser">Modifier profil</a></p><br>
+    <p><a href="auth/logout">Se déconnecter</a></p>   
 </div>
 
 

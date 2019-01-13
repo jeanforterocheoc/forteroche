@@ -24,9 +24,9 @@
                         <li class="nav-item active">
                             <a class="nav-link" href="home/homepage">Home <span class="sr-only">(current)</span></a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link" href="<?='auth/login/'?>">Connexion</a>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
             </nav>
@@ -47,6 +47,7 @@
                 <hr>
                 <footer>
                     <p>Mentions légales</p>
+                    <p><a href="<?='auth/login/'?>">Connexion</a></p>
                 </footer>
             </div>
         </div>

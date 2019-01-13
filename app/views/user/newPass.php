@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     
-    <title>Modification du mot de passe</title>
+    <title>Réinitialisation du mot de passe</title>
 
     <link href="../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="../public/css/style.css" rel="stylesheet">
@@ -17,13 +17,17 @@
   <body class="text-center">
       
         <h4>Réinitialisation du mot de passe</h4>
-        <form action="" method='post'>
+        <form action="user/recuperation" method='post'class="default-form">
                 <div>
-                    <label for="email">Votre adresse mail</label><br>
-                    <input type="email" name="email" id="email" required>
+                    <!-- <label for="email">Votre adresse mail</label><br> -->
+                    <input type="email" name="recup_mail" id="recup_mail" placeholder="Votre adresse mail" >
                 </div>
-
-                <div>
+                <br>
+                <button class="btn btn-sm btn-primary " type="submit" name="recup_submit" id="recup_submit">Validez</button>    
+        </form>
+      
+                        
+                <!-- <div>
                     <label for="pass">Votre ancien mot de passe</label><br>
                     <input type="password" name="pass" id="pwd" required>
                 </div>
@@ -38,12 +42,12 @@
                 <div>
                     <label for="pass">Confirmez votre nouveau mot de passe</label><br>
                     <input type="password" name="newPassVerif" id="pwd" required>
-                </div>
+                </div> -->
   
-                <br>
+                <!-- <br> -->
                 
-                <button class="btn btn-lg btn-primary " type="submit" name="validatePwd" id="validatePwd">Validez</button>    
-        </form>
+                <!-- <button class="btn btn-lg btn-primary " type="submit" name="validatePwd" id="validatePwd">Validez</button>     -->
+        <!-- </form> -->
       
   </body>
 </html>
