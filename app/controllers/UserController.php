@@ -22,15 +22,19 @@ class UserController extends Controller
     // Création du profil utilisateur
     public function createUser()
     {
-        if ($this->request->paramExist('username') && $this->request->paramExist('password') && $this->request->paramExist('passwordConfirm') && $this->request->paramExist('email')) 
+        if ($this->request->paramExist('username') && $this->request->paramExist('password') && $this->request->paramExist('passwordConfirm') && $this->request->paramExist('email'))
         {
+          if ($this->request->paramExist('username') && $this->request->paramExist('password') && $this->request->paramExist('email'))
+          {
             $this->userManager = new UserManager;
             $user = $this->userManager->newUser(
                     $this->request->getParam("username"),
                     $this->request->getParam("password"),
-                    $this->request->getParam("passwordConfirm"),
                     $this->request->getParam("email")
                     );
+          }
+        }else {
+          
         }
         $this->render('createUser');
     }
@@ -49,7 +53,7 @@ class UserController extends Controller
     {
         if ($_SERVER['REQUEST_METHOD'] != 'POST') {
             $this->render('forgetPass');
-            return; 
+            return;
          }
 
          if (isset($_POST['recup_submit'])) {
@@ -64,7 +68,7 @@ class UserController extends Controller
                     }else {
                         $this->messages = new Messages;
                         $this->messages->setMsg('Adresse mail incorrecte !', 'error');
-                    }                  
+                    }
                 }else {
                     $this->messages = new Messages;
                     $this->messages->setMsg('Adresse mail non valide !', 'error');
@@ -72,9 +76,9 @@ class UserController extends Controller
             }else {
                 $this->messages = new Messages;
                 $this->messages->setMsg('Veuillez entrer une adresse mail !', 'error');
-            }   
+            }
         }
-        $this->render('forgetPass');     
+        $this->render('forgetPass');
     }
 
     // Création du code de vérification et envoyé par mail
@@ -98,15 +102,15 @@ class UserController extends Controller
         }
     }
 
-    // Vérification du code transmis 
+    // Vérification du code transmis
     public function verifCode($recup_code)
-    { 
+    {
         // var_dump($recup_code);
         if (isset($_POST['verif_submit'])){
             if(isset($_POST['verif_code']) && !empty($_POST['verif_code'])){
                 $verif_code = htmlspecialchars($_POST['verif_code']);
                 $this->userManager = new UserManager;
-                $recup_mail = $_SESSION['recup_mail']; 
+                $recup_mail = $_SESSION['recup_mail'];
                 $is_Code = $this->userManager->isCode($recup_mail,$verif_code);
                 if($is_Code == 1){
                     $this->redirection('User', 'newPass');
@@ -118,7 +122,7 @@ class UserController extends Controller
             }else{
                 $this->messages = new Messages;
                 $this->messages->setMsg('Veuillez entrer votre code', 'error');
-            }     
+            }
         }
         $this->render('recoveryMail');
     }
