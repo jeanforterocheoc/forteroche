@@ -7,7 +7,7 @@ class HomeController extends Controller {
 
     private $postManager;
     
-    public function __construct($url)
+    public function __construct()
     {
          $this->posts();
     }

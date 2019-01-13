@@ -5,81 +5,57 @@ Autoloader::register();
 
 class Router {
 
-    private $routes = [];
-    private $url;
+    private $request;
 
-    public function __construct($url)
+    public function routeReq()
     {
-        $this->url = $url;
-    }
-
-    public function get($path,  $callable)
-    {
-        $route =new Route($path, $callable);
-        $this->routes['GET'][] = $route;
-
-        // return $route;
-
-        // $this->routes['GET'][] = new Route($path, $callable);
-    }
-
-    public function post($path,  $callable)
-    {
-        $route =new Route($path, $callable);
-        $this->routes['POST'][] = $route;
-
-        // return $route;
-
-        // $this->routes['POST'][] = new Route($path, $callable);
-    }
-
-    public function run()
-    {
-        // print_r($this->routes);
-        // exit();
-
-        $method = $_SERVER['REQUEST_METHOD'];
-        if(!isset($this->routes[$method]))
+        try 
         {
-            throw new Exception('No Found '.$method);
+            $this->request = new Request(array_merge($_GET, $_POST));
+
+            $controller = $this->createController($this->request);
+            $action = $this->createAction($this->request);
+
+            $controller->runAction($action);
         }
-        foreach ($this->routes[$method] as $route) {
-            if($route->match($this->url))
-            {
-                return $route->call();
-            }
+        catch (Exception $e)
+        {
+
         }
-        throw new Exception('Aucune correspondance');
     }
-  
-    
-    //         $this->error($e->getMessage());
-    
-    // private $ctrl;
-    // private $view;
 
-    // public function routeReq()
-    // {
-    //     $url = '';
+    private function createController($request)
+    {
+        $controller = "Home";
+        if($request->isParam('controller'))
+        {
+            $controller = $request->getParam('controller');
+            $controller = ucfirst(strtolower($controller));
+        }
+        try
+        {
+            $controllerClass = $controller."Controller";
 
-    //     if(isset($_GET['url'])) {
-    //         $url = explode('/', filter_var($_GET['url'], FILTER_SANITIZE_URL));
-    //         var_dump($url);
-    //         $controller = ucfirst(strtolower($url[0]));
-    //         $controllerClass = $controller."Controller";
-    //         $controllerFile = "controllers/".$controllerClass.".php";
+            $controller = new $controllerClass();
+            $controller->setRequest($request);
+            return $controller;
 
-    //         if(file_exists($controllerFile)) {
-    //             // require_once($controllerFile);
-    //             $this->ctrl = new $controllerClass($url);
-    //         }
-    //     }
-    // }
-    
+        }
+        catch(Exception $e)
+        {
+            throw new Exception("La page est introuvable.");
+        }
+    }
 
-    // private function error($msgError)
-    // {
-    //     $view = new View("Error");
-    //     $view->generate(array('msgError' => $msgError));
-    // } 
+    private function createAction($request)
+    {
+        $action = "index";
+        if($request->isParam('action'))
+        {
+            $action = $request-> getParam('action');
+        }
+        return $action;
+    }
+
+
 }
