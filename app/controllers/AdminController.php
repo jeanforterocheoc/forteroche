@@ -61,7 +61,7 @@ class AdminController extends Controller
        $this->render('ModifEpisode', array('modifEpisode' => $post));
     }
 
-    // Supprime un épisode
+    // Supprime un épisode  /admin/deleteEpisode/id
     public function deleteEpisode()
     {
         $postId = $this->request->getParam("id");

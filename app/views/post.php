@@ -2,7 +2,7 @@
 <h1><a class= "btn btn-info btn-lg" href="home/homepage">Page d'accueil</a></h1> 
 <article>
     <header>
-    <a href="posts/posts"><h1>Tous les épisodes</h1></a>
+    <a class= "btn btn-info btn-lg" href="posts/posts"><h1>Tous les épisodes</h1></a>
         <h2 class='postTitle'><?= htmlspecialchars($postComment->title()) ?></h2>
         <time>Publié le <?= htmlspecialchars($postComment->date()) ?></time> 
     </header>

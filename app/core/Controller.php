@@ -28,12 +28,10 @@ abstract class Controller
   protected function render(string $action, array $params=[])
   {
     $controllerClass = get_class($this);
-    var_dump($controllerClass);
-    $controller = str_replace("../blog_forteroche/Controller/controller", "", $controllerClass);
-    if(is_null($action))
-    {
-      $action = $this->action;
-    }
+    // var_dump($controllerClass);
+
+    $controller = str_replace("../blog_forteroche/Controller/", "", $controllerClass);
+    
     $view = new View($action, $controller); 
     $view->generate($params);
   }

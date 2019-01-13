@@ -1,5 +1,5 @@
 <?php $this->title = 'Espace administration'; ?>
-<h1>Espace administration: Voici l'ensemble des épisodes!</h1> 
+<h1>Voici l'ensemble des épisodes!</h1> 
 <article>
     <header>
     <?php foreach ($posts as $post) : ?>

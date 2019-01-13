@@ -4,10 +4,8 @@ class View
 {
     private $file;
     private $title;
-    private $template;
-
-   
-    public function __construct($action, $controller ='') 
+    
+    public function __construct($action, $controller) 
     {
         $this->file = '../app/views/' .$action.'.php';
         
