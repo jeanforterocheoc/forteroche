@@ -9,7 +9,7 @@
         <div id="container">
             <header>
                 <!-- <a href="../home/posts"><h1 id="bookTitle">Billet simple pour l'Alaska de Jean Forteroche</h1></a> -->
-                <h1 id="bookTitle">Espace administration</h1>                
+                <h1 id="bookTitle">Binvenue sur l'espace d'administration</h1>                
             </header>
             <div id="content">
                 <?=$content?>

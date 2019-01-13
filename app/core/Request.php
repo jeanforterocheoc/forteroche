@@ -25,7 +25,7 @@ class Request
 
     /**
      * Renvoie la valeur du paramètre 
-     */
+    */
     public function getParam($name)
     {
         if ($this->paramExist($name))
@@ -40,7 +40,7 @@ class Request
     /**
      * Renvoie les valeurs des paramètres par défaut
     */
-    public function getParamByDefault($name, $default = null)
+    public function defaultParam($name, $default = null)
     {
         try
         {

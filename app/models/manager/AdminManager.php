@@ -3,7 +3,7 @@
 class AdminManager extends Database
 { 
 
-     // Retourne l'ensemble des épisodes
+     // Affiche l'ensemble des épisodes
      public function getEpisodeAll()
      {
          $posts = [];
@@ -17,8 +17,16 @@ class AdminManager extends Database
          return $posts;
      }
 
+     // Affiche un seul épisode 
+     public function getOneEpisode($postId)
+     {
+        $req = 'SELECT post_id as id, post_title as title, post_content as content, DATE_FORMAT(post_date, \'%d/%m/%Y\') as date FROM posts WHERE post_id=?';
+        $result = $this->show($req, [$postId]);
+        return new Post($result) ;  
+     }
 
-    // Ajoute un épisode dans la Bdd
+
+    // Ajoute un nouvel épisode dans la Bdd
     public function addEpisode($title, $content)
     {
         $req = 'INSERT INTO posts(post_title, post_content, post_date) VALUES (?, ?, NOW())';
@@ -27,9 +35,19 @@ class AdminManager extends Database
     }
 
     // Modifie un épisode dans la Bdd
-    public function changeEpisode()
+    public function changeEpisode($title, $content, $postId)
     {
+        $req = 'UPDATE posts SET post_title = ?, post_content = ?, post_date = NOW() WHERE post_id = ?';
+        $result = $this->ina($req, [$title, $content, $postId]);
+        return $result;
+    }
 
+    // Supprime un épisode dans la Bdd
+    public function removeEpisode($postId)
+    {
+        $req = 'DELETE FROM posts WHERE post_id = ?';
+        $result = $this->ina($req, [$postId]);
+        return $result;
     }
 
 }

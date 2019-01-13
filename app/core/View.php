@@ -4,10 +4,23 @@ class View
 {
     private $file;
     private $title;
+    
 
-    public function __construct($action) 
+   
+    public function __construct($action, $controller = "") 
     {
-        $this->file = '../app/views/view'.$action.'.php';
+        
+        $this->file = '../app/views/' .$action.'.php';
+        
+        if($controller == "admin")
+        {
+            $this->template = 'templateAdmin.php';
+        }
+        else 
+        {
+            $this->template = 'template.php';
+        }
+
     }
 
     // Génère et affiche la vue
@@ -19,7 +32,7 @@ class View
         $racineWeb = Config::get("racineWeb", "/");
 
         // Temlpate
-        $view = $this->generateFile('../app/views/template.php', array('title' => $this->title, 'content' => $content, 'racineWeb' => $racineWeb));
+        $view = $this->generateFile('../app/views/'. $this->template, array('title' => $this->title, 'content' => $content, 'racineWeb' => $racineWeb));
         
         echo $view; 
     }
