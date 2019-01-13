@@ -1,7 +1,6 @@
 <?php
 class UserManager extends Database
 {
-
     // Vérifie si utilisateur identifié dans la bdd
     public function getUser($username, $password)
     { 

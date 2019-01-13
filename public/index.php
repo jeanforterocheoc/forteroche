@@ -1,4 +1,4 @@
-<?php
+<?php session_start();
 
 require_once ('../app/Autoloader.php');
 Autoloader::register();

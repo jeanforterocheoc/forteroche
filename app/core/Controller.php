@@ -32,7 +32,7 @@ abstract class Controller
 
     $controller = str_replace("../blog_forteroche/Controller/", "", $controllerClass);
     
-    $view = new View($action); 
+    $view = new View($action, $controller); 
     $view->generate($params);
   }
 

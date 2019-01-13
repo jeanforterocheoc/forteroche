@@ -1,4 +1,6 @@
 <div class="container-fluid">
+    <p><a href="user/userAdmin">accueil administration</a></p>
+
     <h4>Vous souhaitez rédiger un nouveau chapitre</h4>
     <form action="" method="post">
         <label for="title">Titre</label><br>

@@ -1,4 +1,5 @@
 <h1>Vous souhaitez modifier l'épisode intitulé : <?= htmlspecialchars($modifEpisode->title()) ?></h1>
+<p><a href="user/userAdmin">accueil administration</a></p>
 <?php $this->title = htmlspecialchars($modifEpisode->title()) ?>
 <article>
     <header>

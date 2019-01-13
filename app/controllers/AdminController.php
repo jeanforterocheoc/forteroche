@@ -1,6 +1,6 @@
 <?php
 
-class AdminController extends ControllerAdmin
+class AdminController extends Controller
 {
     private $adminManager;
     private $commentManager;
@@ -108,5 +108,13 @@ class AdminController extends ControllerAdmin
         $commentId = $this->request->getParam("id");
         $this->commentManager->deleteComment($commentId);
         $this->redirection('admin', 'allComments');
-    } 
+    }
+
+    /** PROFIL */
+
+    // // Profil Admin  admin/homeAdmin
+    public function homeAdmin()
+    {     
+        $this->render('Admin');           
+    }
 }

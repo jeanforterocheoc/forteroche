@@ -1,3 +1,4 @@
+<?php Messages::displayMsg()?>
 <div class="container-fluid">
     <h2>Signaler ce commentaire</h2>
     <section>
@@ -12,9 +13,9 @@
         <button type="submit" name="report" id="report">Signalez</button>   
     </form>
     <br>
-    <?php if(isset($reportingMsg)):?>
+    <!-- <?php if(isset($reportingMsg)):?>
             <strong><?= $reportingMsg;?></strong>
-    <?php endif; ?> 
+    <?php endif; ?>  -->
 </div>
 
 

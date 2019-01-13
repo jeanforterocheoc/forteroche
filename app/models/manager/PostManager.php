@@ -1,7 +1,6 @@
 <?php
 class PostManager extends Database
 {
-   
     // Retourne le contenu d'un billet
     public function getOne(int $postId)
     {

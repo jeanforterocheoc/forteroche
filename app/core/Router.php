@@ -26,7 +26,7 @@ class Router
     }
 
     /**
-     * Création du contrôleur en fonction de la requête reçue
+     * Création du contrôleur en fonction de la requête
      */
     private function createController($request)
     {
@@ -62,12 +62,4 @@ class Router
         }
         return $action;
     }      
-    
-    /**
-     *  Gestion des erreurs
-    */
-    private function manageError($exception)
-    {
-
-    } 
 }

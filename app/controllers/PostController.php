@@ -43,15 +43,15 @@ class PostController extends Controller
 
         $id = $this->request->getParam("id");
         $comment = $this->commentManager->getComment($id);
-        $reportingMsg = "";
+        // $reportingMsg = "";
 
         if($this->request->paramExist('comment_report')) {
             $this->commentManager->reportComment($id);
-            $reportingMsg = "Signalement transmis!";
-            // $this->redirection('home', 'homepage'); 
+            // $reportingMsg = "Signalement transmis!";
+            $this->messages = new Messages;
+            $this->messages->setMsg('Le signalement a été transmis!', 'success');
         }   
-        $this->render('Moderate', array('moderateComment' => $comment, 'reportingMsg' => $reportingMsg)); 
-    }
-
-    
+        // $this->render('Moderate', array('moderateComment' => $comment, 'reportingMsg' => $reportingMsg));
+        $this->render('Moderate', array('moderateComment' => $comment)); 
+    }  
 }
