@@ -80,34 +80,36 @@ class UserController extends Controller
             }
             $sendmail = $this->userManager->sendMail($recup_code);
             $this->verifCode($recup_code);
+            
         }
-        $this->render('recoveryMail');
-
+        // $this->render('recoveryMail');
     }
 
 
     public function verifCode($recup_code)
-    {
-        var_dump($recup_code);
+    { 
+        // var_dump($recup_code);
         if (isset($_POST['verif_submit'])){
             if(isset($_POST['verif_code']) && !empty($_POST['verif_code'])){
                 $verif_code = htmlspecialchars($_POST['verif_code']);
                 $this->userManager = new UserManager;
-                $isCode = $this->userManager->isCode($verif_code);
-                if($isCode == 1){
-                  $recup_mail = $_SESSION['recup_mail'];  
-                  $del_email = $this->userManager->delMail($recup_mail);
-                  $this->redirection('User', 'newPass');
+                $recup_mail = $_SESSION['recup_mail']; 
+                $is_Code = $this->userManager->isCode($recup_mail,$verif_code);
+                if($is_Code == 1){
+                    $this->redirection('User', 'newPass');
+                     $del_email = $this->userManager->delMail($recup_mail);
+               
                 }else{
                     $this->messages = new Messages;
                     $this->messages->setMsg('Code incorrect !', 'error');
                 }
             }else{
                 $this->messages = new Messages;
-                $this->messages->setMsg('Veuillez entrer un code !', 'error');
-            }  
+                $this->messages->setMsg('Veuillez entrer votre code', 'error');
+            }
+               
         }
-        
+        $this->render('recoveryMail');
     }
 
     public function newPass()

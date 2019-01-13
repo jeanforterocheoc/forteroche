@@ -86,10 +86,19 @@ class AdminController extends Controller
     // Affiche l'ensemble des commentaires /admin/allComments
     public function allComments()
     {
+       
+        $start = $_GET['page'];
+        $perPage = $_GET['per-page'];
+        $page = $this->page = new Pagination();
+        $pagination = $this->page->paginate( $start,$perPage);
         $this->commentManager = new CommentManager();
+        // var_dump($_GET['page']);
+        // var_dump($_GET['per-page']);
 
-        $comments = $this->commentManager->getAllComments();
-       $this->render('AllComments', array('allComments' => $comments));
+        $nbComments = $this->commentManager->total();
+        $comments = $this->commentManager->getAllComments( $start, $perPage);
+
+       $this->render('AllComments', array('allComments' => $comments, 'page' => $pagination));
     }
 
     // Validation d'un commentaire par l'admin /admin/validate/commentId
@@ -109,6 +118,7 @@ class AdminController extends Controller
         $this->commentManager->deleteComment($commentId);
         $this->redirection('admin', 'allComments');
     }
+    
 
     /** PROFIL */
 

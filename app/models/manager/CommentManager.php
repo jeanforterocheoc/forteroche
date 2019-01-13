@@ -2,10 +2,12 @@
 class CommentManager extends Database
 {
     // Renvoie tous les commentaires
-    public function getAllComments()
+    public function getAllComments($start, $perPage)
     {
         $comments = [];
-        $req = 'SELECT comment_id as id, post_id as postId, comment_author as author, comment_content as content, comment_date as date, comment_report as report FROM comments ORDER BY comment_report DESC ';
+        // $req = 'SELECT comment_id as id, post_id as postId, comment_author as author, comment_content as content, comment_date as date, comment_report as report FROM comments WHERE comment_report > 0 ORDER BY comment_report DESC ';
+        $req = 'SELECT comment_id as id, post_id as postId, comment_author as author, comment_content as content, DATE_FORMAT(comment_date, \'%d/%m/%Y\') as date, comment_report as report FROM comments ORDER BY comment_id  LIMIT  '.$start.', '.$perPage.'';
+
         $result = $this->runReq($req);
         // var_dump($result);
         // die();
@@ -20,11 +22,27 @@ class CommentManager extends Database
 
     }
 
+    public function total()
+    {
+        $nbComments = '';
+        $req = 'SELECT COUNT(*) AS nbComment FROM comments';
+        $result = $this->runReq($req);
+        if(!$result){
+            return $nbComment;
+        }
+        foreach($result as $value){
+            $nbComments = $value['nbComment'];
+        }
+        // var_dump($nbComments);
+        // exit;
+        return $nbComments;
+    }
+
     // Renvoie l'ensemble des commentaires associés à un billet
     public function getComments($postId)
     {
         $comments = [];
-        $req = 'SELECT comment_id as id, comment_author as author, comment_content as content, comment_date as date FROM comments WHERE post_id=?';
+        $req = 'SELECT comment_id as id, comment_author as author, comment_content as content, DATE_FORMAT(comment_date, \'%d/%m/%Y\') as date FROM comments WHERE post_id=?';
         $result = $this->runReq($req, [$postId]);
         if(!$result){
             return $comments;
@@ -36,13 +54,14 @@ class CommentManager extends Database
         return $comments;  
     }
 
+
+
     // Renvoie un commentaire en particulier
     public function getComment($id)
     {
-        $req = 'SELECT comment_id as id, comment_author as author, comment_content as content, comment_date as date, comment_report as report FROM comments WHERE comment_id=?';       
+        $req = 'SELECT comment_id as id, comment_author as author, comment_content as content, DATE_FORMAT(comment_date, \'%d/%m/%Y\') as date, comment_report as report FROM comments WHERE comment_id=?';       
         $comment = $this->show($req, [$id]);
-        // var_dump($comment);
-        // die();
+
         return new Comment($comment) ;   
     }
 

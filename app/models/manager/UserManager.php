@@ -71,12 +71,12 @@ class UserManager extends Database
         mail($mail, $sujet, $message);
     }
 
-    public function isCode($verif_code)
+    public function isCode($recup_mail,$verif_code)
     {
-        $req = 'SELECT id FROM recuperation WHERE email = ? AND code = ?';
-        $result = $this->ina($req, [$_SESSION['recup_mail'], $verif_code]);
+        $req = 'SELECT id FROM recuperation  WHERE email = ? AND code = ?';
+        $result = $this->ina($req, [$recup_mail, $verif_code]);
         $result = $result->rowCount();
-        return $result; 
+        return $result;
     }
 
     public function delMail($recup_mail)
