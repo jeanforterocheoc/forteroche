@@ -1,18 +1,29 @@
-setInterval(function(){
-  $("#comments_user").load("PostController.php",function(){});
-},1000);
+$(document).ready(function(){
+  // $('.submit-commentUser').click(function(e) {
+  $("#formAjax").on('submit',function(e) {
+    e.preventDefault();
+    // console.log($(this).serialize());
 
-$("#submit").click(function(){
-  var name = $("#name").val();
-  var message = $("#message").val();
+    var author = $('#author').val();
+    var commentUser = $('#commentUser').val();
+    var postId = $('#postId').val();
+    console.log(commentUser);
+    var dataString = 'author=' + author + '&commentUser=' + commentUser + '&postId=' + postId;
 
-  $("name").val("");
-  $("message").val("");
+    $.ajax({
+      url: 'post/addComment/' + postId,
+      type: "POST",
+      data: dataString,
 
-  $.ajax({
-    async: false,
-    type: 'GET',
-    url: 'post/postComment?name='+name+'&message='+message
+      success: function(html){
+        console.log('Hello');
+        console.log(dataString);
+        $("#messages").append("<p>" + author + " dit : " + commentUser + "</p>");
+      },
+      error: function(){
+        console.log('erreur!');
+      }
+    });
   });
-
+  // return false;
 });

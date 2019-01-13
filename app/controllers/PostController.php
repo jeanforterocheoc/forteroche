@@ -33,6 +33,7 @@ class PostController extends Controller
         $comments = $this->commentManager->getComments($chapterId, $currentPage, $perPage);
 
         $this->render('Post', array('postComment' => $chapter, 'comments' => $comments, 'currentPage' => $currentPage, 'nbPages' => $nbPages));
+
     }
 
     // Permet d'ajouter un commentaire
@@ -42,15 +43,14 @@ class PostController extends Controller
         // var_dump( $this->request->getParam("postId"));
         // die();
 
-          if(!empty($_POST['author']) AND !empty($_POST['content']))
+          if(!empty($_POST['author']) AND !empty($_POST['commentUser']))
           {
             $chapterId = $this->request->getParam("postId");
             $author = $this->request->getParam("author");
-            $content = $this->request->getParam("content");
+            $content = $this->request->getParam("commentUser");
 
             $this->commentManager = new commentManager();
             $comment = $this->commentManager->addComment($chapterId, $author, $content);// Ajout dans bdd
-            
           }
           // else {
           //   $this->messages = new Messages;
