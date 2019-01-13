@@ -7,7 +7,7 @@ class View {
 
     public function __construct($action) 
     {
-        $this->file = 'views/view'.$action.'.php';
+        $this->file = '../app/views/view'.$action.'.php';
     }
 
     // Génère et affiche la vue
@@ -15,9 +15,10 @@ class View {
     {
         // Partie spécifique de la vue
         $content = $this->generateFile($this->file, $data);
+        
 
         // Temlpate
-        $view = $this->generateFile('views/template.php', array('title' => $this->title, 'content' => $content));
+        $view = $this->generateFile('../app/views/template.php', array('title' => $this->title, 'content' => $content));
         
         echo $view; 
     }

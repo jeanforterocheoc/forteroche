@@ -4,13 +4,13 @@ class PostsController extends Controller
 {
     private $postsManager;
     
-    public function __construct()
-    {
-         $this->posts();
-    }
+    // public function __construct()
+    // {
+    //      $this->posts();
+    // }
     
     
-    public function posts()
+    public function postsAction()
     {
         $this->postsManager = new PostsManager();
         $posts = $this->postsManager->getAll();

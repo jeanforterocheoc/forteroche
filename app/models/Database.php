@@ -13,6 +13,7 @@
         return $result->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    
     // Exécute la requête pour l'affichage du contenu d'un billet
     protected function show($req, $params = [])
     {

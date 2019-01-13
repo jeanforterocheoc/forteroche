@@ -9,14 +9,10 @@ class Comment extends Model
     private $comment_date;
 
     // SETTERS
-    public function setId($postId)
-    {
-        $postId = (int) $postId;
-
-        if($postId > 0)
-        {
-            $this->comment_id = $postId;
-        } 
+    public function setId($commentId)
+    { 
+        $this->comment_id = $commentId;
+        
     }
 
     public function setAuthor($author)
@@ -52,7 +48,7 @@ class Comment extends Model
 
     public function id()
     {
-        return $this->post_id;
+        return $this->comment_id;
         
     }
 

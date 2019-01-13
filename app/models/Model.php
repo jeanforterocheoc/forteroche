@@ -3,7 +3,7 @@
 abstract class Model
 {
     
-    public function __construct(array $data)
+    public function __construct(array $data = [])
     {
         $this->hydrate($data);
     }
