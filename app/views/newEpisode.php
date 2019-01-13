@@ -1,5 +1,5 @@
 
-<h2>Vous souhaitez rédiger un nouvel épisode</h2>
+<h2>Vous souhaitez rédiger un nouveau chapitre</h2>
 <form action="" method="post">
     <label for="title">Titre du chapitre</label><br>
     <input type="text" value="<?=$title?>" name="title" id="title" placeholder="Titre du chapitre"><br><br>

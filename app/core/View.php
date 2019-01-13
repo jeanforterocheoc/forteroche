@@ -4,23 +4,13 @@ class View
 {
     private $file;
     private $title;
-    
+    private $template;
 
    
-    public function __construct($action, $controller = "") 
+    public function __construct($action, $template = 'template') 
     {
-        
         $this->file = '../app/views/' .$action.'.php';
-        
-        if($controller == "admin")
-        {
-            $this->template = 'templateAdmin.php';
-        }
-        else 
-        {
-            $this->template = 'template.php';
-        }
-
+        $this->template = $template . '.php';
     }
 
     // Génère et affiche la vue

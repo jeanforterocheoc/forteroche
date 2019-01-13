@@ -2,13 +2,15 @@
 <article>
     <header>
     <?php foreach ($homePage as $post) : ?>
-        <h1 class='postTitle'><?= htmlspecialchars($post->title()) ?></h1>
+        <h2 class='postTitle'><?= htmlspecialchars($post->title()) ?></h2>
         <time>Publié le :<?= htmlspecialchars($post->date()) ?></time>  
     </header>
     <p><?= htmlspecialchars($post->content());?></p>
     <!-- <p><?=htmlspecialchars(substr($post->content(), 0, 15))?></p> -->
-    <a href="<?='post/postComment/'. htmlspecialchars($post->id()) ?>">Lire la suite</a>
-    <a href="posts/posts"><h2>Tous les épisodes</h2></a>
+    <a class= "btn btn-primary" href="<?='post/postComment/'. htmlspecialchars($post->id()) ?>">Lire la suite</a>
+    <br>
+    <br>
+    <a class= "btn btn-info btn-lg" href="posts/posts"><h3>Tous les épisodes</h3></a>
     <?php endforeach; ?>
 </article>
 
