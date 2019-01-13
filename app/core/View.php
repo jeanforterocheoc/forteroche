@@ -5,10 +5,13 @@ class View
     private $file;
     private $title;
     
-    public function __construct($action, $controller) 
+    public function __construct($action, $controller = "") 
     {
-        $this->file = '../app/views/' .$action.'.php';
-        
+        $file = '../app/views/';
+        $file = $file . strtolower($controller). "/";
+        $file = str_replace('controller', '', $file);
+        $this->file = $file .$action.'.php';
+        echo $controller;
         if($controller == "AdminController")
         {
             $this->template = 'templateAdmin.php';

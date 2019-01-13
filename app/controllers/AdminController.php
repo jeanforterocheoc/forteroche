@@ -36,14 +36,14 @@ class AdminController extends Controller
     {
         $title = $this->request->defaultParam('title');
         $content = $this->request->defaultParam("content");
-
+        
         if($title && $content)
         {
             $this->adminManager = new AdminManager();
-            $this->adminManager->addEpisode($title, $content);
+            $this->adminManager->addEpisode( $title, $content);
         }
         
-        $this->render('NewEpisode', array('title' => $title, 'content' => $content));
+        $this->render('NewEpisode', array('title' => $title, 'content' => html_entity_decode($content, ENT_HTML5, 'UTF-8')));
     } 
 
     // Modifie un épisode  /admin/modifEpisode/id

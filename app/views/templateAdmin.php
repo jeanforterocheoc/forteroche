@@ -8,6 +8,13 @@
         <link rel="stylesheet" href="app/lib/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="public/css/styleAdmin.css">
 
+        <script type="text/javascript" src="public/js/tinymce/tinymce.min.js"></script>
+        <script type="text/javascript">
+            tinymce.init({
+                selector: '#mytextarea',
+                
+            });
+        </script>
     </head>
     <body>
         <div id="container">
