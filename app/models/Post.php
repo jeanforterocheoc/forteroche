@@ -4,7 +4,7 @@ use App\Models\Model;
 
 class Post extends Model
 {
-    private $chapter_id;
+    private $id;
     private $title;
     private $content;
     private $date;
@@ -16,7 +16,7 @@ class Post extends Model
 
         if($chapterId > 0)
         {
-            $this->chapter_id = $chapterId;
+            $this->id = $chapterId;
         }
     }
 
@@ -37,15 +37,15 @@ class Post extends Model
     }
 
     public function setDate($date)
-    { 
-        $this->date = $date; 
+    {
+        $this->date = $date;
     }
 
     // GETTERS
 
     public function id()
     {
-        return $this->chapter_id;  
+        return $this->id;
     }
 
     public function title()
@@ -63,4 +63,3 @@ class Post extends Model
         return $this->date;
     }
 }
-

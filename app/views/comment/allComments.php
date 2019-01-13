@@ -23,7 +23,11 @@
             <?php foreach ($allComments as $comment): ?>
                 <tr>
                 <!-- <td><?= htmlspecialchars($comment->getId()) ?></td> -->
-                <td><?= htmlspecialchars($comment->getChapterId()) ?></td>
+                <td>
+                <?php foreach ($allChapters as $post) : ?>
+                    <?= htmlspecialchars($post->title()) ?>
+                <?php endforeach; ?> 
+                </td>
                 <td><?= htmlspecialchars($comment->getDate()) ?></td> 
                 <td><?= htmlspecialchars($comment->getAuthor()) ?></td>
                 <td><?= htmlspecialchars($comment->getContent()) ?></td>

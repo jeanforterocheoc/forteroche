@@ -6,24 +6,24 @@ use App\Models\User;
 
 class UserManager extends Database
 {
-    
+
     // Vérifie si utilisateur identifié dans la bdd
     public function getUser($username)
-    { 
-        $req = 'SELECT id, username, password FROM users WHERE username = ? ';
+    {
+        $req = 'SELECT id, username, password FROM user WHERE username = ? ';
         $result = $this->show($req, [$username]);
-        
+
         if (!$result) {
             return null;
         }
-        return new User($result); 
+        return new User($result);
     }
 
     // Création du profil utilisateur
     public function newUser($username, $password, $email)
     {
         $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-        $req = 'INSERT INTO users(username, password, email) VALUES (?, ?, ?)';
+        $req = 'INSERT INTO user(username, password, email) VALUES (?, ?, ?)';
         $result = $this->ina($req, [$username, $passwordHash, $email]);
         return $result;
     }
@@ -31,9 +31,9 @@ class UserManager extends Database
     // Création d'un nouveau mot de passe
     public function createNewPass($newPass,$email)
     {
-        
+
         $newPassHash = password_hash($newPass, PASSWORD_DEFAULT);
-        $req = 'UPDATE users SET password = ? WHERE email = ?';
+        $req = 'UPDATE user SET password = ? WHERE email = ?';
         $result = $this->ina($req, [$newPassHash, $email]);
         return $result;
     }
@@ -45,15 +45,15 @@ class UserManager extends Database
     // Vérification email présent dans bdd
     public function mailExist($recup_mail)
     {
-        $req = 'SELECT id FROM users  WHERE email = ?';
+        $req = 'SELECT id FROM user  WHERE email = ?';
         $result = $this->show($req, [$recup_mail]);
         return $result;
     }
 
-    
+
     public function emailRecupExist($recup_mail)
     {
-        $req = 'SELECT id FROM recuperation  WHERE email = ?';
+        $req = 'SELECT id FROM forgetpass  WHERE email = ?';
         $result = $this->ina($req, [$recup_mail]);
         $result = $result->rowCount();
         return $result;
@@ -61,19 +61,19 @@ class UserManager extends Database
 
     public function recupUpdate($recup_code, $recup_mail)
     {
-        $req = 'UPDATE recuperation SET code = ? WHERE email = ?';
+        $req = 'UPDATE forgetpass SET code = ? WHERE email = ?';
         $result = $this->ina($req, [$recup_code, $recup_mail]);
         return $result;
     }
 
     public function recupInsert($recup_mail, $recup_code)
     {
-        $req = 'INSERT INTO recuperation(email,code) VALUES (?, ?)';
+        $req = 'INSERT INTO forgetpass(email,code) VALUES (?, ?)';
         $result = $this->ina($req, [$recup_mail, $recup_code]);
         return $result;
     }
 
-    // Envoie mail 
+    // Envoie mail
     public function sendMail($recup_code)
     {
         ini_set('SMTP','smtp.free.fr');
@@ -88,7 +88,7 @@ class UserManager extends Database
 
     public function isCode($recup_mail,$verif_code)
     {
-        $req = 'SELECT id FROM recuperation  WHERE email = ? AND code = ?';
+        $req = 'SELECT id FROM forgetpass  WHERE email = ? AND code = ?';
         $result = $this->ina($req, [$recup_mail, $verif_code]);
         $result = $result->rowCount();
         return $result;
@@ -96,7 +96,7 @@ class UserManager extends Database
 
     public function delMail($recup_mail)
     {
-        $req ='DELETE FROM recuperation WHERE email = ?';
+        $req ='DELETE FROM forgetpass WHERE email = ?';
         $result = $this->ina($req, [$recup_mail]);
         return $result;
     }

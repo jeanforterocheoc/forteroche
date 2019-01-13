@@ -10,13 +10,13 @@ class PostsManager extends Database
     public function getAll()
     {
         $chapters = [];
-        $req = 'SELECT chapter_id as id, title, content, DATE_FORMAT (date, \'%d/%m/%Y\') as date
-                FROM chapters 
-                ORDER BY chapter_id 
+        $req = 'SELECT id, title, content, DATE_FORMAT (date, \'%d/%m/%Y\') AS date
+                FROM chapter
+                ORDER BY id
                 DESC';
-                
+
         $result = $this->runReq($req, $chapters);
-        
+
         foreach($result as $chapter)
         {
             $chapters[] = new Post($chapter);

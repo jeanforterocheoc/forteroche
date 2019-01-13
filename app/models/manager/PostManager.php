@@ -8,10 +8,10 @@ class PostManager extends Database
     // Retourne le contenu d'un billet
     public function getOne(int $chapterId)
     {
-        $req = 'SELECT chapter_id as id, title, content, DATE_FORMAT(date, \'%d/%m/%Y\') as date
-        FROM chapters 
-        WHERE chapter_id = ?';
+        $req = 'SELECT id, title, content, DATE_FORMAT(date, \'%d/%m/%Y\') AS date
+        FROM chapter
+        WHERE id = ?';
         $post = $this->show($req, [$chapterId]);
-        return new Post($post) ;  
+        return new Post($post) ;
     }
 }
