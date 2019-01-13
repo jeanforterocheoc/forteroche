@@ -43,7 +43,7 @@ class UserManager extends Database
         $result = $result->rowCount();
         return $result;
     }
-    
+
     public function recupUpdate($recup_code, $recup_mail)
     {
         $req = 'UPDATE recuperation SET code = ? WHERE email = ?';
@@ -58,7 +58,7 @@ class UserManager extends Database
         return $result;
     }
 
-    // Envoie par mail d'un code de sécurité pour réinitialisation du mot de passe 
+    // Envoie mail 
     public function sendMail($recup_code)
     {
         ini_set('SMTP','smtp.free.fr');
@@ -69,7 +69,20 @@ class UserManager extends Database
         ';
         // Envoi du mail
         mail($mail, $sujet, $message);
-    
+    }
 
+    public function isCode($verif_code)
+    {
+        $req = 'SELECT id FROM recuperation WHERE email = ? AND code = ?';
+        $result = $this->ina($req, [$_SESSION['recup_mail'], $verif_code]);
+        $result = $result->rowCount();
+        return $result; 
+    }
+
+    public function delMail($recup_mail)
+    {
+        $req ='DELETE FROM recuperation WHERE email = ?';
+        $result = $this->ina($req, [$recup_mail]);
+        return $result;
     }
 }

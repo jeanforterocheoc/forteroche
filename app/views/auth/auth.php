@@ -19,7 +19,7 @@
       </div>
 
        <button class="btn btn-lg btn-primary " type="submit" name="login" id="login">Se connecter</button>
-      <p><a href="user/newPass" class="forgetPassword"><b>Mot de passe oublié</b></a></p>
+      <p><a href="user/forgetPass" class="forgetPassword"><b>Mot de passe oublié</b></a></p>
       <p class="mt-5 mb-3 text-muted text-center">&copy; 2018-2019</p>
     </form> 
   </body> 
