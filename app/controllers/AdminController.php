@@ -4,7 +4,7 @@ class AdminController extends Controller
 {
     private $adminManager;
 
-    // Affiche l'ensemble des épisodes
+    // Affiche l'ensemble des épisodes /admin/allEpisode
     public function allEpisode()
     {
         $this->adminManager = new AdminManager();
@@ -16,7 +16,17 @@ class AdminController extends Controller
     // Rediger un nouvel épisode
     public function newEpisode()
     {
-        $this->adminManager = new AdminManager();
+        // print_r($this->request);
+        $title = $this->request->getParamByDefault('title');
+        $content = $this->request->getParamByDefault("content");
+
+        if($title && $content)
+        {
+            $this->adminManager = new AdminManager();
+            $this->adminManager->addEpisode($title, $content);
+        }
+        
+        $this->render('NewEpisode', array('title' => $title, 'content' => $content));
     } 
 
 }

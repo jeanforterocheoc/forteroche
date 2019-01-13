@@ -19,9 +19,11 @@ class AdminManager extends Database
 
 
     // Ajoute un épisode dans la Bdd
-    public function addEpisode()
+    public function addEpisode($title, $content)
     {
-        
+        $req = 'INSERT INTO posts(post_title, post_content, post_date) VALUES (?, ?, NOW())';
+        $result = $this->ina($req, [$title, $content]);
+        return $result;
     }
 
     // Modifie un épisode dans la Bdd

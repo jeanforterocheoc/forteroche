@@ -1,4 +1,4 @@
-<?php $this->title = $post->title() ?>
+<!-- <?php $this->title = $post->title() ?>
 <article>
     <header>
     <a href="../home/posts"><h1>Tous les épisodes</h1></a>
@@ -25,7 +25,7 @@
     <p><?= $comment->author() ?></P>    
     <p><?= $comment->date() ?></P>
     <p><?= $comment->content() ?></p>
- <?php endforeach; ?>   
+ <?php endforeach; ?>    -->
 
  
 

@@ -37,4 +37,19 @@ class Request
         }
     }
 
+    /**
+     * Renvoie les valeurs des paramètres par défaut
+    */
+    public function getParamByDefault($name, $default = null)
+    {
+        try
+        {
+            return $this->getParam($name);
+        }
+        catch(Exception $e)
+        {
+            return $default;
+        }
+    }
+
 }

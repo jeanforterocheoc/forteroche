@@ -20,7 +20,7 @@ class PostController extends Controller
     // Permet d'ajouter un commentaire
     public function addComment()
     {
-        print_r($this->request);
+        // print_r($this->request);
 
         $postId = $this->request->getParam("postId");
         $author = $this->request->getParam("author");
