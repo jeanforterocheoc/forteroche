@@ -23,7 +23,7 @@ class CommentManager extends Database
     public function addComment($postId, $author, $content)
     {
         $req = 'INSERT INTO comments(post_id, comment_author, comment_content, comment_date) VALUES (?, ?, ?,NOW())';
-        $result = $this->runReq($req, [$postId, $author, $content]);
+        $result = $this->ina($req, [$postId, $author, $content]);
     
         return $result;
         

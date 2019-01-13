@@ -13,6 +13,14 @@
         return $result->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    // Méthode pour insert into car sinon erreur fatale avec un fetch
+    protected function ina($req, $params = [])
+    {
+        $result = self::getDb()->prepare($req);
+        $result->execute($params);
+
+        return $result;
+    }
     
     // Exécute la requête pour l'affichage du contenu d'un billet
     protected function show($req, $params = [])
