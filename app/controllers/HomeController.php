@@ -7,6 +7,7 @@ class HomeController extends Controller
     public function homepage()
     {
         // print_r($this->request);
+        // var_dump($_SESSION);
         $this->homeManager = new HomeManager;
         $homePost = $this->homeManager->homePost();
 

@@ -1,14 +1,14 @@
-<?php $this->title = htmlspecialchars($postComment->title()) ?>
+<?php $this->title = $postComment->title() ?>
 <div class="container-fluid">
     <article>
         <header>
             <a class="btn btn-primary" href="posts/posts">Tous les chapitres</a>
-            <h2 class='postTitle'><?= htmlspecialchars($postComment->title()) ?></h2>
-            <b><time>Publié le <?= htmlspecialchars($postComment->date()) ?></time></b>
+            <h2 class='postTitle'><?= $postComment->title() ?></h2>
+            <b><time>Publié le <?= $postComment->date() ?></time></b>
         </header>
         <br>
         <section>
-            <p><?= htmlspecialchars($postComment->content()) ?></p>
+            <p><?= $postComment->content() ?></p>
         </section>     
     </article>
     <hr />

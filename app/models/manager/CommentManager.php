@@ -5,7 +5,7 @@ class CommentManager extends Database
     public function getAllComments()
     {
         $comments = [];
-        $req = 'SELECT comment_id as id, post_id as postId, comment_author as author, comment_content as content, comment_date as date, comment_report as report FROM comments';
+        $req = 'SELECT comment_id as id, post_id as postId, comment_author as author, comment_content as content, comment_date as date, comment_report as report FROM comments ORDER BY comment_report DESC ';
         $result = $this->runReq($req);
         // var_dump($result);
         // die();
@@ -55,7 +55,7 @@ class CommentManager extends Database
         return $result;
     }
 
-    // Ajoute un commentaire pour modération (espace users)
+    // Ajoute un signalement pour modération (espace users)
     public function reportComment($commentId)
     {
         $req = 'UPDATE comments SET comment_report = comment_report + 1 WHERE comment_id = ?';

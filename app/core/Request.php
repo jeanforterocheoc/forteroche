@@ -5,7 +5,11 @@
 class Request
 {
 
+    /** Tableau des paramètres de la requête */
     private $params;
+
+    /** Objet session associé à la requête */
+    private $session;
 
     /**
      * Instancie les paramètres de la requête
@@ -13,6 +17,14 @@ class Request
     public function __construct(array $params)
     {
         $this->params = $params;
+        $this->session = new Session();
+    }
+
+    /** Renvoie l'objet session associé à la requête */
+
+    public function getSession()
+    {
+        return $this->session;
     }
 
     /**
@@ -51,5 +63,4 @@ class Request
             return $default;
         }
     }
-
 }

@@ -4,6 +4,7 @@ class User extends Model
     private $id;
     private $username;
     private $password;
+    private $email;
 
     public function setId($userId)
     {
@@ -31,6 +32,14 @@ class User extends Model
         }
     }
 
+    public function setEmail($addressMail)
+    {
+        if($addressMail)
+        {
+            $this->email = $addressMail;
+        }
+    }
+
     public function getId()
     {
         return $this->id;
@@ -44,5 +53,10 @@ class User extends Model
     public function getPassword()
     {
         return $this->password;
+    }
+
+    public function getEmail()
+    {
+        return $this->email;
     }
 }
