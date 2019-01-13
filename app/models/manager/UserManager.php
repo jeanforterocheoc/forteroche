@@ -1,4 +1,9 @@
 <?php
+namespace App\Models\manager;
+
+use App\Models\Database;
+use App\Models\User;
+
 class UserManager extends Database
 {
     

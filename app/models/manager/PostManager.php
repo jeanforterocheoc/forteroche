@@ -1,4 +1,8 @@
 <?php
+namespace App\Models\manager;
+use App\Models\Database;
+use App\Models\Post;
+
 class PostManager extends Database
 {
     // Retourne le contenu d'un billet

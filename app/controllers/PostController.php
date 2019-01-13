@@ -1,4 +1,9 @@
 <?php
+namespace App\Controllers;
+
+use App\Core\Controller;
+use App\Models\manager\PostManager;
+use App\Models\manager\CommentManager;
 
 class PostController extends Controller
 {
@@ -51,10 +56,9 @@ class PostController extends Controller
             
             // $this->messages = new Messages;
             // $this->messages->setMsg('Le signalement a été transmis!', 'success');
-            if(isset($_POST['btnReport'])){
-                
-                // $this->redirection('Posts', 'posts');
-            }
+            // if(isset($_POST['btnReport'])){
+            //     $this->redirection('Posts', 'posts');
+            // }
         }   
         // $this->render('Moderate', array('moderateComment' => $comment, 'reportingMsg' => $reportingMsg));
         $this->render('Moderate', array('moderateComment' => $comment)); 

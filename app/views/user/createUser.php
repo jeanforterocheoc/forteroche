@@ -1,4 +1,4 @@
-<?php Messages::displayMsg()?>
+
 <?php $this->title = 'Création d\'un profil utilisateur'; ?> 
 <p><a href="user/userAdmin">home</a></p><br>
 

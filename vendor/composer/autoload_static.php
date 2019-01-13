@@ -21,17 +21,30 @@ class ComposerStaticInit47531d1b423ac88867114428d78041bd
     );
 
     public static $classMap = array (
+        'App\\Controllers\\AdminController' => __DIR__ . '/../..' . '/app/controllers/AdminController.php',
+        'App\\Controllers\\AuthController' => __DIR__ . '/../..' . '/app/controllers/AuthController.php',
         'App\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/controllers/HomeController.php',
+        'App\\Controllers\\PostController' => __DIR__ . '/../..' . '/app/controllers/PostController.php',
+        'App\\Controllers\\PostsController' => __DIR__ . '/../..' . '/app/controllers/PostsController.php',
+        'App\\Controllers\\UserController' => __DIR__ . '/../..' . '/app/controllers/UserController.php',
         'App\\Core\\Config' => __DIR__ . '/../..' . '/app/core/Config.php',
         'App\\Core\\Controller' => __DIR__ . '/../..' . '/app/core/Controller.php',
         'App\\Core\\Request' => __DIR__ . '/../..' . '/app/core/Request.php',
         'App\\Core\\Router' => __DIR__ . '/../..' . '/app/core/Router.php',
         'App\\Core\\Session' => __DIR__ . '/../..' . '/app/core/Session.php',
         'App\\Core\\View' => __DIR__ . '/../..' . '/app/core/View.php',
+        'App\\Models\\Comment' => __DIR__ . '/../..' . '/app/models/Comment.php',
         'App\\Models\\Database' => __DIR__ . '/../..' . '/app/models/Database.php',
+        'App\\Models\\Messages' => __DIR__ . '/../..' . '/app/models/Messages.php',
         'App\\Models\\Model' => __DIR__ . '/../..' . '/app/models/Model.php',
         'App\\Models\\Post' => __DIR__ . '/../..' . '/app/models/Post.php',
+        'App\\Models\\User' => __DIR__ . '/../..' . '/app/models/User.php',
+        'App\\Models\\manager\\AdminManager' => __DIR__ . '/../..' . '/app/models/manager/AdminManager.php',
+        'App\\Models\\manager\\CommentManager' => __DIR__ . '/../..' . '/app/models/manager/CommentManager.php',
         'App\\Models\\manager\\HomeManager' => __DIR__ . '/../..' . '/app/models/manager/HomeManager.php',
+        'App\\Models\\manager\\PostManager' => __DIR__ . '/../..' . '/app/models/manager/PostManager.php',
+        'App\\Models\\manager\\PostsManager' => __DIR__ . '/../..' . '/app/models/manager/PostsManager.php',
+        'App\\Models\\manager\\UserManager' => __DIR__ . '/../..' . '/app/models/manager/UserManager.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

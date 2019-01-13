@@ -1,4 +1,5 @@
 <?php $this->title = 'Adresse mail pour réinitialisation'; ?> 
+<?php use App\models\Messages; ?>
 <?php Messages::displayMsg()?>
 
 <h4>Réinitialisation du mot de passe</h4>

@@ -1,9 +1,13 @@
 <?php
+namespace App\Models\manager;
+
+use App\Models\Database;
+use App\Models\Post;
 
 class AdminManager extends Database
 { 
 
-     // Affiche l'ensemble des épisodes
+     // Affiche l'ensemble des chapitres
      public function getAllChapters()
      {
          $posts = [];
@@ -17,7 +21,7 @@ class AdminManager extends Database
          return $posts;
      }
 
-     // Affiche un seul épisode 
+     // Lire un chapitre
      public function getOneChapter($postId)
      {
         $req = 'SELECT post_id as id, post_title as title, post_content as content, DATE_FORMAT(post_date, \'%d/%m/%Y\') as date FROM posts WHERE post_id=?';
@@ -26,7 +30,7 @@ class AdminManager extends Database
      }
 
 
-    // Ajoute un nouvel épisode dans la Bdd
+    // Ajouter un chapitre 
     public function addChapter($title, $content)
     {
         $req = 'INSERT INTO posts(post_title, post_content, post_date) VALUES (?, ?, NOW())';
@@ -34,15 +38,15 @@ class AdminManager extends Database
         return $result;
     }
 
-    // Modifie un épisode dans la Bdd
-    public function changeEpisode($title, $content, $postId)
+    // Modifier un chapitre 
+    public function modifyChapter($title, $content, $postId)
     {
         $req = 'UPDATE posts SET post_title = ?, post_content = ?, post_date = NOW() WHERE post_id = ?';
         $result = $this->ina($req, [$title, $content, $postId]);
         return $result;
     }
 
-    // Supprime un épisode dans la Bdd
+    // Supprimer un chapitre 
     public function removeEpisode($postId)
     {
         $req = 'DELETE FROM posts WHERE post_id = ?';

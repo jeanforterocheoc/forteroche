@@ -1,6 +1,11 @@
 <?php
 namespace App\Core;
+
+use App\Core\Controller;
 use App\Controllers\HomeController;
+use App\Controllers\AdminController;
+
+
 class View 
 {
     private $file;
@@ -10,16 +15,15 @@ class View
     {
         $file = '../app/views/';
         
-        // $file = $file.strtolower($controller);
-        // var_dump($file);
-        // var_dump($action);
-        $file = str_replace('controller', '', $file);
-        
-        $this->file = $file.$action.'.php';
-        // $this->file = $file .strtolower($action).'.php';
-
+        $controller = str_replace('Controller', '', $controller);
+        $controller = strtolower($controller). '/';
         // var_dump($controller);
-        if(($controller == "AdminController") | ($controller == "UserController"))
+        // exit;
+        $file = $file.strtolower($controller);
+        // var_dump($file);
+        $this->file = $file .strtolower($action).'.php';
+        // var_dump($controller);
+        if(($controller == "admin/") | ($controller == "user/"))
         {
             $this->template = 'templateAdmin.php';
         }

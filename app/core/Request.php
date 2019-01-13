@@ -61,7 +61,7 @@ class Request
         {
             return $this->getParam($name);
         }
-        catch(Exception $e)
+        catch(\Exception $e)
         {
             return $default;
         }

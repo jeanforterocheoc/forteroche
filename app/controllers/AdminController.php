@@ -1,4 +1,11 @@
 <?php
+namespace App\Controllers;
+
+use App\Core\Controller;
+use App\Models\manager\AdminManager;
+use App\Models\manager\CommentManager;
+
+
 
 class AdminController extends Controller
 {
@@ -18,7 +25,7 @@ class AdminController extends Controller
         $this->render('allChapters', array('posts' => $allChapters));
     }
 
-    // Affiche un seul épisode  /admin/oneChapter/id
+    // Affiche un chapitre /admin/oneChapter/id
     public function oneChapter()
     {
        $postId = $this->request->getParam("id");
@@ -32,11 +39,11 @@ class AdminController extends Controller
         $this->render('OneChapter', array('oneChapter' => $one, 'comments' => $comments));
     }
 
-    // Créer un nouvel épisode /admin/newChapter
+    // Créer un chapitre /admin/newChapter
     public function newChapter()
     {
         $title = $this->request->defaultParam('title');
-        $content = $this->request->defaultParam("content");
+        $content = $this->request->defaultParam('mytextarea');
         
         if($title && $content)
         {
@@ -44,42 +51,43 @@ class AdminController extends Controller
             $this->adminManager->addChapter( $title, $content);
         }
         
-        $this->render('newChapter', array('title' => $title, 'content' => $content));
+        $this->render('NewChapter', array('title' => $title, 'mytextarea' => $content));
     } 
 
-    // Modifie un épisode  /admin/modifEpisode/id
-    public function modifEpisode()
+    // Modifier un chapitre  /admin/changeChapter/id
+    public function changeChapter()
     {
 
         $postId = $this->request->getParam("id");
         $this->adminManager = new AdminManager();
-        $post = $this->adminManager->getOneEpisode($postId);
+        $post = $this->adminManager->getOneChapter($postId);
         
         if($this->request->paramExist('title') && $this->request->paramExist('content'))
         {
-            $this->adminManager->changeEpisode(
+            $this->adminManager->modifyChapter(
                  $this->request->getParam("title"),
                  $this->request->getParam("content"),
                  $postId
             );
+                $this->redirection("admin", 'allChapters');
         }
-       $this->render('ModifEpisode', array('modifEpisode' => $post));
+       $this->render('changeChapter', array('changeChapter' => $post));
     }
 
-    // Supprime un épisode  /admin/deleteEpisode/id
-    public function deleteEpisode()
+    // Supprimer un chapitre  /admin/deleteChapter/id
+    public function deleteChapter()
     {
         $postId = $this->request->getParam("id");
 
         $this->adminManager = new AdminManager();
-        $post = $this->adminManager->getOneEpisode($postId);
+        $post = $this->adminManager->getOneChapter($postId);
 
         if(isset($_POST['supprimer'])) {
             $this->adminManager->removeEpisode($postId);
+            $this->redirection('Admin', 'allChapters');
         }  
         
-       $this->render('DeleteEpisode', array('deleteEpisode' => $post));
-
+       $this->render('DeleteChapter', array('deleteChapter' => $post));
     }
 
     /** COMMENTAIRES */
@@ -98,7 +106,7 @@ class AdminController extends Controller
                 $currentPage = 1;
             }
         $comments = $this->commentManager->commentsAll($currentPage, $perPage);
-        
+    
        $this->render('AllComments', array('allComments' => $comments, 'currentPage' => $currentPage, 'nbPages' => $nbPages));
     }
 
@@ -118,6 +126,14 @@ class AdminController extends Controller
         $commentId = $this->request->getParam("id");
         $this->commentManager->deleteComment($commentId);
         $this->redirection('admin', 'allComments');
+    }
+
+    // Permet de trier les commentaires signalés
+    public function commentsReported()
+    {
+        $this->commentManager = new CommentManager();
+        $commentsReported = $this->commentManager->getAllCommentsPerReport();
+        $this->render('commentsReported', array('commentsReported' => $commentsReported));
     }
     
 

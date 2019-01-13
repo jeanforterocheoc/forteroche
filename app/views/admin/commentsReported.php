@@ -1,9 +1,8 @@
 <?php $this->title = "Tous les commentaires" ?>
 <p><a href="user/userAdmin">Accueil administration</a></p>
 
- <!-- Tous les commentaires insérés dans un tableau -->
 <div class="container-fluid">
-    <h2>Voici l'intégralité des commentaires:</h2><br>
+    <h2>Voici les commentaires signalés:</h2><br>
     <table class="table table-dark">
         <thead>
             <tr>
@@ -18,7 +17,7 @@
             </tr>
         </thead>
         <tbody>
-        <?php foreach ($allComments as $comment): ?>
+        <?php foreach ($commentsReported as $comment): ?>
             <tr>
             <td><?= htmlspecialchars($comment->id()) ?></td>
             <!-- <td><?= htmlspecialchars($comment->postId()) ?></td> -->
@@ -43,51 +42,3 @@
         </tbody>
     </table>
 </div>
-
-<!--Trier les signalements-->
-<!-- <div class="sortReport">
-    <form action="admin/report" method="post">
-        <button type="submit" class="btn btn-primary btn-sm" name="sortReport" id="sortReport">Trier les signalements</button> 
-    </form>
-</div> -->
-
-<!--Pagination  -->
-<div class="row">
-    <div class="col-lg-12">
-        <ul class="pagination pagination-lg">
-            <?php if($currentPage - 1 == 0): ?>
-                <li class="page-item disabled">
-                    <span><i class="fas fa-arrow-alt-circle-left"></i></span>
-                </li>
-            <?php else : ?>
-                <li class="page-item">
-                    <a href="admin/allComments?page=<?=$currentPage - 1 ?>"><i class="fas fa-arrow-alt-circle-left"></i></a>
-                </li>
-            <?php endif;?>
-            <?php 
-            for ($i = 1; $i <= $nbPages; $i++) {
-                if($i == $currentPage): ?>
-            
-                <li class="page-item-active">
-                    <a><?= $i ?></a>        
-                </li>           
-            <?php else : ?>
-                <li class="page-item">
-                    <a href="admin/allComments?page=<?= $i ?>"><i><?= $i ?></i></a>
-                </li>
-            <?php endif; 
-            } ?> <!-- Fin boucle -->
-            <?php if($currentPage + 1 > $nbPages): ?>
-                <li class="page-item disabled">
-                    <span><i class="fas fa-arrow-alt-circle-right"></i></span>
-                </li>
-            <?php else : ?>
-                <li class="page-item">
-                    <a href="admin/allComments?page=<?=$currentPage + 1 ?>"><i class="fas fa-arrow-alt-circle-right"></i></a>
-                </li>
-            <?php endif; ?>     
-        </ul>
-    </div>
-</div>
-
- 

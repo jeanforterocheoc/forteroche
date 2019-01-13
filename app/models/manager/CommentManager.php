@@ -1,11 +1,16 @@
 <?php
+namespace App\Models\manager;
+
+use App\Models\Database;
+use App\Models\Comment;
+
 class CommentManager extends Database
 {
     
     // Renvoie tous les commentaires par ordre de signalement
     public function getAllCommentsPerReport()
     {
-        $comments = [];
+        $commentsWithReporting = [];
         $req = 'SELECT comment_id as id, post_id as postId, comment_author as author, comment_content as content, comment_date as date, comment_report as report 
         FROM comments 
         WHERE comment_report > 0 
@@ -15,13 +20,13 @@ class CommentManager extends Database
         // var_dump($result);
         // die();
         if(!$result){
-            return $comments;
+            return $commentsWithReporting;
         }
         foreach($result as $comment)
         {
-            $comments[] = new Comment($comment);
+            $commentsWithReporting[] = new Comment($comment);
         }
-        return $comments;  
+        return $commentsWithReporting;  
     }
 
     /**
@@ -76,7 +81,10 @@ class CommentManager extends Database
     public function getComments($postId)
     {
         $comments = [];
-        $req = 'SELECT comment_id as id, comment_author as author, comment_content as content, DATE_FORMAT(comment_date, \'%d/%m/%Y\') as date FROM comments WHERE post_id=?';
+        $req = 'SELECT comment_id as id, comment_author as author, comment_content as content, DATE_FORMAT(comment_date, \'%d/%m/%Y\') as date 
+                FROM comments 
+                WHERE post_id=?';
+
         $result = $this->runReq($req, [$postId]);
         if(!$result){
             return $comments;
@@ -91,7 +99,10 @@ class CommentManager extends Database
     // Renvoie un commentaire en particulier
     public function getComment($id)
     {
-        $req = 'SELECT comment_id as id, comment_author as author, comment_content as content, DATE_FORMAT(comment_date, \'%d/%m/%Y\') as date, comment_report as report FROM comments WHERE comment_id=?';       
+        $req = 'SELECT comment_id as id, comment_author as author, comment_content as content, DATE_FORMAT(comment_date, \'%d/%m/%Y\') as date, comment_report as report 
+                FROM comments 
+                WHERE comment_id=?';
+
         $comment = $this->show($req, [$id]);
 
         return new Comment($comment) ;   
@@ -100,7 +111,9 @@ class CommentManager extends Database
     // Ajoute un commentaire dans la BDD (espace users)
     public function addComment($postId, $author, $content)
     {
-        $req = 'INSERT INTO comments(post_id, comment_author, comment_content, comment_date) VALUES (?, ?, ?,NOW())';
+        $req = 'INSERT INTO comments(post_id, comment_author, comment_content, comment_date) 
+                VALUES (?, ?, ?,NOW())';
+                
         $result = $this->ina($req, [$postId, $author, $content]);
     
         return $result;

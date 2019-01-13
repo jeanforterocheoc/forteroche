@@ -32,12 +32,8 @@ abstract class Controller
   {
     $controllerClass = get_class($this);
     // var_dump($controllerClass);
-
-    $controller = str_replace("../blog_forteroche/Controller/", "", $controllerClass);
-    // $controller = str_replace("../blog_forteroche/Controller/", "", $controllerClass);
-    var_dump($controller);
-
-    
+    $controller = str_replace("App\\Controllers\\", "", $controllerClass);
+    // var_dump($controller);
     $view = new View($action, $controller); 
     $view->generate($params);
   }

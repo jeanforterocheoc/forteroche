@@ -1,4 +1,4 @@
-<?php Messages::displayMsg()?>
+
 <div class="container-fluid">
     <h2>Signaler ce commentaire</h2>
     <section>

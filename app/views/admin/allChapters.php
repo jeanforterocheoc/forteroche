@@ -1,4 +1,4 @@
-<?php $this->title = 'Espace administration'; ?>
+<?php $this->title = 'Tous les chapitres'; ?>
 <a href="user/userAdmin">accueil administration</a>
 <h2>Voici l'ensemble des chapitres!</h2>  
 <!-- <?php foreach ($posts as $post) : ?>
@@ -25,7 +25,8 @@
                   <th>Titre</th>                
                   <th>Chapitre</th>
                   <th></th>
-
+                  <th></th>
+                  <th></th>
                   </tr>
               </thead>
 
@@ -38,6 +39,16 @@
                   <td>
                     <form action="<?='admin/oneChapter/'. htmlspecialchars($post->id()) ?>" method="post">
                       <button type="submit" class="btn btn-success btn-sm" name="editer" id="editer">Editer</button>
+                    </form>
+                  </td>
+                  <td>
+                    <form action="<?='admin/changeChapter/'. htmlspecialchars($post->id()) ?>" method="post">
+                      <button type="submit" class="btn btn-primary btn-sm" name="changeChapter" id="changeChapter">Modifier</button>
+                    </form>
+                  </td>
+                  <td>
+                    <form action="<?='admin/deleteChapter/'. htmlspecialchars($post->id()) ?>" method="post">
+                      <button type="submit" class="btn btn-danger btn-sm" name="deleteChapter" id="deleteChapter">Supprimer</button>
                     </form>
                   </td>
 
