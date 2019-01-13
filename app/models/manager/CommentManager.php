@@ -71,6 +71,13 @@ class CommentManager extends Database
         return $result;
     }
 
+    // suppression d'un commentaire (espace admin)
+    public function deleteComment($commentId)
+    {
+        $req = 'DELETE FROM comments WHERE comment_id = ?';
+        $result = $this->ina($req, [$commentId]);
+        return $result;
+    }
 
     
     

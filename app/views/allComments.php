@@ -1,5 +1,6 @@
  <?php $this->title = "Tous les commentaires" ?>
- <a href="admin/homeAdmin">Accueil</a>
+ <p><a href="admin/homeAdmin">Accueil administration</a></p>
+ 
  <div class="container-fluid">
     <table class="table table-dark">
         <thead>
@@ -24,11 +25,10 @@
             <td><?= htmlspecialchars($comment->report()) ?></td>
             <td><form action="<?='admin/validate/'. htmlspecialchars($comment->id()) ?>" method="post">
                     <input type="hidden" name="comment_id" value="<?=$comment->report()?>">
-                    <button type="submit" name="validate" id="validate">Validez</button>   
+                    <button type="submit" class="btn btn-success" name="validate" id="validate">Valider</button>
+                    <button type="submit" class="btn btn-danger" name="delete" id="delete">Supprimer</button>      
                 </form>
             </td>
-
-
             </tr>
             <?php endforeach; ?>  
         </tbody>

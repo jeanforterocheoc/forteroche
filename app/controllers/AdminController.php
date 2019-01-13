@@ -92,12 +92,21 @@ class AdminController extends Controller
        $this->render('AllComments', array('allComments' => $comments));
     }
 
-    // Validation d'un commentaire par l'admin
+    // Validation d'un commentaire par l'admin /admin/validate/commentId
     public function validate()
     {
         $this->commentManager = new CommentManager();
         $commentId = $this->request->getParam("id");
         $this->commentManager->validateComment($commentId);
+        $this->redirection('admin', 'allComments');
+    }
+
+    // Suppression d'un commentaire par l'admin /admin/validate/commentId
+    public function delete()
+    {
+        $this->commentManager = new CommentManager();
+        $commentId = $this->request->getParam("id");
+        $this->commentManager->deleteComment($commentId);
         $this->redirection('admin', 'allComments');
     }
 
