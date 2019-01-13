@@ -29,8 +29,6 @@ class Autoloader
         elseif(file_exists('models/'.$class.'.php')){
             require 'models/'.$class.'.php';
         }
-        elseif(file_exists('views/'.$class.'.php')){
-            require 'views/'.$class.'.php';
-        }
+        
     }
 }

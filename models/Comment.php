@@ -1,5 +1,5 @@
 <?php
-class Comment
+class Comment extends Model
 {
     private $comment_id;
     private $post_id;
@@ -7,24 +7,6 @@ class Comment
     private $comment_title;
     private $comment_content;
     private $comment_date;
-
-    public function __construct(array $data)
-    {
-        $this->hydrate($data);
-    }
-
-    public function hydrate(array $data)
-    {
-        foreach($data as $key => $value)
-        {
-            $method = 'set'.ucfirst($key);
-
-            if(method_exists($this, $method))
-            {
-                $this->$method($value);
-            }
-        }
-    }
 
     // SETTERS
     public function setId($postId)

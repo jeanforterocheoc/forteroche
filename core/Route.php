@@ -1,21 +1,21 @@
 <?php
 
-require_once ('Autoloader.php');
-Autoloader::register();
-
 class Route
 {
     
     private $path;
-    private $callable;
-    private $matches;
+    private $ctrl;
+    private $matches = [];
+    private $params = [];
 
-    public function __construct($path, $callable)
+    public function __construct($path, $ctrl)
     {
         $this->path = trim($path, '/');
-        $this->callable = $callable;
+        $this->ctrl = $ctrl;
     }
 
+
+    // Indique si une route match ou non
     public function match($url)
     {
         $url = trim($url, '/');
@@ -34,25 +34,20 @@ class Route
         return true;
     }
 
+    // Renvoie le controller appelé si une url correspond
     public function call()
     {
-        if (is_string($this->callable)) {
-            $params = explode('#', $this->callable);
-            // var_dump($params);
+        if (is_string($this->ctrl)) {
+            $params = explode('#', $this->ctrl);
             
-            // $controller = "controllers\\".$params[0]."Controller".".php";
             $controller = ucwords($params[0])."Controller";
 
-            // var_dump($controller);
-            // var_dump($params[1]);
-            
             $controller = new $controller();
 
-            // $action = $params[1];
-            // return $controller->$action();
             return call_user_func_array([$controller, $params[1]], $this->matches);
+
         } else {
-            return call_user_func_array($this->callable, $this->matches);
+            return call_user_func_array($this->ctrl, $this->matches);
         }
     }
        

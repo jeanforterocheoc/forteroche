@@ -1,8 +1,5 @@
 <?php
 
-require_once('Autoloader.php');
-Autoloader::register();
-
 class CommentController extends Controller
 {
     private $commentManager;

@@ -1,8 +1,5 @@
 <?php
 
-require_once ('Autoloader.php');
-Autoloader::register();
-
 abstract class Database{
 
     private static $db;
@@ -17,7 +14,7 @@ abstract class Database{
     }
 
     // Exécute la requête pour l'affichage du contenu d'un billet
-    protected function fetch($req, $params = [])
+    protected function show($req, $params = [])
     {
         $result = self::getDb()->prepare($req);
         $result->execute($params);

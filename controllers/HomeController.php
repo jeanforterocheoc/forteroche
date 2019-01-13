@@ -1,9 +1,7 @@
 <?php
 
-require_once ('Autoloader.php');
-Autoloader::register();
-
-class HomeController extends Controller {
+class HomeController extends Controller 
+{
 
     private $postManager;
     

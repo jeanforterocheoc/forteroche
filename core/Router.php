@@ -1,43 +1,40 @@
 <?php
 
-require_once ('Autoloader.php');
-Autoloader::register();
-
- 
 class Router 
 {
     private $url;
     private $routes = [];
 
+    // Instanciation de l'url
     public function __construct($url)
     {
         $this->url = $url;
     }
 
-    public function get($path, $callable)
+    // Permet de stocker dans un tableau les url contenant la méthode GET
+    public function get($path, $ctrl)
     {
-        $route = new Route($path, $callable);
+        $route = new Route($path, $ctrl);
         $this->routes['GET'][] = $route;
+
     }
 
-    public function post($path, $callable)
+    // Permet de stocker dans un tableau les url contenant la méthode POST
+    public function post($path, $ctrl)
     {
-        $route = new Route($path, $callable);
+        $route = new Route($path, $ctrl);
         $this->routes['POST'][] = $route;
+
     }
 
+    // Vérifie si une url correspond
     public function run()
     {
-        // // Vérifie si toutes les routes sont bien enregistrées
-        // echo '<pre>';
-        // echo print_r($this->routes);
-        // echo'</pre>';
-        // exit();
-
         $method = $_SERVER['REQUEST_METHOD'];
+
         if(!isset($this->routes[$method]))
         {
-            throw new Exception('No Found'.$method);
+            throw new Exception('Aucune '. $method . ' ne correspond.');
         }
         foreach ($this->routes[$method] as $route) {
             if($route->match($this->url))
@@ -45,7 +42,7 @@ class Router
                 return $route->call();
             }
         }
-        throw new Exception('Aucune correspondance');
+        throw new Exception('Aucune correspondance avec une route.');
     }
    
 }

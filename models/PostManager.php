@@ -20,7 +20,7 @@ class PostManager extends Database
      public function getOne(int $postId)
      {
         $req = 'SELECT post_id as id, post_title as title, post_content as content, post_date as date FROM posts WHERE post_id=?';
-        $post = $this->fetch($req, [$postId]);
+        $post = $this->show($req, [$postId]);
         // var_dump($post);
         return new Post($post) ;  
      }
