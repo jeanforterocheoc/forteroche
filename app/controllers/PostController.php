@@ -19,7 +19,7 @@ class PostController extends Controller
         $this->render('Post', array('postComment' => $post, 'comments' => $comments));
     }
 
-    // Permet d'ajouter un commentaire
+    // Permet d'ajouter un commentaire 
     public function addComment()
     {
         // print_r($this->request);

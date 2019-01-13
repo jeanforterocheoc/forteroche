@@ -13,11 +13,6 @@
         return $result->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    // protected function count($req)
-    // {
-    //     return self::getDb()->query($req)->fetchColumn();
-    // }
-    
     // Méthode pour insert into car sinon erreur fatale avec un fetch 
     protected function ina($req, $params = [])
     {

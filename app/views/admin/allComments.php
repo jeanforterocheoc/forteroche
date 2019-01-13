@@ -1,6 +1,7 @@
 <?php $this->title = "Tous les commentaires" ?>
 <p><a href="user/userAdmin">Accueil administration</a></p>
- 
+
+ <!-- Tous les commentaires insérés dans un tableau -->
 <div class="container-fluid">
     <table class="table table-dark">
         <thead>
@@ -35,6 +36,44 @@
         </tbody>
     </table>
 </div>
+
+<!--Pagination  -->
+<div class="row">
+    <div class="col-lg-12">
+        <ul class="pagination pagination-lg">
+            <?php if($currentPage - 1 == 0): ?>
+                <li class="page-item disabled">
+                    <span><i class="fas fa-arrow-alt-circle-left"></i></span>
+                </li>
+            <?php else : ?>
+                <li class="page-item">
+                    <a href="admin/allComments?page=<?=$currentPage - 1 ?>"><i class="fas fa-arrow-alt-circle-left"></i></a>
+                </li>
+            <?php endif;?>
+            <?php 
+            for ($i = 1; $i <= $nbPages; $i++) {
+                if($i == $currentPage): ?>
             
+                <li class="page-item-active">
+                    <a><?= $i ?></a>        
+                </li>           
+            <?php else : ?>
+                <li class="page-item">
+                    <a href="admin/allComments?page=<?= $i ?>"><i><?= $i ?></i></a>
+                </li>
+            <?php endif; 
+            } ?> <!-- Fin boucle -->
+            <?php if($currentPage + 1 > $nbPages): ?>
+                <li class="page-item disabled">
+                    <span><i class="fas fa-arrow-alt-circle-right"></i></span>
+                </li>
+            <?php else : ?>
+                <li class="page-item">
+                    <a href="admin/allComments?page=<?=$currentPage + 1 ?>"><i class="fas fa-arrow-alt-circle-right"></i></a>
+                </li>
+            <?php endif; ?>     
+        </ul>
+    </div>
+</div>
 
  

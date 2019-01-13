@@ -1,12 +1,15 @@
 <?php
 class CommentManager extends Database
 {
-    // Renvoie tous les commentaires
-    public function getAllComments($start, $perPage)
+    
+    // Renvoie tous les commentaires par ordre de signalement
+    public function getAllComments()
     {
         $comments = [];
-        // $req = 'SELECT comment_id as id, post_id as postId, comment_author as author, comment_content as content, comment_date as date, comment_report as report FROM comments WHERE comment_report > 0 ORDER BY comment_report DESC ';
-        $req = 'SELECT comment_id as id, post_id as postId, comment_author as author, comment_content as content, DATE_FORMAT(comment_date, \'%d/%m/%Y\') as date, comment_report as report FROM comments ORDER BY comment_id  LIMIT  '.$start.', '.$perPage.'';
+        $req = 'SELECT comment_id as id, post_id as postId, comment_author as author, comment_content as content, comment_date as date, comment_report as report 
+        FROM comments 
+        WHERE comment_report > 0 
+        ORDER BY comment_report DESC ';
 
         $result = $this->runReq($req);
         // var_dump($result);
@@ -22,20 +25,52 @@ class CommentManager extends Database
 
     }
 
-    public function total()
+    /**
+     * Renvoie tous les commentaires (pour la pagination dans admin)
+     */
+    public function commentsAll($currentPage, $perPage)
     {
-        $nbComments = '';
-        $req = 'SELECT COUNT(*) AS nbComment FROM comments';
+        $comments = [];
+        
+        $req = 'SELECT comment_id as id, post_id as postId, comment_author as author, comment_content as content, DATE_FORMAT(comment_date, \'%d/%m/%Y\') as date, comment_report as report 
+                FROM comments 
+                ORDER BY comment_id  
+                LIMIT '.(($currentPage - 1) * $perPage).','.$perPage.'';
+
+                $result = $this->runReq($req,[$currentPage, $perPage]);
+                if(!$result){
+                    return $comments;
+                }
+                foreach($result as $comment)
+                {
+                    $comments[] = new Comment($comment);
+                }
+                return $comments; 
+
+    }
+    /**
+     * Compte la totalité des commentaires enregistrés dans la bdd
+     */
+    public function countComments()
+    {
+        $nbComments='';
+        $req = 'SELECT COUNT(*) AS nbComments  FROM comments';
         $result = $this->runReq($req);
         if(!$result){
-            return $nbComment;
+            return $nbComments;
         }
         foreach($result as $value){
-            $nbComments = $value['nbComment'];
+            $nbComments = $value['nbComments'];
         }
         // var_dump($nbComments);
         // exit;
         return $nbComments;
+    }
+
+    public function countPages($nbComments, $perPage)
+    {
+        $nbPages = ceil($nbComments / $perPage);
+        return $nbPages;
     }
 
     // Renvoie l'ensemble des commentaires associés à un billet
@@ -53,8 +88,6 @@ class CommentManager extends Database
         }
         return $comments;  
     }
-
-
 
     // Renvoie un commentaire en particulier
     public function getComment($id)

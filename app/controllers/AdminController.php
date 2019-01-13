@@ -4,7 +4,8 @@ class AdminController extends Controller
 {
     private $adminManager;
     private $commentManager;
-
+   
+    
 
     /** CHAPITRES */    
 
@@ -86,19 +87,19 @@ class AdminController extends Controller
     // Affiche l'ensemble des commentaires /admin/allComments
     public function allComments()
     {
-       
-        $start = $_GET['page'];
-        $perPage = $_GET['per-page'];
-        $page = $this->page = new Pagination();
-        $pagination = $this->page->paginate( $start,$perPage);
         $this->commentManager = new CommentManager();
-        // var_dump($_GET['page']);
-        // var_dump($_GET['per-page']);
-
-        $nbComments = $this->commentManager->total();
-        $comments = $this->commentManager->getAllComments( $start, $perPage);
-
-       $this->render('AllComments', array('allComments' => $comments, 'page' => $pagination));
+        $nbComments = $this->commentManager->countComments();
+        $perPage = 5;
+        $nbPages = $this->commentManager->countPages($nbComments, $perPage);
+            if(isset($_GET['page']) && $_GET['page'] > 0 && $_GET['page'] <= $nbPages)
+            {
+                $currentPage = $_GET['page'];
+            }else {
+                $currentPage = 1;
+            }
+        $comments = $this->commentManager->commentsAll($currentPage, $perPage);
+        
+       $this->render('AllComments', array('allComments' => $comments, 'currentPage' => $currentPage, 'nbPages' => $nbPages));
     }
 
     // Validation d'un commentaire par l'admin /admin/validate/commentId
