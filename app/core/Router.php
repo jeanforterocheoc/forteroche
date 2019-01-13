@@ -54,8 +54,7 @@ class Router
                 throw new \Exception("File '$controllerFile' not found");
             }
             // $controller = new $controllerClass();
-            $controller = new $ctrl();
-            $controller->setRequest($request);
+            $controller = new $ctrl($request);
             
             return $controller;
     }

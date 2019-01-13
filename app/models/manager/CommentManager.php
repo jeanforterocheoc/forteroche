@@ -6,31 +6,9 @@ use App\Models\Comment;
 
 class CommentManager extends Database
 {
-    
-    // Renvoie tous les commentaires par ordre de signalement
-    public function getAllCommentsPerReport()
-    {
-        $commentsWithReporting = [];
-        $req = 'SELECT comment_id as id, post_id as postId, comment_author as author, comment_content as content, comment_date as date, comment_report as report 
-        FROM comments 
-        WHERE comment_report > 0 
-        ORDER BY comment_report DESC ';
-
-        $result = $this->runReq($req);
-        // var_dump($result);
-        // die();
-        if(!$result){
-            return $commentsWithReporting;
-        }
-        foreach($result as $comment)
-        {
-            $commentsWithReporting[] = new Comment($comment);
-        }
-        return $commentsWithReporting;  
-    }
 
     /**
-     * Renvoie tous les commentaires (pour la pagination dans admin)
+     * Renvoie tous les commentaires 
      */
     public function commentsAll($currentPage, $perPage)
     {
@@ -52,6 +30,32 @@ class CommentManager extends Database
                 return $comments; 
 
     }
+
+    /**
+     * Renvoie tous les commentaires par ordre de signalement 
+     */
+    public function getAllCommentsPerReport($currentPage, $perPage)
+    {
+        $commentsWithReporting = [];
+        $req = 'SELECT comment_id as id, post_id as postId, comment_author as author, comment_content as content, comment_date as date, comment_report as report 
+        FROM comments 
+        WHERE comment_report > 0 
+        ORDER BY comment_report DESC 
+        LIMIT '.(($currentPage - 1) * $perPage).','.$perPage.'';
+
+        $result = $this->runReq($req,[$currentPage, $perPage]);
+        // var_dump($result);
+        // die();
+        if(!$result){
+            return $commentsWithReporting;
+        }
+        foreach($result as $comment)
+        {
+            $commentsWithReporting[] = new Comment($comment);
+        }
+        return $commentsWithReporting;  
+    }
+
     /**
      * Compte la totalité des commentaires enregistrés dans la bdd
      */
@@ -71,6 +75,9 @@ class CommentManager extends Database
         return $nbComments;
     }
 
+    /**
+     * Permet de définir le nombre de commentaires affichés par page
+     */
     public function countPages($nbComments, $perPage)
     {
         $nbPages = ceil($nbComments / $perPage);
@@ -96,7 +103,7 @@ class CommentManager extends Database
         return $comments;  
     }
 
-    // Renvoie un commentaire en particulier
+    // Renvoie un seul commentaire 
     public function getComment($id)
     {
         $req = 'SELECT comment_id as id, comment_author as author, comment_content as content, DATE_FORMAT(comment_date, \'%d/%m/%Y\') as date, comment_report as report 

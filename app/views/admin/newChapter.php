@@ -1,8 +1,10 @@
 <?php $this->title = 'Rédiger un chapitre' ?>
+<p><a href="user/userAdmin">Accueil administration</a></p>
+<p><a href="home/homepage">Voir le blog</a></p><br>
 
 <div class="container-fluid">
     <h4>Vous souhaitez rédiger un nouveau chapitre</h4>
-    <p><a href="user/userAdmin">accueil administration</a></p>
+    
     <form action="" method="post">
         <label for="title">Titre</label><br>
         <input type="text" value="<?=$title?>" name="title" id="title" placeholder="Titre du chapitre"><br><br>

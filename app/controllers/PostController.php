@@ -37,7 +37,7 @@ class PostController extends Controller
         
         $comment = $this->commentManager->addComment($postId, $author, $content);
 
-        // $this->redirection('posts', 'posts'); 
+        $this->redirection('posts', 'posts'); 
 
     }
 
@@ -61,6 +61,6 @@ class PostController extends Controller
             // }
         }   
         // $this->render('Moderate', array('moderateComment' => $comment, 'reportingMsg' => $reportingMsg));
-        $this->render('Moderate', array('moderateComment' => $comment)); 
+        // $this->render('Moderate', array('moderateComment' => $comment)); 
     }  
 }

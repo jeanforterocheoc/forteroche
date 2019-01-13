@@ -1,11 +1,11 @@
 <?php
 namespace App\Controllers;
 
-use App\Core\Controller;
+use App\Core\SecureController;
 use App\Models\manager\UserManager;
 use App\Models\Messages;
 
-class UserController extends Controller
+class UserController extends SecureController
 {
     private $userManager;
 

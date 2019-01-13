@@ -5,7 +5,7 @@ use App\Core\Controller;
 use App\Models\manager\AdminManager;
 use App\Models\manager\CommentManager;
 
-
+//SELECT * FROM `comments` ORDER BY post_id,comment_report DESC
 
 class AdminController extends Controller
 {
@@ -132,8 +132,18 @@ class AdminController extends Controller
     public function commentsReported()
     {
         $this->commentManager = new CommentManager();
-        $commentsReported = $this->commentManager->getAllCommentsPerReport();
-        $this->render('commentsReported', array('commentsReported' => $commentsReported));
+        $nbComments = $this->commentManager->countComments();
+        $perPage = 5;
+        $nbPages = $this->commentManager->countPages($nbComments, $perPage);
+            if(isset($_GET['page']) && $_GET['page'] > 0 && $_GET['page'] <= $nbPages)
+            {
+                $currentPage = $_GET['page'];
+            }else {
+                $currentPage = 1;
+            }
+        $commentsReported = $this->commentManager->getAllCommentsPerReport($currentPage, $perPage);
+        
+        $this->render('commentsReported', array('commentsReported' => $commentsReported, 'currentPage' => $currentPage, 'nbPages' => $nbPages));
     }
     
 

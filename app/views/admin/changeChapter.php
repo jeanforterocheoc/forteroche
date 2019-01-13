@@ -1,7 +1,9 @@
 <?php $this->title = 'Modifier un chapitre' ?>
-<h4>Vous souhaitez modifier l'épisode intitulé : <?= $changeChapter->title() ?></h4>
-<p><a href="user/userAdmin">accueil administration</a></p>
+
+<p><a href="user/userAdmin">Accueil administration</a></p>
+<p><a href="home/homepage">Voir le blog</a></p><br>
 <div class="container-fluid">
+    <h4>Vous souhaitez modifier l'épisode intitulé : <?= $changeChapter->title() ?></h4>
     <article>
         <header>
             <h2 class='postTitle'><?= $changeChapter->title() ?></h2>

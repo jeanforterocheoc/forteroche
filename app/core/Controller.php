@@ -8,6 +8,10 @@ abstract class Controller
   private $action;
   protected $request;
   
+  public function __construct($request)
+  {
+      $this->setRequest($request);
+  }
 
   public function setRequest($request)
   {

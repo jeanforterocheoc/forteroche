@@ -1,5 +1,7 @@
 <?php $this->title = 'Tous les chapitres'; ?>
-<a href="user/userAdmin">accueil administration</a>
+<p><a href="user/userAdmin">accueil administration</a></p>
+<p><a href="home/homepage">Voir le blog</a></p><br>
+
 <h2>Voici l'ensemble des chapitres!</h2>  
 <!-- <?php foreach ($posts as $post) : ?>
 <div class="card text-white bg-dark mb-3" style="width: 18rem;">

@@ -22,7 +22,8 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item active">
-                            <a class="nav-link" href="home/homepage">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="home/homepage"><i class="fas fa-home"></i> <span class="sr-only">(current)</span></a>
+                        <!-- <a class="nav-link" href="home/homepage">Home <span class="sr-only">(current)</span></a> -->
                         </li>
                         <!-- <li class="nav-item">
                             <a class="nav-link" href="<?='auth/login/'?>">Connexion</a>
@@ -30,6 +31,13 @@
                     </ul>
                 </div>
             </nav>
+            <!-- <nav class="nav flex-column">
+                <a class="nav-link active" href="home/homepage">Home</a>
+                <a class="nav-link" href="">A propos</a>
+                <a class="nav-link" href="">Contact</a>
+                
+            </nav> -->
+
             <div id="container">
                 <header class="text-center">
                     <h1  id="bookTitle">Billet simple pour l'Alaska par Jean Forteroche</h1>                    

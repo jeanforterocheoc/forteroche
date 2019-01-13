@@ -28,8 +28,7 @@ class AuthController extends Controller
             $user =$this->userManager->getUser($username);
             if (null != $user) {
                 if (password_verify($password, $user->getPassword())) {
-                    $this->request->getSession()->setAttribut("id", $user->getId());
-                    $this->request->getSession()->setAttribut("username", $user->getUsername());
+                    $this->request->getSession()->setAttribut('user', $user);
                     $this->redirection('User', 'userAdmin');
                 }else {
                     $this->messages = new Messages;
@@ -39,8 +38,12 @@ class AuthController extends Controller
                 $this->messages = new Messages;
                 $this->messages->setMsg('Les identifiants sont incorrects !', 'error');
             }
-            $this->render('Auth');      
+                 
+        }else {
+            $this->messages = new Messages;
+            $this->messages->setMsg('Veuillez compléter tous les champs !', 'error');
         }
+        $this->render('Auth');
     }
 
     /**

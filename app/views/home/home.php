@@ -1,4 +1,4 @@
-<?php $this->title = 'Nouveau roman de Jean Forteroche : Billet simple pour l\'Alaska'; ?> 
+<?php $this->title = 'Billet simple pour l\'Alaska'; ?> 
 <div class="container-fluid">
     <article>
         <header>
