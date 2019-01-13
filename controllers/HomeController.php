@@ -6,32 +6,15 @@ class HomeController extends Controller
 
     public function __construct()
     {
-        $this->firstPage();
+        $this->homePage();
     }
 
-    public function firstPage()
+    public function homePage()
     {
         $this->homeManager = new HomeManager;
         $homePost = $this->homeManager->homePost();
 
-        $this->render('Home', array('firstPage' => $homePost));
+        $this->render('Home', array('homePage' => $homePost));
     }
-
-
-    // private $postManager;
-    
-    // public function __construct()
-    // {
-    //      $this->posts();
-    // }
-    
-    // public function posts()
-    // {
-    //     $this->postManager = new PostManager;
-    //     $posts = $this->postManager->getAll();
-        
-    //     $this->render('Home', array('posts' => $posts));     
-    // }
-
-    
+  
 }
