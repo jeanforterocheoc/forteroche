@@ -7,14 +7,15 @@ class PostController extends Controller
 {
     private $postManager;
     
-    public function __construct($postId) 
+    public function __construct() 
     {   
-        $this->post($postId);
+        
     }
 
     // Affichage de l'ensemble des commentaires associés à un billet
     public function post($postId)
     {
+       
         $this->postManager = new PostManager();
         $this->commentManager = new CommentManager();
 

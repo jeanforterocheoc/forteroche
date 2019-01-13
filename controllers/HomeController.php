@@ -19,8 +19,7 @@ class HomeController extends Controller {
         $posts = $this->postManager->getAll();
         
         $this->render('Home', array('posts' => $posts));
-        // $this->generateView(array('posts' => $posts));
-            
+              
     }
 
     

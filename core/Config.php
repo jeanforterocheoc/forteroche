@@ -23,9 +23,9 @@ class Config {
     private static function getParams() 
     {
         if (self::$params == null) {
-            $filePath = 'core/config/prod.ini';
+            $filePath = '/config/prod.ini';
             if (!file_exists($filePath)) {
-                $filePath = 'core/config/dev.ini';  
+                $filePath = __DIR__ . '/../config/dev.ini';  
             }
             if (!file_exists($filePath)) 
             {

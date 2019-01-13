@@ -20,7 +20,8 @@ abstract class Database{
     protected function fetch($req, $params = [])
     {
         $result = self::getDb()->prepare($req);
-        $result->execute($params[0]);
+        $result->execute($params);
+        
         return $result->fetch(PDO::FETCH_ASSOC);
     }
 

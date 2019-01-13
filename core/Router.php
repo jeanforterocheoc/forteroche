@@ -1,45 +1,72 @@
 <?php
 
-// require_once ('Autoloader.php');
-// Autoloader::register();
+require_once ('Autoloader.php');
+Autoloader::register();
 
-class Router {
+// class Router 
+// {
+//     public $request;
 
-    protected $controller = 'home';
-    protected $method = 'index';
-    protected $params = [];
+//     public $routes = [];
 
-    public function __construct()
+//     public function __construct()
+//     {
+        
+//     }
+
+//     public function matchRoute($url)
+//     {
+//         foreach($this->routes as $route)
+//         {
+//             if($route->matchRequest($url))
+//             {
+//                 return $route;
+//             }
+//         }
+//     }
+
+//     public function run()
+//     {
+
+//     }
+// }
+    /////////////////////////////////////////////////////////////////////////////////////////
+class Router 
+{
+    private $url;
+    private $routes = [];
+
+    public function __construct($url)
     {
-       $url = $this->parseUrl();
-
-       if(file_exists('../controllers/' . $url[0] . '.php'))
-       {
-           $this->controller = $url[0];
-           unset($url[0]);
-       }
-       require_once 'controllers/' . $this->controller . '.php';
-       $this->controller = $this->controller;
-       
-       if(isset($url[1]))
-       {
-           if(method_exists($this->controller, $url[1]))
-           {
-               $this->method = $url[1];
-               unset($url[1]);
-           }
-       }
-
+        $this->url = $url;
     }
 
-    public function parseUrl()
+    public function get($path, $callable)
     {
-        if(isset($_GET['url']))
+        $route = new Route($path, $callable);
+        $this->routes['GET'][] = $route;
+    }
+
+    public function post($path, $callable)
+    {
+        $route = new Route($path, $callable);
+        $this->routes['POST'][] = $route;
+    }
+
+    public function run()
+    {
+        $method = $_SERVER['REQUEST_METHOD'];
+        if(!isset($this->routes[$method]))
         {
-            return $url = explode('/', filter_var(rtrim($_GET['url'], '/'), FILTER_SANITIZE_URL));
+            throw new Exception('No Found'.$method);
         }
+        foreach ($this->routes[$method] as $route) {
+            if($route->match($this->url))
+            {
+                return $route->call();
+            }
+        }
+        throw new Exception('Aucune correspondance');
     }
-    
-
-    
+   
 }

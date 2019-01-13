@@ -17,11 +17,11 @@ class PostManager extends Database
     }
 
      // Retourne le contenu d'un billet
-     public function getOne($postId)
+     public function getOne(int $postId)
      {
         $req = 'SELECT post_id as id, post_title as title, post_content as content, post_date as date FROM posts WHERE post_id=?';
         $post = $this->fetch($req, [$postId]);
         var_dump($post);
-        return new Post($postId) ;  
+        return new Post($post) ;  
      }
 }
