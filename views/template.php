@@ -10,7 +10,7 @@
 <body>
     <div id="container">
         <header>
-            <a href="home/posts"><h1 id="bookTitle">Billet simple pour l'Alaska de Jean Forteroche</h1></a>
+            <a href="../home/posts"><h1 id="bookTitle">Billet simple pour l'Alaska de Jean Forteroche</h1></a>
             <p>Bienvenue!<br>Pour mon douzième roman,j'ai souhaité vous le faire découvrir dans un tout autre format que celui d'un livre papier,un blog.</p>
         </header>
         <div id="content">

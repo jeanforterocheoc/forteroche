@@ -3,34 +3,7 @@
 require_once ('Autoloader.php');
 Autoloader::register();
 
-// class Router 
-// {
-//     public $request;
-
-//     public $routes = [];
-
-//     public function __construct()
-//     {
-        
-//     }
-
-//     public function matchRoute($url)
-//     {
-//         foreach($this->routes as $route)
-//         {
-//             if($route->matchRequest($url))
-//             {
-//                 return $route;
-//             }
-//         }
-//     }
-
-//     public function run()
-//     {
-
-//     }
-// }
-    /////////////////////////////////////////////////////////////////////////////////////////
+ 
 class Router 
 {
     private $url;
@@ -55,6 +28,12 @@ class Router
 
     public function run()
     {
+        // // Vérifie si toutes les routes sont bien enregistrées
+        // echo '<pre>';
+        // echo print_r($this->routes);
+        // echo'</pre>';
+        // exit();
+
         $method = $_SERVER['REQUEST_METHOD'];
         if(!isset($this->routes[$method]))
         {
