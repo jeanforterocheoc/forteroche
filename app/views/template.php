@@ -16,6 +16,8 @@
             </header>
             <div class="col-lg-12" class="homeText">
                 <p>Bienvenue!<br>Pour mon douzième roman,j'ai souhaité vous le faire découvrir dans un tout autre format que celui d'un livre papier,un blog.</p>
+                <a class= "btn btn-success" href="<?='auth/login/'?>">Connexion</a>
+
             </div>
             <section class="row">
                 <div class="col-lg-12" id="content">

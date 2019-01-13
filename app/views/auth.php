@@ -16,18 +16,20 @@
   </head>
 
   <body class="text-center">
-    <form action="<?='users/login'?>" method="post" class="form-signin">
-      <img class="mb-4" src="../../assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-      <h1 class="h3 mb-3 font-weight-normal">Indiquez vos identifiants</h1>
-      
-      <label for="inputName" class="sr-only">Nom/Pseudo</label>
-      <input type="text" id="inputName" class="form-control" placeholder="Nom/Pseudo" required autofocus>
-      
-      <label for="inputPassword" class="sr-only">Password</label>
-      <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-      
-      <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-      <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
-    </form>
+
+    <form action="<?='admin/homeAdmin'?>" method="post">
+    <div class="form-group">
+        <label for="username">Pseudo</label><br>
+        <input type="text" class="form-control" name="username" id="username" placeholder="Pseudo"><br><br>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label><br>
+      <input type="text" class="form-control" name="password" id="password" placeholder="Password"><br><br>
+    </div>
+    
+    <button type="submit" name="login" id="login" class="btn btn-primary">Se connecter</button>
+</form>
+
   </body>
 </html>

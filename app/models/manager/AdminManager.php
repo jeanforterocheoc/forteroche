@@ -49,5 +49,16 @@ class AdminManager extends Database
         $result = $this->ina($req, [$postId]);
         return $result;
     }
+    
+    /**
+    * Profil Admin
+    */
+    public function getUser($username, $password)
+    { 
+        
+        $req = 'SELECT * FROM users WHERE username = ? AND password = ? ';
+        $result = $this->runReq($req, [$username, $password]);
 
+        return $result; 
+    }
 }

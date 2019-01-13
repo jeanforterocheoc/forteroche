@@ -76,4 +76,40 @@ class AdminController extends Controller
        $this->render('DeleteEpisode', array('deleteEpisode' => $post));
 
     }
+
+    // Profil Admin
+    public function homeAdmin()
+    {
+        // print_r($this->request);
+
+        if(!empty($_POST['username']) AND !empty($_POST['password'])) {
+            // print_r($_POST['username']);
+            $username = $_POST['username'];
+            $password = $_POST['password'];
+            // var_dump($username, $password);
+            
+                $this->adminManager = new AdminManager;
+                $user = $this->adminManager->getUser($username, $password);
+                    
+                $this->render('Admin', array('homeAdmin' => $user));
+                  
+        }else {
+            echo ('Les identifiants sont incorrects.');
+        }
+
+        
+        //     $user = $this->adminManager = new AdminManager;
+        // if (isset($_POST['login'])){
+        //     if ($this->request->paramExist('username') && $this->request->paramExist('password')) {
+        //         $this->adminManager->getUser(
+        //                 $this->request->getParam("username"),
+        //                 $this->request->getParam("password")
+        //                 );
+        //     }
+        //     $this->render('Admin', array('homeAdmin' => $user));
+
+        //     }
+        
+    }
+
 }

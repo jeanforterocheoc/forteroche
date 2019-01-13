@@ -2,7 +2,7 @@
 class User extends Model
 {
     private $id;
-    private $login;
+    private $username;
     private $password;
 
     public function setId($userId)
@@ -15,11 +15,11 @@ class User extends Model
         }
     }
 
-    public function setLogin($userLogin)
+    public function setName($userName)
     {
-        if(is_string($userLogin))
+        if(is_string($userName))
         {
-            $this->login = $userLogin;
+            $this->username = $userName;
         }
     }
 
@@ -38,7 +38,7 @@ class User extends Model
 
     public function getLogin()
     {
-        return $this->login; 
+        return $this->username; 
     }
 
     public function getPassword()
