@@ -39,13 +39,13 @@ class ChapterController extends SecureController
     // Affiche un chapitre /chapter/oneChapter/id
     public function oneChapter()
     {
-       $postId = $this->request->getParam("id");
+       $chapterId = $this->request->getParam("id");
 
         $this->chapterManager = new ChapterManager();
         $this->commentManager = new CommentManager();
 
-        $one = $this->chapterManager->getOneChapter($postId);
-        $comments = $this->commentManager->getComments($postId);
+        $one = $this->chapterManager->getOneChapter($chapterId);
+        $comments = $this->commentManager->getComments($chapterId);
 
         $this->render('OneChapter', array('oneChapter' => $one, 'comments' => $comments));
     }

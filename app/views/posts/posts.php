@@ -3,7 +3,7 @@
 <article>
     <header>
     <?php foreach ($posts as $post) : ?>
-        <h3 class='postTitle'><?= htmlspecialchars($post->title()) ?></h3>
+        <h3 class='chapterTitle'><?= htmlspecialchars($post->title()) ?></h3>
         <time>Publié le <?= htmlspecialchars($post->date()) ?></time>  
     </header>
     <p><?=substr($post->content(), 0, 100)?>[...]</p>

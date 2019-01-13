@@ -13,8 +13,6 @@ class PostsController extends Controller
         $this->postsManager = new PostsManager();
         $posts = $this->postsManager->getAll();
         
-        $this->render('Posts', array('posts' => $posts));
-              
+        $this->render('Posts', array('posts' => $posts));       
     }
-
 }

@@ -6,17 +6,21 @@ use App\Models\Post;
 
 class PostsManager extends Database
 {
-    // Retourne l'ensemble des billets
+    // Retourne l'ensemble des chapitres
     public function getAll()
     {
-        $posts = [];
-        $req = 'SELECT post_id as id, post_title as title, post_content as content, DATE_FORMAT (post_date, \'%d/%m/%Y\') as date FROM posts ORDER BY post_id DESC';
-        $result = $this->runReq($req, $posts);
+        $chapters = [];
+        $req = 'SELECT chapter_id as id, title, content, DATE_FORMAT (date, \'%d/%m/%Y\') as date
+                FROM chapters 
+                ORDER BY chapter_id 
+                DESC';
+                
+        $result = $this->runReq($req, $chapters);
         
-        foreach($result as $post)
+        foreach($result as $chapter)
         {
-            $posts[] = new Post($post);
+            $chapters[] = new Post($chapter);
         }
-        return $posts;
+        return $chapters;
     }
 }

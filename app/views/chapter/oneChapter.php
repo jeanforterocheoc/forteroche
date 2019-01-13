@@ -16,8 +16,8 @@
         <h3 class="comment">Commentaires à propos de l'épisode : <?= $oneChapter->title() ?></h3>  
     </header>
 <?php foreach ($comments as $comment): ?> 
-    <p><?= $comment->author() ?></P>    
-    <p><?= $comment->date() ?></P>
-    <p><?= $comment->content() ?></p>
+    <p><?= $comment->getAuthor() ?></P>    
+    <p><?= $comment->getDate() ?></P>
+    <p><?= $comment->getContent() ?></p>
 <?php endforeach; ?> -->
 </div>

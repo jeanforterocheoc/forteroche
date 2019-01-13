@@ -21,8 +21,9 @@ class ComposerStaticInit47531d1b423ac88867114428d78041bd
     );
 
     public static $classMap = array (
-        'App\\Controllers\\AdminController' => __DIR__ . '/../..' . '/app/controllers/AdminController.php',
         'App\\Controllers\\AuthController' => __DIR__ . '/../..' . '/app/controllers/AuthController.php',
+        'App\\Controllers\\ChapterController' => __DIR__ . '/../..' . '/app/controllers/ChapterController.php',
+        'App\\Controllers\\CommentController' => __DIR__ . '/../..' . '/app/controllers/CommentController.php',
         'App\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/controllers/HomeController.php',
         'App\\Controllers\\PostController' => __DIR__ . '/../..' . '/app/controllers/PostController.php',
         'App\\Controllers\\PostsController' => __DIR__ . '/../..' . '/app/controllers/PostsController.php',
@@ -31,6 +32,7 @@ class ComposerStaticInit47531d1b423ac88867114428d78041bd
         'App\\Core\\Controller' => __DIR__ . '/../..' . '/app/core/Controller.php',
         'App\\Core\\Request' => __DIR__ . '/../..' . '/app/core/Request.php',
         'App\\Core\\Router' => __DIR__ . '/../..' . '/app/core/Router.php',
+        'App\\Core\\SecureController' => __DIR__ . '/../..' . '/app/core/SecureController.php',
         'App\\Core\\Session' => __DIR__ . '/../..' . '/app/core/Session.php',
         'App\\Core\\View' => __DIR__ . '/../..' . '/app/core/View.php',
         'App\\Models\\Comment' => __DIR__ . '/../..' . '/app/models/Comment.php',
@@ -39,7 +41,7 @@ class ComposerStaticInit47531d1b423ac88867114428d78041bd
         'App\\Models\\Model' => __DIR__ . '/../..' . '/app/models/Model.php',
         'App\\Models\\Post' => __DIR__ . '/../..' . '/app/models/Post.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/models/User.php',
-        'App\\Models\\manager\\AdminManager' => __DIR__ . '/../..' . '/app/models/manager/AdminManager.php',
+        'App\\Models\\manager\\ChapterManager' => __DIR__ . '/../..' . '/app/models/manager/ChapterManager.php',
         'App\\Models\\manager\\CommentManager' => __DIR__ . '/../..' . '/app/models/manager/CommentManager.php',
         'App\\Models\\manager\\HomeManager' => __DIR__ . '/../..' . '/app/models/manager/HomeManager.php',
         'App\\Models\\manager\\PostManager' => __DIR__ . '/../..' . '/app/models/manager/PostManager.php',

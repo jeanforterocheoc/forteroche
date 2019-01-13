@@ -4,33 +4,33 @@ use App\Models\Model;
 
 class Comment extends Model
 {
-    private $comment_id;
-    private $post_id;
-    private $comment_author;
-    private $comment_title;
-    private $comment_content;
-    private $comment_date;
-    private $comment_report;
+    private $id;
+    private $chapter_id;
+    private $author;
+    private $title;
+    private $content;
+    private $date;
+    private $report;
 
     // SETTERS
-    public function setId($commentId)
+    public function setId($id)
     { 
-        $commentId = (int) $commentId;
+        $id = (int) $id;
 
-        if($commentId > 0)
+        if($id > 0)
         {
-            $this->comment_id = $commentId;
+            $this->id = $id;
         }
         
     }
 
-    public function setPostId($postId)
+    public function setChapterId($chapter_id)
     { 
-        $postId = (int) $postId;
+        $chapter_id = (int) $chapter_id;
 
-        if($postId > 0)
+        if($chapter_id > 0)
         {
-            $this->post_id = $postId;
+            $this->chapter_id = $chapter_id;
         }
         
     }
@@ -39,7 +39,7 @@ class Comment extends Model
     {
         if(is_string($author))
         {
-            $this->comment_author = $author;
+            $this->author = $author;
         }
     }
 
@@ -47,13 +47,13 @@ class Comment extends Model
     {
         if(is_string($content))
         {
-            $this->comment_content = $content;
+            $this->content = $content;
         }
     }
 
     public function setDate($date)
     { 
-        $this->comment_date = $date; 
+        $this->date = $date; 
     }
 
     public function setReport($commentReport)
@@ -62,40 +62,40 @@ class Comment extends Model
 
         if($commentReport >= 0)
         {
-            $this->comment_report = $commentReport;
+            $this->report = $commentReport;
         }
         
     }
 
     // GETTERS
 
-    public function id()
+    public function getId()
     {
-        return $this->comment_id;   
+        return $this->id;   
     }
 
-    public function postId()
+    public function getChapterId()
     {
-        return $this->post_id;
+        return $this->chapter_id;
     }
 
-    public function author()
+    public function getAuthor()
     {
-        return $this->comment_author;
+        return $this->author;
     }
 
-    public function content()
+    public function getContent()
     {
-        return $this->comment_content;
+        return $this->content;
     }
 
-    public function date()
+    public function getDate()
     {
-        return $this->comment_date;
+        return $this->date;
     }
 
-    public function report()
+    public function getReport()
     {
-        return $this->comment_report;   
+        return $this->report;   
     }
 }

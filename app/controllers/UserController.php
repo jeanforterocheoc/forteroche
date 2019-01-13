@@ -1,11 +1,14 @@
 <?php
 namespace App\Controllers;
 
-use App\Core\SecureController;
+use App\Core\Controller;
+// use App\Core\SecureController;
 use App\Models\manager\UserManager;
 use App\Models\Messages;
 
-class UserController extends SecureController
+// class UserController extends SecureController
+class UserController extends Controller
+
 {
     private $userManager;
 
@@ -19,7 +22,8 @@ class UserController extends SecureController
     // Création du profil utilisateur
     public function createUser()
     {
-        if ($this->request->paramExist('username') && $this->request->paramExist('password')) {
+        if ($this->request->paramExist('username') && $this->request->paramExist('password') && $this->request->paramExist('passwordConfirm') && $this->request->paramExist('email')) 
+        {
             $this->userManager = new UserManager;
             $user = $this->userManager->newUser(
                     $this->request->getParam("username"),
@@ -29,6 +33,12 @@ class UserController extends SecureController
                     );
         }
         $this->render('createUser');
+    }
+
+    // Modifier un profil
+    public function modifyUser()
+    {
+
     }
 
 /**

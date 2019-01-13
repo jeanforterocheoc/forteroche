@@ -8,10 +8,14 @@ namespace App\Core;
 class Request
 {
 
-    /** Tableau des paramètres de la requête */
+    /** 
+     * Tableau des paramètres de la requête 
+     */
     private $params;
 
-    /** Objet session associé à la requête */
+    /** 
+     * Objet session associé à la requête 
+     */
     private $session;
 
     /**

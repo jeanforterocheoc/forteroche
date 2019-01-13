@@ -15,9 +15,15 @@
     </div>
     <hr>
     <div>
+        <h4>Profil</h4><br>
+        <p><a href="user/modifyUser">Modifier un profil</a></p><br>
+        <p><a href="user/createUser">Créer un profil</a></p><br>
+        
+    </div>
+    <hr>
+    <div>
         <h4>Mais aussi ...</h4><br>
         <p><a href="home/homepage">Voir le blog</a></p><br>
-        <p><a href="user/createUser">Modifier profil</a></p><br>
         <p><a href="auth/logout">Se déconnecter</a></p><br> 
     </div>
       

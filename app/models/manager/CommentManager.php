@@ -13,12 +13,22 @@ class CommentManager extends Database
     public function commentsAll($currentPage, $perPage)
     {
         $comments = [];
-        $req = 'SELECT comment_id as id, post_id as postId, comment_author as author, comment_content as content, DATE_FORMAT(comment_date, \'%d/%m/%Y\') as date, comment_report as report 
+        $req = 'SELECT *
                 FROM comments 
-                ORDER BY comment_id 
+                ORDER BY id 
                 DESC 
                 LIMIT '.(($currentPage - 1) * $perPage).','.$perPage.'';
 
+        // // $req = 'SELECT chapters.title, comments.id, comments.chapter_id, comments.author, comments.content, comments.date, comments.report
+        // $req = 'SELECT *                
+        //         FROM chapters
+        //         LEFT OUTER JOIN comments
+        //         ON chapters.chapter_id = comments.chapter_id
+        //         -- ORDER BY id
+        //         -- DESC
+        //         LIMIT '.(($currentPage - 1) * $perPage).','.$perPage.'
+        //         ';
+                
                 $result = $this->runReq($req,[$currentPage, $perPage]);
                 if(!$result){
                     return $comments;
@@ -37,10 +47,10 @@ class CommentManager extends Database
     public function getAllCommentsPerReport($currentPage, $perPage)
     {
         $commentsWithReporting = [];
-        $req = 'SELECT comment_id as id, post_id as postId, comment_author as author, comment_content as content, comment_date as date, comment_report as report 
+        $req = 'SELECT id, chapter_id, author, content, DATE_FORMAT(date, \'%d/%m/%Y\') as date, report 
         FROM comments 
-        WHERE comment_report > 0 
-        ORDER BY comment_report DESC 
+        WHERE report > 0 
+        ORDER BY report DESC 
         LIMIT '.(($currentPage - 1) * $perPage).','.$perPage.'';
 
         $result = $this->runReq($req,[$currentPage, $perPage]);
@@ -85,14 +95,14 @@ class CommentManager extends Database
     }
 
     // Renvoie l'ensemble des commentaires associés à un billet
-    public function getComments($postId)
+    public function getComments($chapterId)
     {
         $comments = [];
-        $req = 'SELECT comment_id as id, comment_author as author, comment_content as content, DATE_FORMAT(comment_date, \'%d/%m/%Y\') as date 
+        $req = 'SELECT id, author, content, DATE_FORMAT(date, \'%d/%m/%Y\') as date 
                 FROM comments 
-                WHERE post_id=?';
+                WHERE chapter_id = ?';
 
-        $result = $this->runReq($req, [$postId]);
+        $result = $this->runReq($req, [$chapterId]);
         if(!$result){
             return $comments;
         }
@@ -106,9 +116,9 @@ class CommentManager extends Database
     // Renvoie un seul commentaire 
     public function getComment($id)
     {
-        $req = 'SELECT comment_id as id, comment_author as author, comment_content as content, DATE_FORMAT(comment_date, \'%d/%m/%Y\') as date, comment_report as report 
+        $req = 'SELECT id, author, content, DATE_FORMAT(date, \'%d/%m/%Y\') as date, report 
                 FROM comments 
-                WHERE comment_id=?';
+                WHERE id = ?';
 
         $comment = $this->show($req, [$id]);
 
@@ -116,12 +126,12 @@ class CommentManager extends Database
     }
 
     // Ajoute un commentaire dans la BDD (espace users)
-    public function addComment($postId, $author, $content)
+    public function addComment($chapterId, $author, $content)
     {
-        $req = 'INSERT INTO comments(post_id, comment_author, comment_content, comment_date) 
+        $req = 'INSERT INTO comments(chapter_id, author, content, date) 
                 VALUES (?, ?, ?,NOW())';
                 
-        $result = $this->ina($req, [$postId, $author, $content]);
+        $result = $this->ina($req, [$chapterId, $author, $content]);
     
         return $result;
     }
@@ -129,7 +139,7 @@ class CommentManager extends Database
     // Ajoute un signalement pour modération (espace users)
     public function reportComment($commentId)
     {
-        $req = 'UPDATE comments SET comment_report = comment_report + 1 WHERE comment_id = ?';
+        $req = 'UPDATE comments SET report = report + 1 WHERE id = ?';
         $result = $this->ina($req, [$commentId]);
         return $result;
     }
@@ -137,7 +147,7 @@ class CommentManager extends Database
     // Validation d'un commentaire (espace admin)
     public function validateComment($commentId)
     {
-        $req = 'UPDATE comments SET comment_report = 0 WHERE comment_id = ?';
+        $req = 'UPDATE comments SET report = 0 WHERE id = ?';
         $result = $this->ina($req, [$commentId]);
         return $result;
     }
@@ -145,7 +155,7 @@ class CommentManager extends Database
     // suppression d'un commentaire (espace admin)
     public function deleteComment($commentId)
     {
-        $req = 'DELETE FROM comments WHERE comment_id = ?';
+        $req = 'DELETE FROM comments WHERE id = ?';
         $result = $this->ina($req, [$commentId]);
         return $result;
     }

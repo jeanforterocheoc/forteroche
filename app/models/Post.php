@@ -4,19 +4,19 @@ use App\Models\Model;
 
 class Post extends Model
 {
-    private $post_id;
-    private $post_title;
-    private $post_content;
-    private $post_date;
+    private $chapter_id;
+    private $title;
+    private $content;
+    private $date;
 
     // SETTERS
-    public function setId($postId)
+    public function setId($chapterId)
     {
-        $postId = (int) $postId;
+        $chapterId = (int) $chapterId;
 
-        if($postId > 0)
+        if($chapterId > 0)
         {
-            $this->post_id = $postId;
+            $this->chapter_id = $chapterId;
         }
     }
 
@@ -24,7 +24,7 @@ class Post extends Model
     {
         if(is_string($title))
         {
-            $this->post_title = $title;
+            $this->title = $title;
         }
     }
 
@@ -32,35 +32,35 @@ class Post extends Model
     {
         if(is_string($content))
         {
-            $this->post_content = $content;
+            $this->content = $content;
         }
     }
 
     public function setDate($date)
     { 
-        $this->post_date = $date; 
+        $this->date = $date; 
     }
 
     // GETTERS
 
     public function id()
     {
-        return $this->post_id;  
+        return $this->chapter_id;  
     }
 
     public function title()
     {
-        return $this->post_title;
+        return $this->title;
     }
 
     public function content()
     {
-        return $this->post_content;
+        return $this->content;
     }
 
     public function date()
     {
-        return $this->post_date;
+        return $this->date;
     }
 }
 

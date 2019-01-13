@@ -6,8 +6,9 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'App\\Controllers\\AdminController' => $baseDir . '/app/controllers/AdminController.php',
     'App\\Controllers\\AuthController' => $baseDir . '/app/controllers/AuthController.php',
+    'App\\Controllers\\ChapterController' => $baseDir . '/app/controllers/ChapterController.php',
+    'App\\Controllers\\CommentController' => $baseDir . '/app/controllers/CommentController.php',
     'App\\Controllers\\HomeController' => $baseDir . '/app/controllers/HomeController.php',
     'App\\Controllers\\PostController' => $baseDir . '/app/controllers/PostController.php',
     'App\\Controllers\\PostsController' => $baseDir . '/app/controllers/PostsController.php',
@@ -16,6 +17,7 @@ return array(
     'App\\Core\\Controller' => $baseDir . '/app/core/Controller.php',
     'App\\Core\\Request' => $baseDir . '/app/core/Request.php',
     'App\\Core\\Router' => $baseDir . '/app/core/Router.php',
+    'App\\Core\\SecureController' => $baseDir . '/app/core/SecureController.php',
     'App\\Core\\Session' => $baseDir . '/app/core/Session.php',
     'App\\Core\\View' => $baseDir . '/app/core/View.php',
     'App\\Models\\Comment' => $baseDir . '/app/models/Comment.php',
@@ -24,7 +26,7 @@ return array(
     'App\\Models\\Model' => $baseDir . '/app/models/Model.php',
     'App\\Models\\Post' => $baseDir . '/app/models/Post.php',
     'App\\Models\\User' => $baseDir . '/app/models/User.php',
-    'App\\Models\\manager\\AdminManager' => $baseDir . '/app/models/manager/AdminManager.php',
+    'App\\Models\\manager\\ChapterManager' => $baseDir . '/app/models/manager/ChapterManager.php',
     'App\\Models\\manager\\CommentManager' => $baseDir . '/app/models/manager/CommentManager.php',
     'App\\Models\\manager\\HomeManager' => $baseDir . '/app/models/manager/HomeManager.php',
     'App\\Models\\manager\\PostManager' => $baseDir . '/app/models/manager/PostManager.php',

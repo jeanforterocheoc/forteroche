@@ -10,7 +10,11 @@ class ChapterManager extends Database
      public function getAllChapters()
      {
          $posts = [];
-         $req = 'SELECT post_id as id, post_title as title, post_content as content, DATE_FORMAT (post_date, \'%d/%m/%Y\') as date FROM posts ORDER BY post_id DESC';
+         $req = 'SELECT chapter_id as id, title as title, content as content, DATE_FORMAT (date, \'%d/%m/%Y\') as date
+                FROM chapters 
+                ORDER BY chapter_id 
+                DESC';
+
          $result = $this->runReq($req, $posts);
          
          foreach($result as $post)
@@ -21,10 +25,13 @@ class ChapterManager extends Database
      }
 
      // Lire un chapitre
-     public function getOneChapter($postId)
+     public function getOneChapter($chapterId)
      {
-        $req = 'SELECT post_id as id, post_title as title, post_content as content, DATE_FORMAT(post_date, \'%d/%m/%Y\') as date FROM posts WHERE post_id=?';
-        $result = $this->show($req, [$postId]);
+        $req = 'SELECT chapter_id as id, title as title, content as content, DATE_FORMAT(date, \'%d/%m/%Y\') as date
+                FROM chapters 
+                WHERE chapter_id=?';
+
+        $result = $this->show($req, [$chapterId]);
         return new Post($result) ;  
      }
 
@@ -32,24 +39,26 @@ class ChapterManager extends Database
     // Ajouter un chapitre 
     public function addChapter($title, $content)
     {
-        $req = 'INSERT INTO posts(post_title, post_content, post_date) VALUES (?, ?, NOW())';
+        $req = 'INSERT INTO chapters(title, content, date) VALUES (?, ?, NOW())';
         $result = $this->ina($req, [$title, $content]);
         return $result;
     }
 
     // Modifier un chapitre 
-    public function modifyChapter($title, $content, $postId)
+    public function modifyChapter($title, $content, $chapterId)
     {
-        $req = 'UPDATE posts SET post_title = ?, post_content = ?, post_date = NOW() WHERE post_id = ?';
-        $result = $this->ina($req, [$title, $content, $postId]);
+        $req = 'UPDATE chapters 
+        SET title = ?, content = ?, date = NOW() 
+        WHERE chapter_id = ?';
+        $result = $this->ina($req, [$title, $content, $chapterId]);
         return $result;
     }
 
     // Supprimer un chapitre 
-    public function removeEpisode($postId)
+    public function removeEpisode($chapterId)
     {
-        $req = 'DELETE FROM posts WHERE post_id = ?';
-        $result = $this->ina($req, [$postId]);
+        $req = 'DELETE FROM chapters WHERE chapter_id = ?';
+        $result = $this->ina($req, [$chapterId]);
         return $result;
     }
 
@@ -60,7 +69,7 @@ class ChapterManager extends Database
     public function countChapters()
     {
         $nbChapterss='';
-        $req = 'SELECT COUNT(*) AS nbChapters  FROM posts';
+        $req = 'SELECT COUNT(*) AS nbChapters  FROM chapters';
         $result = $this->runReq($req);
         if(!$result){
             return $nbChapters;

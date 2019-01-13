@@ -10,11 +10,10 @@
         <link rel="stylesheet" href="app/lib/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="public/css/style.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-
+    
         <script type="text/javascript" src="public/js/jquery/jquery-3.3.1.min.js"></script>
+        <script type="text/javascript" src="app/lib/bootstrap/js/bootstrap.min.js"></script>        
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-
     </head>
     <body>
         <div id="wrapper">
@@ -56,8 +55,11 @@
                 <footer>
                     <p>Mentions légales</p>
                     <p><a href="<?='auth/login/'?>">Connexion</a></p>
+                    <p><a href="auth/logout">Se déconnecter</a></p><br> 
                 </footer>
             </div>
         </div>
+        
+        
     </body>
 </html>

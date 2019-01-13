@@ -6,10 +6,12 @@ use App\Models\Post;
 class PostManager extends Database
 {
     // Retourne le contenu d'un billet
-    public function getOne(int $postId)
+    public function getOne(int $chapterId)
     {
-        $req = 'SELECT post_id as id, post_title as title, post_content as content, DATE_FORMAT(post_date, \'%d/%m/%Y\') as date FROM posts WHERE post_id=?';
-        $post = $this->show($req, [$postId]);
+        $req = 'SELECT chapter_id as id, title, content, DATE_FORMAT(date, \'%d/%m/%Y\') as date
+        FROM chapters 
+        WHERE chapter_id = ?';
+        $post = $this->show($req, [$chapterId]);
         return new Post($post) ;  
     }
 }

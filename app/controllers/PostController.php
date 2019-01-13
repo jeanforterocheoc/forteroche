@@ -14,15 +14,15 @@ class PostController extends Controller
     public function postComment()
     {
         
-       $postId = $this->request->getParam("id");
+       $chapterId = $this->request->getParam("id");
        
         $this->postManager = new PostManager();
         $this->commentManager = new CommentManager();
 
-        $post = $this->postManager->getOne($postId);
-        $comments = $this->commentManager->getComments($postId);
+        $chapter = $this->postManager->getOne($chapterId);
+        $comments = $this->commentManager->getComments($chapterId);
 
-        $this->render('Post', array('postComment' => $post, 'comments' => $comments));
+        $this->render('Post', array('postComment' => $chapter, 'comments' => $comments));
     }
 
     // Permet d'ajouter un commentaire 
@@ -32,11 +32,11 @@ class PostController extends Controller
         // die();
         $this->commentManager = new commentManager();
         
-        $postId = $this->request->getParam("postId");
+        $chapterId = $this->request->getParam("postId");
         $author = $this->request->getParam("author");
         $content = $this->request->getParam("content");
         
-        $comment = $this->commentManager->addComment($postId, $author, $content);
+        $comment = $this->commentManager->addComment($chapterId, $author, $content);
 
         $this->redirection('posts', 'posts'); 
 
@@ -46,33 +46,13 @@ class PostController extends Controller
     public function moderateComment()
     {
         // echo 'J\'apparais dans la fenêtre modale!';
-    //    $postId = $this->request->getParam("postComment_id");
-        // var_dump($postId);
-        // exit;
+     
         $this->commentManager = new commentManager();
-        $this->postManager = new PostManager();
-        
+
         $id = $this->request->getParam("id");
-        // // var_dump($id);
         
-
         $comment = $this->commentManager->getComment($id);
-        // // $reportingMsg = "";
         $this->commentManager->reportComment($id);
-        // $this->redirection('Post', 'postComment/'.$postId);
-       
-        // if($this->request->paramExist('comment_report')) {
-        //     // $this->redirection('post', 'postComment');
-        //     // $this->messages = new Messages;
-        //     // $this->messages->setMsg('Le signalement a été transmis!', 'success');
-        //     // if(isset($_POST['btnReport'])){
-        //     //     $this->redirection('Posts', 'posts');
-        //     // }
-        //     $this->redirection('Post', 'postComment/'.$postId);
-        // }   
-        // $this->render('Moderate', array('moderateComment' => $comment, 'reportingMsg' => $reportingMsg));
-        // $this->render('Moderate', array('comment' => $comment)); 
         
-
     }  
 }
