@@ -14,25 +14,25 @@ class Comment extends Model
 
     // SETTERS
     public function setId($id)
-    { 
+    {
         $id = (int) $id;
 
         if($id > 0)
         {
             $this->id = $id;
         }
-        
+
     }
 
     public function setChapterId($chapter_id)
-    { 
+    {
         $chapter_id = (int) $chapter_id;
 
         if($chapter_id > 0)
         {
             $this->chapter_id = $chapter_id;
         }
-        
+
     }
 
     public function setAuthor($author)
@@ -52,29 +52,29 @@ class Comment extends Model
     }
 
     public function setDate($date)
-    { 
-        $this->date = $date; 
+    {
+        $this->date = $date;
     }
 
     public function setReport($commentReport)
-    { 
+    {
         $commentReport = (int) $commentReport;
 
         if($commentReport >= 0)
         {
             $this->report = $commentReport;
         }
-        
+
     }
 
     // GETTERS
 
     public function getId()
     {
-        return $this->id;   
+        return $this->id;
     }
 
-    public function getChapterId()
+    public function getChapter_id()
     {
         return $this->chapter_id;
     }
@@ -96,6 +96,6 @@ class Comment extends Model
 
     public function getReport()
     {
-        return $this->report;   
+        return $this->report;
     }
 }

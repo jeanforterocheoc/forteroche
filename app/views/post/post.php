@@ -14,17 +14,18 @@
                 <p><?= $postComment->content() ?></p>
             </section>
         </article>
-        <hr />
-
+        <hr>
+        <!-- Fil de commentaires -->
         <h4 class="postComment">Commentaires</h4>
-        <div id="messages"></div>
           <?php foreach ($comments as $comment): ?>
+              <div id="messages"></div>
+              <br>
+              <br>
               <p><?= htmlspecialchars($comment->getAuthor()) ?></P>
-              <p><?= htmlspecialchars($comment->getDate()) ?></P>
               <p><?= htmlspecialchars($comment->getContent()) ?></p>
 
               <!-- Bouton signalment modal -->
-              <button type="button" class="btn btn-primary btn-sm reporting" data-comment-id = "<?= $comment->getId() ?>" data-toggle="modal" data-target="#reportModal">
+              <button type="button" id="showModal" class="btn btn-primary btn-sm reporting" data-comment-id = "<?= $comment->getId() ?>" data-toggle="modal" data-target="#reportModal">
               Signaler
               </button>
           <?php endforeach; ?>
@@ -93,15 +94,15 @@
 
         <!-- Formulaire pour le commentaire user -->
         <hr />
-        <h4 class="addComment">Laissez votre commentaire</h4>
+        <h4 class="addComment">Ajouter un commentaire</h4>
         <form class="form-signin" id= "formAjax" action="" method="post">
             <div class="form-label-group">
-                <input type="text" class="form-control" name="author" id="author" placeholder="Votre pseudo"><br><br>
-                <label for="author">Votre pseudo</label>
+                <input type="text" class="form-control" name="author" id="author" placeholder="Votre pseudo"><br>
+                <label for="author">Pseudo</label>
             </div>
 
             <div class="form-label-group">
-                <textarea name="commentUser" class="form-control" id="commentUser" cols="30" rows="10" placeholder="Votre commentaire"></textarea><br><br>
+                <textarea name="commentUser" class="form-control" id="commentUser" cols="30" rows="10" placeholder="Commentaire"></textarea><br>
                 <!-- <label for="content">Votre commentaire</label> -->
             </div>
 

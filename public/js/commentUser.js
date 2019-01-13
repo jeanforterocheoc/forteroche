@@ -1,13 +1,11 @@
 $(document).ready(function(){
-  // $('.submit-commentUser').click(function(e) {
   $("#formAjax").on('submit',function(e) {
     e.preventDefault();
-    // console.log($(this).serialize());
 
     var author = $('#author').val();
     var commentUser = $('#commentUser').val();
     var postId = $('#postId').val();
-    console.log(commentUser);
+    var showModal = $('#showModal').val();
     var dataString = 'author=' + author + '&commentUser=' + commentUser + '&postId=' + postId;
 
     $.ajax({
@@ -15,15 +13,17 @@ $(document).ready(function(){
       type: "POST",
       data: dataString,
 
-      success: function(html){
-        console.log('Hello');
-        console.log(dataString);
+      success: function(){
+        // console.log('Hello');
+        // console.log(dataString);
         $("#messages").append("<p>" + author + " dit : " + commentUser + "</p>");
+        $("#messages").append("<button type='button' class='btn btn-primary btn-sm reporting' data-comment-id = '<?= $comment->getId() ?>' data-toggle='modal' data-target='#reportModal'>Signalez</button>")
+        $('#author').val('').focus();
+        $('#commentUser').val('').focus();
       },
       error: function(){
         console.log('erreur!');
       }
     });
   });
-  // return false;
 });

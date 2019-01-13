@@ -9,10 +9,7 @@
     <p><?= substr($post->content(), 0, 100)?>[...]</p>
     <a class= "btn btn-primary" href="<?='post/postComment/'. htmlspecialchars($post->id()) ?>">Lire la suite</a>
     <br>
-    <br>
-    <a class="btn btn-outline-dark btn-sm" href="posts/posts">Tous les chapitres</a>
-    <br>
-    <br>
+    <br>  
   <?php endforeach; ?>
   </article>
 </div>
