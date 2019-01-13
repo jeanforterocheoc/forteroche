@@ -36,7 +36,6 @@
       </div>
 
       <button class="btn btn-lg btn-primary " type="submit" name="login" id="login">Se connecter</button>
-      <a class= "btn btn-info btn-lg" href="home/homepage">Page d'accueil</a>      
       <p class="mt-5 mb-3 text-muted text-center">&copy; 2018-2019</p>
     </form>
   </body>

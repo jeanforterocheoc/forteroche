@@ -1,5 +1,5 @@
 <?php $this->title = 'Nouveau roman de Jean Forteroche : Billet simple pour l\'Alaska'; ?>
-<h2><a class= "btn btn-info btn-lg" href="home/homepage">Page d'accueil</a></h2> 
+<!-- <h2><a class= "btn btn-info btn-lg" href="home/homepage">Page d'accueil</a></h2>  -->
 <article>
     <header>
     <?php foreach ($posts as $post) : ?>

@@ -1,11 +1,18 @@
 <?php $this->title = 'Espace administration'; ?>
 <div class="container">
-    <h3>Les chapitres</h3>
-    <a href="admin/allEpisode">Tous les chapitres</a><br>
-    <a href="admin/newEpisode">Rédiger un nouveau chapitre</a><br>
-
+    <div>
+        <h3>Les chapitres</h3>
+        <p><a href="admin/allEpisode">Tous les chapitres</a></p><br>
+        <p><a href="admin/newEpisode">Rédiger un nouveau chapitre</a></p><br>
+    </div>
     <hr>
-    <h3>Les commentaires</h3>
+    <div>
+        <h3>Les commentaires</h3>
+        <p><a href="admin/allComments">L'ensemble des commentaires</a></p><br>
+
+    </div>
+    
+
 </div>
 
 

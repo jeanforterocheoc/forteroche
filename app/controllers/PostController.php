@@ -32,6 +32,8 @@ class PostController extends Controller
         
         $comment = $this->commentManager->addComment($postId, $author, $content);
 
+        // $this->redirection('posts', 'posts'); 
+
     }
 
     // Signale un commentaire pour modération
@@ -41,12 +43,15 @@ class PostController extends Controller
 
         $id = $this->request->getParam("id");
         $comment = $this->commentManager->getComment($id);
-        // var_dump($comment);
+        $reportingMsg = "";
+
         if($this->request->paramExist('comment_report')) {
             $this->commentManager->reportComment($id);
-            echo "Signalement envoyé!";
-        }
-            
-        $this->render('Moderate', array('moderateComment' => $comment));  
+            $reportingMsg = "Signalement transmis!";
+            // $this->redirection('home', 'homepage'); 
+        }   
+        $this->render('Moderate', array('moderateComment' => $comment, 'reportingMsg' => $reportingMsg)); 
     }
+
+    
 }

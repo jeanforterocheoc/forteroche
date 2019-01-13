@@ -11,13 +11,14 @@
     </head>
     <body>
         <div id="container">
-            <header>
-                <!-- <a href="../home/posts"><h1 id="bookTitle">Billet simple pour l'Alaska de Jean Forteroche</h1></a> -->
-                <h1 id="bookTitle">Bienvenue sur l'espace d'administration</h1>                
+            <header >
+                <h2 id="bookTitle">Bienvenue sur l'espace d'administration</h2>                
             </header>
-            <div id="content">
-                <?=$content?>
-            </div>
+            <section>
+                <div id="content">
+                    <?=$content?>
+                </div>
+            </section>
             <hr>
             <footer>
                 <p>Mentions légales</p>

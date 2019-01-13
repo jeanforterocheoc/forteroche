@@ -3,6 +3,10 @@
 class AdminController extends Controller
 {
     private $adminManager;
+    private $commentManager;
+
+
+    /** CHAPITRES */    
 
     // Affiche l'ensemble des épisodes /admin/allEpisode
     public function allEpisode()
@@ -76,6 +80,28 @@ class AdminController extends Controller
        $this->render('DeleteEpisode', array('deleteEpisode' => $post));
 
     }
+
+    /** COMMENTAIRES */
+
+    // Affiche l'ensemble des commentaires /admin/allComments
+    public function allComments()
+    {
+        $this->commentManager = new CommentManager();
+
+        $comments = $this->commentManager->getAllComments();
+       $this->render('AllComments', array('allComments' => $comments));
+    }
+
+    // Validation d'un commentaire par l'admin
+    public function validate()
+    {
+        $this->commentManager = new CommentManager();
+        $commentId = $this->request->getParam("id");
+        $this->commentManager->validateComment($commentId);
+        $this->redirection('admin', 'allComments');
+    }
+
+    /** PROFIL */
 
     // Profil Admin  admin/homeAdmin
     public function homeAdmin()

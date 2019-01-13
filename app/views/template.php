@@ -10,15 +10,16 @@
     </head>
     <body>
         <div id="container">
-            <header class="row">
-                <!-- <a href="../home/posts"><h1 id="bookTitle">Billet simple pour l'Alaska de Jean Forteroche</h1></a> -->
-                <h1 class="col-lg-12" id="bookTitle">Billet simple pour l'Alaska par Jean Forteroche</h1>                    
+            <header class="text-center">
+                <h1  id="bookTitle">Billet simple pour l'Alaska par Jean Forteroche</h1>                    
             </header>
-            <div class="col-lg-12" class="homeText">
+            <div class="text-center" class="homeText">
                 <p>Bienvenue!<br>Pour mon douzième roman,j'ai souhaité vous le faire découvrir dans un tout autre format que celui d'un livre papier,un blog.</p>
-                <a class= "btn btn-success" href="<?='auth/login/'?>">Connexion</a>
-
+                <a class="btn btn-outline-dark" href="home/homepage">Accueil</a>
+                <a class= "btn btn-success" href="<?='auth/login/'?>">Connexion</a>    
             </div>
+            <br>
+            <br>
             <section class="row">
                 <div class="col-lg-12" id="content">
                     <?=$content?>

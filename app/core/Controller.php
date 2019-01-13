@@ -35,4 +35,10 @@ abstract class Controller
     $view = new View($action, $controller); 
     $view->generate($params);
   }
+
+  protected function redirection($controller, $action = null)
+  {
+    $racineWeb = Config::get("racineWeb", "/");
+    header("location:".$racineWeb .$controller.'/'.$action);
+  }
 }

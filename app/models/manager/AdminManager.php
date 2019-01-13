@@ -49,6 +49,8 @@ class AdminManager extends Database
         $result = $this->ina($req, [$postId]);
         return $result;
     }
+
+    
     
     public function getUser($username, $password)
     { 
