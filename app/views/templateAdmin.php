@@ -5,8 +5,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <base href="<?= $racineWeb ?>">
         <title><?=$title?></title>
-        <link rel="stylesheet" href="../public/css/style.css">
-        <link rel="stylesheet" href="../app/lib/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="app/lib/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="public/css/styleAdmin.css">
+
     </head>
     <body>
         <div id="container">

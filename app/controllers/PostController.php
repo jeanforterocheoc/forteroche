@@ -3,6 +3,7 @@
 class PostController extends Controller
 {
     private $postManager;
+    private $commentManager;
     // Affichage de l'ensemble des commentaires associés à un billet
     public function postComment()
     {
@@ -33,8 +34,17 @@ class PostController extends Controller
     }
 
     // Signale un commentaire pour modération
-    public function moderation()
+    public function moderateComment()
     {
+        $this->commentManager = new commentManager();
 
+        $id = $this->request->getParam("id");
+        $comment = $this->commentManager->getComment($id);
+        // var_dump($comment);
+        if ($this->request->paramExist('comment_report')) {
+            
+            $this->comment->reportComment($id);
+        }
+        $this->render('Moderate', array('moderateComment' => $comment));  
     }
 }

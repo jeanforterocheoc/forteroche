@@ -5,8 +5,7 @@
         <h2 class='postTitle'><?= htmlspecialchars($post->title()) ?></h2>
         <time>Publié le :<?= htmlspecialchars($post->date()) ?></time>  
     </header>
-    <p><?= htmlspecialchars($post->content());?></p>
-    <!-- <p><?=htmlspecialchars(substr($post->content(), 0, 15))?></p> -->
+    <p><?=htmlspecialchars(substr($post->content(), 0, 100))?> ...</p> 
     <a class= "btn btn-primary" href="<?='post/postComment/'. htmlspecialchars($post->id()) ?>">Lire la suite</a>
     <br>
     <br>

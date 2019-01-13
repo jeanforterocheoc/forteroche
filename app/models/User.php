@@ -15,11 +15,11 @@ class User extends Model
         }
     }
 
-    public function setName($userName)
+    public function setUsername($username)
     {
-        if(is_string($userName))
+        if(is_string($username))
         {
-            $this->username = $userName;
+            $this->username = $username;
         }
     }
 
@@ -36,7 +36,7 @@ class User extends Model
         return $this->id;
     }
 
-    public function getLogin()
+    public function getUsername()
     {
         return $this->username; 
     }

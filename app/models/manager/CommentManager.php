@@ -26,6 +26,23 @@ class CommentManager extends Database
         return $result;
     }
 
+    // Signale un commentaire pour modération
+    public function reportComment($commentId)
+    {
+        $req = 'UPDATE comments SET comment_report = comment_report + 1 WHERE comment_id = ?';
+        $result = $this->ina($req, [$commentId]);
+        return $result;
+    }
+
+
+    // Affiche le commentaire pour signalement
+    public function getComment($id)
+    {        
+        $req = 'SELECT comment_id as id, comment_author as author, comment_content as content, comment_date as date FROM comments WHERE comment_id=?'; 
+        $comment = $this->show($req, [$id]);
+
+        return new Comment($comment) ;  
+    }
     
 }
 

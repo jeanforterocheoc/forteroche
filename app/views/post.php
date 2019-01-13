@@ -16,9 +16,10 @@
     <p><?= htmlspecialchars($comment->author()) ?></P>    
     <p><?= htmlspecialchars($comment->date()) ?></P>
     <p><?= htmlspecialchars($comment->content()) ?></p>
+    <p><a href="<?='post/moderateComment/'. htmlspecialchars($comment->id()) ?>">Signalez pour modération</a></p>
 <?php endforeach; ?>
  <hr />
- <form action="<?='post/addComment/'. htmlspecialchars($postComment->id()) ?>" method="post">
+ <form class="form-signin" action="<?='post/addComment/'. htmlspecialchars($postComment->id()) ?>" method="post">
     <div class="form-group">
         <label for="author">Votre pseudo</label><br>
         <input type="text" class="form-control" name="author" id="author" placeholder="Votre pseudo"><br><br>

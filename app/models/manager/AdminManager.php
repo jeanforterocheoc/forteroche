@@ -50,15 +50,15 @@ class AdminManager extends Database
         return $result;
     }
     
-    /**
-    * Profil Admin
-    */
     public function getUser($username, $password)
     { 
-        
         $req = 'SELECT * FROM users WHERE username = ? AND password = ? ';
-        $result = $this->runReq($req, [$username, $password]);
-
-        return $result; 
+        $result = $this->show($req, [$username, $password]);
+        
+        if (!$result) {
+            return null;
+        }
+        
+        return new User($result); 
     }
 }

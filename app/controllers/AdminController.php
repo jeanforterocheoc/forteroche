@@ -87,11 +87,16 @@ class AdminController extends Controller
                     $this->request->getParam("username"),
                     $this->request->getParam("password")
                     );
-            
-            $this->render('Admin', array('homeAdmin' => $user));
                 
+            // Vérifie si utilisateur identifié dans la bdd ('username' => admin)       
+            if (null != $user) {
+                $_SESSION['admin'] = $user;
+                $this->render('Admin', array('homeAdmin' => $user));
+            }else {
+                echo ('Les identifiants sont incorrects.');
+            }         
         }else {
-            echo ('Les identifiants sont incorrects.');
+            echo ('Veuillez remplir tous les champs !');
         }                
     }
 }

@@ -7,6 +7,7 @@ class Comment extends Model
     private $comment_title;
     private $comment_content;
     private $comment_date;
+    private $comment_report;
 
     // SETTERS
     public function setId($commentId)
@@ -52,6 +53,17 @@ class Comment extends Model
         $this->comment_date = $date; 
     }
 
+    public function setReport($commentReport)
+    { 
+        $commentReport = (int) $commentReport;
+
+        if($commentReport > 0)
+        {
+            $this->comment_report = $commentReport;
+        }
+        
+    }
+
     // GETTERS
 
     public function id()
@@ -77,5 +89,10 @@ class Comment extends Model
     public function date()
     {
         return $this->comment_date;
+    }
+
+    public function report()
+    {
+        return $this->comment_report;   
     }
 }
