@@ -30,7 +30,7 @@
         <textarea name="content" class="form-control" id="content" cols="30" rows="10" placeholder="Votre commentaire"></textarea><br><br>
     </div>
     
-    <input type="hidden" name="postId" value="<?php echo $_GET['id'] ?>">
+    <input type="hidden" name="postId" value="<?php echo $_GET['id'] ?>">    
     <button type="submit" class="btn btn-primary">Envoyer</button>
 </form>
 

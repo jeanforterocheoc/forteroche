@@ -57,7 +57,7 @@ class Comment extends Model
     { 
         $commentReport = (int) $commentReport;
 
-        if($commentReport > 0)
+        if($commentReport >= 0)
         {
             $this->comment_report = $commentReport;
         }

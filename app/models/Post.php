@@ -42,8 +42,7 @@ class Post extends Model
 
     public function id()
     {
-        return $this->post_id;
-        
+        return $this->post_id;  
     }
 
     public function title()

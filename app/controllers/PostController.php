@@ -7,6 +7,7 @@ class PostController extends Controller
     // Affichage de l'ensemble des commentaires associés à un billet
     public function postComment()
     {
+        
        $postId = $this->request->getParam("id");
        
         $this->postManager = new PostManager();
@@ -22,13 +23,13 @@ class PostController extends Controller
     public function addComment()
     {
         // print_r($this->request);
-
+        // die();
+        $this->commentManager = new commentManager();
+        
         $postId = $this->request->getParam("postId");
         $author = $this->request->getParam("author");
         $content = $this->request->getParam("content");
         
-        $this->commentManager = new commentManager();
-
         $comment = $this->commentManager->addComment($postId, $author, $content);
 
     }
@@ -41,10 +42,11 @@ class PostController extends Controller
         $id = $this->request->getParam("id");
         $comment = $this->commentManager->getComment($id);
         // var_dump($comment);
-        if ($this->request->paramExist('comment_report')) {
-            
-            $this->comment->reportComment($id);
+        if($this->request->paramExist('comment_report')) {
+            $this->commentManager->reportComment($id);
+            echo "Signalement envoyé!";
         }
+            
         $this->render('Moderate', array('moderateComment' => $comment));  
     }
 }
