@@ -4,8 +4,8 @@
 <div class="container">
     <div>
         <h3>Les chapitres</h3>
-        <p><a href="admin/allEpisode">Tous les chapitres</a></p><br>
-        <p><a href="admin/newEpisode">Rédiger un nouveau chapitre</a></p><br>
+        <p><a href="admin/allChapters">Tous les chapitres</a></p><br>
+        <p><a href="admin/newChapter">Rédiger un nouveau chapitre</a></p><br>
     </div>
     <hr>
     <div>

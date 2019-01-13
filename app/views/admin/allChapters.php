@@ -1,6 +1,6 @@
 <?php $this->title = 'Espace administration'; ?>
 <a href="user/userAdmin">accueil administration</a>
-<h2>Voici l'ensemble des épisodes!</h2>  
+<h2>Voici l'ensemble des chapitres!</h2>  
 <!-- <?php foreach ($posts as $post) : ?>
 <div class="card text-white bg-dark mb-3" style="width: 18rem;">
   <div class="card-body">
@@ -24,6 +24,8 @@
                   <th>Publié le</th>
                   <th>Titre</th>                
                   <th>Chapitre</th>
+                  <th></th>
+
                   </tr>
               </thead>
 
@@ -33,6 +35,12 @@
                   <td><?= $post->date() ?></td>
                   <td><?= $post->title() ?></td>
                   <td><?= substr($post->content(), 0, 300) ?></td>
+                  <td>
+                    <form action="<?='admin/oneChapter/'. htmlspecialchars($post->id()) ?>" method="post">
+                      <button type="submit" class="btn btn-success btn-sm" name="editer" id="editer">Editer</button>
+                    </form>
+                  </td>
+
               </tr>
               <?php endforeach; ?>  
               </tbody>

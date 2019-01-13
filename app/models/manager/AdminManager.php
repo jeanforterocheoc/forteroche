@@ -4,7 +4,7 @@ class AdminManager extends Database
 { 
 
      // Affiche l'ensemble des épisodes
-     public function getEpisodeAll()
+     public function getAllChapters()
      {
          $posts = [];
          $req = 'SELECT post_id as id, post_title as title, post_content as content, DATE_FORMAT (post_date, \'%d/%m/%Y\') as date FROM posts ORDER BY post_id DESC';
@@ -18,7 +18,7 @@ class AdminManager extends Database
      }
 
      // Affiche un seul épisode 
-     public function getOneEpisode($postId)
+     public function getOneChapter($postId)
      {
         $req = 'SELECT post_id as id, post_title as title, post_content as content, DATE_FORMAT(post_date, \'%d/%m/%Y\') as date FROM posts WHERE post_id=?';
         $result = $this->show($req, [$postId]);
@@ -27,7 +27,7 @@ class AdminManager extends Database
 
 
     // Ajoute un nouvel épisode dans la Bdd
-    public function addEpisode($title, $content)
+    public function addChapter($title, $content)
     {
         $req = 'INSERT INTO posts(post_title, post_content, post_date) VALUES (?, ?, NOW())';
         $result = $this->ina($req, [$title, $content]);

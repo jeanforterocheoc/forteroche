@@ -9,31 +9,31 @@ class AdminController extends Controller
 
     /** CHAPITRES */    
 
-    // Affiche l'ensemble des épisodes /admin/allEpisode
-    public function allEpisode()
+    // Affiche l'ensemble des chapitres /admin/allChapters
+    public function allChapters()
     {
         $this->adminManager = new AdminManager();
-        $episodeAll = $this->adminManager->getEpisodeAll();
+        $allChapters = $this->adminManager->getAllChapters();
 
-        $this->render('allEpisode', array('posts' => $episodeAll));
+        $this->render('allChapters', array('posts' => $allChapters));
     }
 
-    // Affiche un seul épisode  /admin/oneEpisode/id
-    public function oneEpisode()
+    // Affiche un seul épisode  /admin/oneChapter/id
+    public function oneChapter()
     {
        $postId = $this->request->getParam("id");
 
         $this->adminManager = new AdminManager();
         $this->commentManager = new CommentManager();
 
-        $one = $this->adminManager->getOneEpisode($postId);
+        $one = $this->adminManager->getOneChapter($postId);
         $comments = $this->commentManager->getComments($postId);
 
-        $this->render('OneEpisode', array('oneEpisode' => $one, 'comments' => $comments));
+        $this->render('OneChapter', array('oneChapter' => $one, 'comments' => $comments));
     }
 
-    // Créer un nouvel épisode /admin/newEpisode
-    public function newEpisode()
+    // Créer un nouvel épisode /admin/newChapter
+    public function newChapter()
     {
         $title = $this->request->defaultParam('title');
         $content = $this->request->defaultParam("content");
@@ -41,10 +41,10 @@ class AdminController extends Controller
         if($title && $content)
         {
             $this->adminManager = new AdminManager();
-            $this->adminManager->addEpisode( $title, $content);
+            $this->adminManager->addChapter( $title, $content);
         }
         
-        $this->render('NewEpisode', array('title' => $title, 'content' => html_entity_decode($content, ENT_HTML5, 'UTF-8')));
+        $this->render('newChapter', array('title' => $title, 'content' => $content));
     } 
 
     // Modifie un épisode  /admin/modifEpisode/id

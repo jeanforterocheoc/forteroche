@@ -39,6 +39,7 @@ class PostController extends Controller
     // Signale un commentaire pour modération
     public function moderateComment()
     {
+        // var_dump($_SERVER);
         $this->commentManager = new commentManager();
 
         $id = $this->request->getParam("id");
@@ -47,11 +48,15 @@ class PostController extends Controller
 
         if($this->request->paramExist('comment_report')) {
             $this->commentManager->reportComment($id);
-            // $reportingMsg = "Signalement transmis!";
+            
             // $this->messages = new Messages;
             // $this->messages->setMsg('Le signalement a été transmis!', 'success');
             if(isset($_POST['btnReport'])){
-                $this->redirection('Posts', 'posts');
+                
+                // $this->messages = new Messages;
+                // $this->messages->setMsg('Le signalement a été transmis!', 'success');
+                
+                // $this->redirection('Posts', 'posts');
             }
         }   
         // $this->render('Moderate', array('moderateComment' => $comment, 'reportingMsg' => $reportingMsg));

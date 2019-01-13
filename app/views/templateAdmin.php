@@ -23,7 +23,7 @@
     <body>
         <div id="container">
             <header >
-                <h2 id="bookTitle">Bienvenue sur l'espace d'administration</h2>                
+                <h2 id="bookTitle">Espace d'administration</h2>                
             </header>
             <section>
                 <div id="content">
