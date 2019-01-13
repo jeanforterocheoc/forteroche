@@ -4,6 +4,7 @@ abstract class Controller
 {
   private $action;
   protected $request;
+  
 
   public function setRequest($request)
   {
@@ -24,9 +25,16 @@ abstract class Controller
   }
 
   // Méthode qui renvoie la vue demandée
-  protected function render(string $name, array $params=[])
+  protected function render(string $action, array $params=[])
   {
-    $view = new View($name); 
+    $controllerClass = get_class($this);
+    var_dump($controllerClass);
+    $controller = str_replace("../blog_forteroche/Controller/controller", "", $controllerClass);
+    if(is_null($action))
+    {
+      $action = $this->action;
+    }
+    $view = new View($action, $controller); 
     $view->generate($params);
   }
 }

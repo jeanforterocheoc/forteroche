@@ -7,10 +7,18 @@ class View
     private $template;
 
    
-    public function __construct($action, $template = 'template') 
+    public function __construct($action, $controller ='') 
     {
         $this->file = '../app/views/' .$action.'.php';
-        $this->template = $template . '.php';
+        
+        if($controller == "AdminController")
+        {
+            $this->template = 'templateAdmin.php';
+        }
+        else
+        {
+            $this->template = 'template.php';
+        }
     }
 
     // Génère et affiche la vue

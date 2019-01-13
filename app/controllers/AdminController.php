@@ -1,6 +1,6 @@
 <?php
 
-class AdminController extends ControllerAdmin
+class AdminController extends Controller
 {
     private $adminManager;
 
