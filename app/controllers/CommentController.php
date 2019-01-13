@@ -1,17 +1,21 @@
 <?php
 
-class CommentController 
+class CommentController extends controller
 {
   
     
-    public function addComment($postId, $author, $content)
-    {
-        $this->commentManager = new commentManager();
+    // public function addComment()
+    // {
+    //     $postId = $this->request->getParam("id");
+    //     $author = $this->request->getParam("author");
+    //     $content = $this->request->getParam("content");
 
-        $comment = $this->commentManager->addComment($postId, $author, $content);
+    //     $this->commentManager = new commentManager();
 
-        return $comment;
+    //     $comment = $this->commentManager->addComment($postId, $author, $content);
 
-    }
+    //     return $comment;
+
+    // }
 
 }

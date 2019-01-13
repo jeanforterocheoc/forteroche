@@ -7,8 +7,8 @@
     </header>
     <p><?= htmlspecialchars($post->content());?></p>
     <!-- <p><?=htmlspecialchars(substr($post->content(), 0, 15))?></p> -->
-    <a href="<?='../post/postComment/'. htmlspecialchars($post->id()) ?>">Lire la suite</a>
-    <a href="../posts/posts"><h2>Tous les épisodes</h2></a>
+    <a href="<?='post/postComment/'. htmlspecialchars($post->id()) ?>">Lire la suite</a>
+    <a href="posts/posts"><h2>Tous les épisodes</h2></a>
     <?php endforeach; ?>
 </article>
 

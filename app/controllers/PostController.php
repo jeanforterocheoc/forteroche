@@ -17,4 +17,17 @@ class PostController extends Controller
         $this->render('Post', array('postComment' => $post, 'comments' => $comments));
     }
 
+    public function addComment()
+    {
+        print_r($this->request);
+
+        $postId = $this->request->getParam("postId");
+        $author = $this->request->getParam("author");
+        $content = $this->request->getParam("content");
+        
+        $this->commentManager = new commentManager();
+
+        $comment = $this->commentManager->addComment($postId, $author, $content);
+
+    }
 }

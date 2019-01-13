@@ -4,14 +4,9 @@ class HomeController extends Controller
 {
     private $homeManager;
 
-    // public function __construct()
-    // {
-    //     $this->homepage();
-    // }
-
     public function homepage()
     {
-        print_r($this->request);
+        // print_r($this->request);
         $this->homeManager = new HomeManager;
         $homePost = $this->homeManager->homePost();
 

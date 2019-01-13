@@ -15,19 +15,13 @@ abstract class Controller
     if (method_exists($this, $action))
     {
       $this->action = $action;
-      $this->{$this->action}();
+      $this->$action();
     } 
     else {
       $controllerClass = get_class($this);
       throw new \Exception("Action '$action' non définie!");
     }
   }
-
-  // public function __construct($request)
-  // {
-  //   $this->request = $request;
-  // }
-
 
     // Méthode qui renvoie la vue demandée
      protected function render(string $name, array $params=[])

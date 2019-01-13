@@ -11,7 +11,23 @@ class Comment extends Model
     // SETTERS
     public function setId($commentId)
     { 
-        $this->comment_id = $commentId;
+        $commentId = (int) $commentId;
+
+        if($commentId > 0)
+        {
+            $this->comment_id = $commentId;
+        }
+        
+    }
+
+    public function setPostId($postId)
+    { 
+        $postId = (int) $postId;
+
+        if($postId > 0)
+        {
+            $this->post_id = $postId;
+        }
         
     }
 
@@ -20,14 +36,6 @@ class Comment extends Model
         if(is_string($author))
         {
             $this->comment_author = $author;
-        }
-    }
-
-    public function setTitle($title)
-    {
-        if(is_string($title))
-        {
-            $this->comment_title = $title;
         }
     }
 
@@ -48,18 +56,17 @@ class Comment extends Model
 
     public function id()
     {
-        return $this->comment_id;
-        
+        return $this->comment_id;   
+    }
+
+    public function postId()
+    {
+        return $this->post_id;
     }
 
     public function author()
     {
         return $this->comment_author;
-    }
-
-    public function title()
-    {
-        return $this->comment_title;
     }
 
     public function content()

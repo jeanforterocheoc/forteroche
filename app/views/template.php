@@ -2,6 +2,7 @@
 <html lang="fr">
     <head>
         <meta charset="utf-8">
+        <base href="<?= $racineWeb ?>">
         <title><?=$title?></title>
     </head>
     <body>

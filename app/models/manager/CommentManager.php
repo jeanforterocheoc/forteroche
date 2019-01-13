@@ -15,16 +15,18 @@ class CommentManager extends Database
             $comments[] = new Comment($comment);
         }
         return $comments;  
+
+
     }
 
     // Ajoute un commentaire dans la BDD
     public function addComment($postId, $author, $content)
     {
-        $req = 'INSERT INTO comments(post_id, comment_author as author, comment_content as content, comment_date as date) VALUES (?, ?, ?,NOW())';
-        $result = $this->runReq($req, ['post_id' => $postId, 'author' => $author, 'content' => $content]);
-
-        return new Comment($result);
-        // return $result;
+        $req = 'INSERT INTO comments(post_id, comment_author, comment_content, comment_date) VALUES (?, ?, ?,NOW())';
+        $result = $this->runReq($req, [$postId, $author, $content]);
+    
+        return $result;
+        
 
     }
 

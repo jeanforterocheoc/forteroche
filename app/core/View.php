@@ -1,7 +1,7 @@
 <?php
 
-class View {
-
+class View 
+{
     private $file;
     private $title;
 
@@ -16,9 +16,10 @@ class View {
         // Partie spécifique de la vue
         $content = $this->generateFile($this->file, $data);
         
+        $racineWeb = Config::get("racineWeb", "/");
 
         // Temlpate
-        $view = $this->generateFile('../app/views/template.php', array('title' => $this->title, 'content' => $content));
+        $view = $this->generateFile('../app/views/template.php', array('title' => $this->title, 'content' => $content, 'racineWeb' => $racineWeb));
         
         echo $view; 
     }
