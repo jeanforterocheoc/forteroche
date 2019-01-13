@@ -3,6 +3,7 @@ namespace App\Controllers;
 
 use App\Core\Controller;
 use App\Models\manager\PostManager;
+use App\Models\manager\PostsManager;
 use App\Models\manager\CommentManager;
 
 class PostController extends Controller
@@ -45,25 +46,33 @@ class PostController extends Controller
     public function moderateComment()
     {
         // echo 'J\'apparais dans la fenêtre modale!';
-        // // var_dump($_SERVER);
+    //    $postId = $this->request->getParam("postComment_id");
+        // var_dump($postId);
+        // exit;
         $this->commentManager = new commentManager();
-
+        $this->postManager = new PostManager();
+        
         $id = $this->request->getParam("id");
+        // // var_dump($id);
         
 
         $comment = $this->commentManager->getComment($id);
-        // $reportingMsg = "";
-
-        if($this->request->paramExist('comment_report')) {
-            $this->commentManager->reportComment($id);
-            
-            // $this->messages = new Messages;
-            // $this->messages->setMsg('Le signalement a été transmis!', 'success');
-            // if(isset($_POST['btnReport'])){
-            //     $this->redirection('Posts', 'posts');
-            // }
-        }   
+        // // $reportingMsg = "";
+        $this->commentManager->reportComment($id);
+        // $this->redirection('Post', 'postComment/'.$postId);
+       
+        // if($this->request->paramExist('comment_report')) {
+        //     // $this->redirection('post', 'postComment');
+        //     // $this->messages = new Messages;
+        //     // $this->messages->setMsg('Le signalement a été transmis!', 'success');
+        //     // if(isset($_POST['btnReport'])){
+        //     //     $this->redirection('Posts', 'posts');
+        //     // }
+        //     $this->redirection('Post', 'postComment/'.$postId);
+        // }   
         // $this->render('Moderate', array('moderateComment' => $comment, 'reportingMsg' => $reportingMsg));
         // $this->render('Moderate', array('comment' => $comment)); 
+        
+
     }  
 }

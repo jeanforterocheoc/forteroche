@@ -6,9 +6,23 @@ use App\Core\Config;
 
     protected static $db;
     
+    // // Méthode qui regroupe les requêtes possibles
+    // protected function runRequest($req, $params = null)
+    // {
+    //     if($params == null)
+    //     {
+    //     $result = self::getDb()->query($req);
+    //     }else {
+    //         $result = self::getDb()->prepare($req);
+    //         $result->execute($params);
+    //     }
+
+    // }
+
     // Exécuter une requête sql 
     protected function runReq($req, $params = [])
     {
+        
         $result = self::getDb()->prepare($req);
         $result->execute($params);
 

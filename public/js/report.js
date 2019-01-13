@@ -1,4 +1,4 @@
-$('#show-window').click(function(e){
+$('#multiform').submit(function(e){
     var formObj = $(this);
     var formURL = formObj.attr("action");
     var formData = new FormData(this);
@@ -10,18 +10,19 @@ $('#show-window').click(function(e){
         contentType: false,
         cache: false,
         processData: false,
-        success: function(resultat)
+        success: function(windowContent)
         {
-            $("#resultat").html("<p><b>Le signalement a été transmis</b></p>")
+            $(".windowContent").html("<p><b>Le signalement a été transmis</b></p>");
+            $('#btnReport').attr("disabled", "disabled");
+
         },
-        error : function(resultat){
-            $('#resultat').html("<p>Erreur dans l'envoi du signalement</p>");
+        error : function(windowContent){
+            $('.windowContent').html("<p>Erreur dans l'envoi du signalement</p>");
         } 
     });
     e.preventDefault();
 });
-$('#show-window').click(function(){
-    $("#multiform").submit();
-    $(this).attr("disabled", "disabled");
-})
-
+// $('#btnReport').click(function(){
+//     $('#multiform').submit();
+//     $(this).attr("disabled", "disabled");
+// })

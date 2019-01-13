@@ -6,7 +6,6 @@ use App\Models\Post;
 
 class ChapterManager extends Database
 { 
-
      // Affiche l'ensemble des chapitres
      public function getAllChapters()
      {
@@ -57,6 +56,7 @@ class ChapterManager extends Database
     /**
      * Compte la totalité des chapitres enregistrés dans la bdd
      */
+    
     public function countChapters()
     {
         $nbChapterss='';

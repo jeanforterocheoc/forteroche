@@ -16,9 +16,8 @@ class CommentController extends SecureController
     {
         $this->commentManager = new CommentManager();
         $this->chapterManager = new ChapterManager();
-        // $postId = $this->request->getParam("id");
 
-        // $nameChapter = $this->chapterManager->getOneChapter($postId);
+         
         $nbComments = $this->commentManager->countComments();
         $perPage = 5;
         $nbPages = $this->commentManager->countPages($nbComments, $perPage);

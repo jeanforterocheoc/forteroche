@@ -13,22 +13,31 @@
             </section>     
         </article>
         <hr />
+    
         <h4 class="postComment">Commentaires</h4>
         <?php foreach ($comments as $comment): ?> 
             <p><?= htmlspecialchars($comment->author()) ?></P>    
             <p><?= htmlspecialchars($comment->date()) ?></P>
             <p><?= htmlspecialchars($comment->content()) ?></p>
-            <p><a href="" class="show-window"  role="button">Signalez</a></p>
-        
 
-        <form name= "multiform" id="multiform" action="<?='post/moderateComment/'. htmlspecialchars($comment->id()) ?>" method="post" enctype="multipart/form-data">
-            <input type="hidden" name="comment_report" id="comment_report" value="<?=$comment->report()?>">
-            <input type="hidden" name="id"  value="<?=$comment->id()?>">
-            <button type="submit" name="btnReport" id="btnReport">Signalez</button>
-        </form>
-
+            <p><a href="" class="show-window" role="button">Signalez</a></p>
+            <div class="window-bg">
+                <div class="window">
+                    <p class="window-title">Signalement d'un commentaire</p>
+                    <div class="windowContent"></div>
+                    <form name= "multiform" id="multiform" action="<?='post/moderateComment/'. htmlspecialchars($comment->id()) ?>" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="comment_report" id="comment_report" value="<?=$comment->report()?>">
+                        <input type="hidden" name="id"  value="<?=$comment->id()?>">
+                        <!-- <input type="hidden" name="postComment_id"  value="<?=$postComment->id()?>"> -->
+                        <button type="submit" name="btnReport" id="btnReport">Signalez</button>
+                        <!-- <div class="window-buttons"> -->
+                        <a href="" class="button window-close">Fermer</a>
+                        <!-- </div> -->
+                    </form>
+                    
+                </div>
+            </div>
         <?php endforeach; ?>
-
         <hr />
         <h4 class="addComment">Laissez votre commentaire</h4>
         <!-- Formulaire pour le commentaire user -->
@@ -48,7 +57,7 @@
         </form>
     </div>
 
-    <!-- Fenêtre modale -->
+    <!-- Fenêtre modale
     <div class="window-bg">
         <div class="window">
             <p class="window-title">Fenêtre modale!</p>
@@ -57,13 +66,13 @@
                 <a href="" class="button window-close">Fermer</a>
             </div>
         </div>
-    </div>
+    </div> -->
 
     
         
  
     <script type="text/javascript" src="public/js/modal.js" ></script>
-    <!-- <script type="text/javascript" src="public/js/report.js"></script>  -->
+    <script type="text/javascript" src="public/js/report.js"></script> 
 
 
 
