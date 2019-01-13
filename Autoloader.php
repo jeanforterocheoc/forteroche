@@ -29,7 +29,9 @@ class Autoloader
         elseif(file_exists('models/'.$class.'.php')){
             require 'models/'.$class.'.php';
         }
-        
+        elseif(file_exists('models/manager/'.$class.'.php')){
+            require 'models/manager/'.$class.'.php';
+        }
         
     }
 }
