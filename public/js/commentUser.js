@@ -18,8 +18,8 @@ $(document).ready(function(){
         // console.log(dataString);
         $("#messages").append("<p>" + author + " dit : " + commentUser + "</p>");
         $("#messages").append("<button type='button' class='btn btn-primary btn-sm reporting' data-comment-id = '<?= $comment->getId() ?>' data-toggle='modal' data-target='#reportModal'>Signalez</button>")
-        $('#author').val('').focus();
-        $('#commentUser').val('').focus();
+        $('#author').val('');
+        $('#commentUser').val('');
       },
       error: function(){
         console.log('erreur!');

@@ -18,7 +18,11 @@ $(document).ready(function(){
                 $(".modal-body").html("<p><b>Le signalement a été transmis !</b></p>");
                 $('.submit-reporting').attr("disabled", "disabled");
                 // $('.reporting').attr("disabled", "disabled");
-                disabledReporting();
+
+                $('[data-comment-id = "'+commentId+'"]').hide();
+                console.log($('[data-comment-id="'+commentId+'"]'));
+
+                // disabledReporting();
             }
         });
     });

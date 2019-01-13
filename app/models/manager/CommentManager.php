@@ -3,6 +3,8 @@ namespace App\Models\manager;
 
 use App\Models\Database;
 use App\Models\Comment;
+use App\Models\Post;
+
 
 class CommentManager extends Database
 {
@@ -20,25 +22,28 @@ class CommentManager extends Database
         //         LIMIT '.(($currentPage - 1) * $perPage).','.$perPage.'';
 
 
-        $req = 'SELECT chapter.title, comment.id, comment.chapter_id, comment.author, comment.content, comment.date, comment.report
+        $req = 'SELECT *
                 FROM comment
-                LEFT JOIN chapter
+                INNER JOIN chapter
                 ON comment.chapter_id = chapter.id
-                ORDER BY id
-                DESC
+                ORDER BY chapter_id
                 LIMIT '.(($currentPage - 1) * $perPage).','.$perPage.'
                 ';
 
-                $result = $this->runReq($req,[$currentPage, $perPage]);
-                if(!$result){
+                $results = $this->runReq($req,[$currentPage, $perPage]);
+
+                if (!$results) {
                     return $comments;
                 }
-                foreach($result as $comment)
+                foreach($results as $result)
                 {
-                    $comments[] = new Comment($comment);
-                }
-                return $comments;
 
+                  $comment = new Comment($result);
+                  $comment->setChapter(new Post($result));
+                  $comments[] = $comment;
+                }
+                // print_r($comments);
+                return $comments;
     }
 
     /**
@@ -47,7 +52,7 @@ class CommentManager extends Database
     public function getAllCommentsPerReport($currentPage, $perPage)
     {
         $commentsWithReporting = [];
-        $req = 'SELECT id, chapter_id, author, content, DATE_FORMAT(date, \'%d/%m/%Y\') as date, report
+        $req = 'SELECT id, chapter_id, author, content_com, DATE_FORMAT(date_com, \'%d/%m/%Y\') as date, report
         FROM comment
         WHERE report > 0
         ORDER BY report DESC
@@ -98,7 +103,7 @@ class CommentManager extends Database
     public function getComments($chapterId, $currentPage, $perPage)
     {
         $comments = [];
-        $req = 'SELECT id, author, content, DATE_FORMAT(date, \'%d/%m/%Y\') as date
+        $req = 'SELECT id, author, content_com, DATE_FORMAT(date_com, \'%d/%m/%Y\') as date
                 FROM comment
                 WHERE chapter_id = ?
                 GROUP BY id
@@ -120,7 +125,7 @@ class CommentManager extends Database
     // Renvoie un seul commentaire
     public function getComment($id)
     {
-        $req = 'SELECT id, author, content, DATE_FORMAT(date, \'%d/%m/%Y\') as date, report
+        $req = 'SELECT id, author, content_com, DATE_FORMAT(date_com, \'%d/%m/%Y\') as date, report
                 FROM comment
                 WHERE id = ?';
 
@@ -132,7 +137,7 @@ class CommentManager extends Database
     // Ajoute un commentaire dans la BDD (espace users)
     public function addComment($chapterId, $author, $content)
     {
-        $req = 'INSERT INTO comment(chapter_id, author, content, date)
+        $req = 'INSERT INTO comment(chapter_id, author, content_com, date_com)
                 VALUES (?, ?, ?,NOW())';
 
         $result = $this->ina($req, [$chapterId, $author, $content]);

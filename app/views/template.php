@@ -49,7 +49,7 @@
         <br> -->
         <!-- <section class="row">
           <div class="col-lg-12" id="content">
-            <?=$content?>
+            
           </div>
         </section>
         <hr> -->

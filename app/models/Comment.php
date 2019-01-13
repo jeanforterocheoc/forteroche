@@ -5,12 +5,12 @@ use App\Models\Model;
 class Comment extends Model
 {
     private $id;
-    private $chapter_id;
     private $author;
     private $title;
     private $content;
     private $date;
     private $report;
+    private $chapter;
 
     // SETTERS
     public function setId($id)
@@ -24,16 +24,13 @@ class Comment extends Model
 
     }
 
-    public function setChapterId($chapter_id)
+// Ajout de l'objet Post dans setter comment
+    public function setChapter(Post $chapter)
     {
-        $chapter_id = (int) $chapter_id;
-
-        if($chapter_id > 0)
-        {
-            $this->chapter_id = $chapter_id;
-        }
-
+      $this->chapter = $chapter;
     }
+
+
 
     public function setAuthor($author)
     {
@@ -43,7 +40,7 @@ class Comment extends Model
         }
     }
 
-    public function setContent($content)
+    public function setContent_com($content)
     {
         if(is_string($content))
         {
@@ -51,7 +48,7 @@ class Comment extends Model
         }
     }
 
-    public function setDate($date)
+    public function setDate_com($date)
     {
         $this->date = $date;
     }
@@ -74,10 +71,7 @@ class Comment extends Model
         return $this->id;
     }
 
-    public function getChapter_id()
-    {
-        return $this->chapter_id;
-    }
+
 
     public function getAuthor()
     {
@@ -98,4 +92,10 @@ class Comment extends Model
     {
         return $this->report;
     }
+
+    public function getChapter()
+    {
+        return $this->chapter;
+      }
+
 }

@@ -22,30 +22,25 @@
             <tbody>
             <?php foreach ($allComments as $comment): ?>
                 <tr>
-                <!-- <td><?= htmlspecialchars($comment->getId()) ?></td> -->
-                <td>
-                <?php foreach ($allChapters as $post) : ?>
-                    <?= htmlspecialchars($post->title()) ?>
-                <?php endforeach; ?> 
-                </td>
-                <td><?= htmlspecialchars($comment->getDate()) ?></td> 
+                <td><?= htmlspecialchars($comment->getchapter()->title()) ?></td>
+                <td><?= htmlspecialchars($comment->getDate()) ?></td>
                 <td><?= htmlspecialchars($comment->getAuthor()) ?></td>
                 <td><?= htmlspecialchars($comment->getContent()) ?></td>
                 <td><?= htmlspecialchars($comment->getReport()) ?></td>
                 <td>
                     <form action="<?='comment/validate/'. htmlspecialchars($comment->getId()) ?>" method="post">
                         <input type="hidden" name="comment_id" value="<?=$comment->getReport()?>">
-                        <button type="submit" class="btn btn-success btn-sm" name="validate" id="validate">Approuver</button>   
+                        <button type="submit" class="btn btn-success btn-sm" name="validate" id="validate">Approuver</button>
                     </form>
                 </td>
                 <td>
                     <form action="<?='comment/delete/'. htmlspecialchars($comment->getId()) ?>" method="post">
                         <input type="hidden" name="comment_id" value="<?=$comment->getReport()?>">
-                        <button type="submit" class="btn btn-danger btn-sm" name="deleteComment" id="deleteComment">Supprimer</button> 
+                        <button type="submit" class="btn btn-danger btn-sm" name="deleteComment" id="deleteComment">Supprimer</button>
                     </form>
-                </td>   
+                </td>
                 </tr>
-            <?php endforeach; ?> 
+            <?php endforeach; ?>
             </tbody>
         </table>
     </div>
@@ -54,7 +49,7 @@
 <!--Trier les signalements-->
 <!-- <div class="sortReport">
     <form action="admin/report" method="post">
-        <button type="submit" class="btn btn-primary btn-sm" name="sortReport" id="sortReport">Trier les signalements</button> 
+        <button type="submit" class="btn btn-primary btn-sm" name="sortReport" id="sortReport">Trier les signalements</button>
     </form>
 </div> -->
 
@@ -71,18 +66,18 @@
                     <a href="comment/allComments?page=<?=$currentPage - 1 ?>"><i class="fas fa-arrow-alt-circle-left"></i></a>
                 </li>
             <?php endif;?>
-            <?php 
+            <?php
             for ($i = 1; $i <= $nbPages; $i++) {
                 if($i == $currentPage): ?>
-            
+
                 <li class="page-item-active">
-                    <a><?= $i ?></a>        
-                </li>           
+                    <a><?= $i ?></a>
+                </li>
             <?php else : ?>
                 <li class="page-item">
                     <a href="comment/allComments?page=<?= $i ?>"><i><?= $i ?></i></a>
                 </li>
-            <?php endif; 
+            <?php endif;
             } ?> <!-- Fin boucle -->
             <?php if($currentPage + 1 > $nbPages): ?>
                 <li class="page-item disabled">
@@ -92,9 +87,7 @@
                 <li class="page-item">
                     <a href="comment/allComments?page=<?=$currentPage + 1 ?>"><i class="fas fa-arrow-alt-circle-right"></i></a>
                 </li>
-            <?php endif; ?>     
+            <?php endif; ?>
         </ul>
     </div>
 </div>
-
- 
