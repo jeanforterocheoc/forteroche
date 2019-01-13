@@ -10,10 +10,17 @@ class ChapterManager extends Database
      public function getAllChapters()
      {
          $posts = [];
-         $req = 'SELECT *
+        //  $req = 'SELECT chapter_id as id, title as title, content as content, DATE_FORMAT (date, \'%d/%m/%Y\') as date
+        //         FROM chapters
+        //         ORDER BY chapter_id
+        //         DESC';
+
+        $req = 'SELECT chapter.id AS id, title AS title, chapter.content AS content, DATE_FORMAT (chapter.date, \'%d/%m/%Y\') AS date
                 FROM chapter
-                ORDER BY id
-                DESC';
+                INNER JOIN comment
+                ON chapter.id = comment.chapter_id';
+
+         $result = $this->runReq($req, $posts);
 
          foreach($result as $post)
          {

@@ -95,12 +95,16 @@ class CommentManager extends Database
     }
 
     // Renvoie l'ensemble des commentaires associés à un billet
-    public function getComments($chapterId)
+    public function getComments($chapterId, $currentPage, $perPage)
     {
         $comments = [];
         $req = 'SELECT id, author, content, DATE_FORMAT(date, \'%d/%m/%Y\') as date
                 FROM comment
-                WHERE chapter_id = ?';
+                WHERE chapter_id = ?
+                GROUP BY id
+                DESC
+                LIMIT '.(($currentPage - 1) * $perPage).','.$perPage.'
+                ';
 
         $result = $this->runReq($req, [$chapterId]);
         if(!$result){

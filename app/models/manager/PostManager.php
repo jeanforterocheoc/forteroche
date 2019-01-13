@@ -10,7 +10,8 @@ class PostManager extends Database
     {
         $req = 'SELECT id, title, content, DATE_FORMAT(date, \'%d/%m/%Y\') AS date
         FROM chapter
-        WHERE id = ?';
+        WHERE id = ?
+        ';
         $post = $this->show($req, [$chapterId]);
         return new Post($post) ;
     }
