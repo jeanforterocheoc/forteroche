@@ -7,7 +7,7 @@ class PostController extends Controller
 {
     private $postManager;
     
-    public function __construct($postId)
+    public function __construct($postId) 
     {   
         $this->post($postId);
     }

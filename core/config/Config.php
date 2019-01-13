@@ -1,4 +1,6 @@
 <?php
+require_once ('Autoloader.php');
+Autoloader::register();
 
 class Config {
 
@@ -21,9 +23,9 @@ class Config {
     private static function getParams() 
     {
         if (self::$params == null) {
-            $filePath = 'core/prod.ini';
+            $filePath = 'core/config/prod.ini';
             if (!file_exists($filePath)) {
-                $filePath = 'core/dev.ini';  
+                $filePath = 'core/config/dev.ini';  
             }
             if (!file_exists($filePath)) 
             {

@@ -1,61 +1,45 @@
 <?php
 
-require_once ('Autoloader.php');
-Autoloader::register();
+// require_once ('Autoloader.php');
+// Autoloader::register();
 
 class Router {
 
-    private $request;
+    protected $controller = 'home';
+    protected $method = 'index';
+    protected $params = [];
 
-    public function routeReq()
+    public function __construct()
     {
-        try 
-        {
-            $this->request = new Request(array_merge($_GET, $_POST));
+       $url = $this->parseUrl();
 
-            $controller = $this->createController($this->request);
-            $action = $this->createAction($this->request);
+       if(file_exists('../controllers/' . $url[0] . '.php'))
+       {
+           $this->controller = $url[0];
+           unset($url[0]);
+       }
+       require_once 'controllers/' . $this->controller . '.php';
+       $this->controller = $this->controller;
+       
+       if(isset($url[1]))
+       {
+           if(method_exists($this->controller, $url[1]))
+           {
+               $this->method = $url[1];
+               unset($url[1]);
+           }
+       }
 
-            $controller->runAction($action);
-        }
-        catch (Exception $e)
-        {
-
-        }
     }
 
-    private function createController($request)
+    public function parseUrl()
     {
-        $controller = "Home";
-        if($request->isParam('controller'))
+        if(isset($_GET['url']))
         {
-            $controller = $request->getParam('controller');
-            $controller = ucfirst(strtolower($controller));
-        }
-        try
-        {
-            $controllerClass = $controller."Controller";
-
-            $controller = new $controllerClass();
-            $controller->setRequest($request);
-            return $controller;
-
-        }
-        catch(Exception $e)
-        {
-            throw new Exception("La page est introuvable.");
+            return $url = explode('/', filter_var(rtrim($_GET['url'], '/'), FILTER_SANITIZE_URL));
         }
     }
+    
 
-    private function createAction($request)
-    {
-        $action = "index";
-        if($request->isParam('action'))
-        {
-            $action = $request-> getParam('action');
-        }
-        return $action;
-    }
-
-
+    
 }

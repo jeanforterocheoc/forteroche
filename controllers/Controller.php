@@ -18,7 +18,7 @@ abstract class Controller
         if(method_exists($this, $action))
         {
             $this->action = $action;
-            $this->{$this->action}($postId);
+            $this->{$this->action}();
         }
         else 
         {

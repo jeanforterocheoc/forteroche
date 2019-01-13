@@ -12,11 +12,16 @@ class HomeController extends Controller {
          $this->posts();
     }
     
+    
     public function posts()
     {
         $this->postManager = new PostManager;
         $posts = $this->postManager->getAll();
         
         $this->render('Home', array('posts' => $posts));
+        // $this->generateView(array('posts' => $posts));
+            
     }
+
+    
 }

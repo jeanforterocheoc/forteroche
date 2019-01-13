@@ -20,6 +20,9 @@ class Autoloader
         elseif(file_exists('core/'.$class.'.php')){
             require 'core/'.$class.'.php';
         }
+        elseif(file_exists('core/config/'.$class.'.php')){
+            require 'core/config/'.$class.'.php';
+        }
         elseif(file_exists('controllers/'.$class.'.php')){
             require 'controllers/'.$class.'.php';
         }
