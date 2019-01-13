@@ -1,6 +1,5 @@
 <?php $this->title = htmlspecialchars($postComment->title()) ?>
-<!-- <h1><a href="../home/homePage">Homepage</a></h1>  -->
-<h1><a href="index.php?controller=home&action=homepage">Homepage</a></h1> 
+<h1><a href="../home/homepage">Homepage</a></h1> 
 <article>
     <header>
     <a href="../posts/posts"><h1>Tous les épisodes</h1></a>
@@ -19,7 +18,7 @@
     <p><?= htmlspecialchars($comment->content()) ?></p>
  <?php endforeach; ?>
  <hr />
- <form  method="post" action="<?php echo htmlspecialchars($_SERVER['REQUEST_URI'], ENT_QUOTES); ?>">
+ <form  method="post" action="">
     <label for="author">Votre pseudo</label><br>
     <input type="text" name="author" id="author" placeholder="Votre pseudo"><br><br>
     <label for="content">Laissez votre commentaire</label><br>

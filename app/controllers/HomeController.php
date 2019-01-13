@@ -9,7 +9,7 @@ class HomeController extends Controller
     //     $this->homepage();
     // }
 
-    public function homepageAction()
+    public function homepage()
     {
         print_r($this->request);
         $this->homeManager = new HomeManager;

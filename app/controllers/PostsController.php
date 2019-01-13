@@ -10,7 +10,7 @@ class PostsController extends Controller
     // }
     
     
-    public function postsAction()
+    public function posts()
     {
         $this->postsManager = new PostsManager();
         $posts = $this->postsManager->getAll();

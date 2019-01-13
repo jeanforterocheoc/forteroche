@@ -4,23 +4,17 @@ Autoloader::register();
 
 class Router 
 {
-   private $request; 
-   private $uri;
-   private $controller;
-   private $action;
-   private $postId;
-
-   public function __construct()
-   {
-       $this->request = array_merge($_GET, $_POST);
-   }
+   
     public function run ()
     {
         try
         {
-            $controller = $this->createController();
-            $action = $this->getAction();
-            $this->runAction($controller, $action);
+            $request = new Request(array_merge($_GET, $_POST));
+
+            $controller = $this->createController($request);
+            $action = $this->createAction($request);
+
+            $controller->runAction($action);
         }
         catch(Exception $e)
         {
@@ -28,39 +22,66 @@ class Router
         }   
     }
 
-    private function createController()
+    private function createController($request)
     {
-        if (!isset($this->request['controller']) || empty($this->request['controller'])) {
-            throw new Exception('Page not found');
+        $controller = 'Home';
+        if ($request->paramExist('controller'))
+        {
+            $controller = $request->getParam('controller');
+            $controller = ucfirst(strtolower($controller));
         }
-        $controllerName = ucwords(strtolower($this->request['controller']));
-        $controllerClass = $controllerName . 'Controller' ;
+        // $controllerName = ucwords(strtolower($this->request['controller']));
+        $controllerClass = $controller . 'Controller' ;
         $controllerFile =  '../app/controllers/'  . $controllerClass . '.php';
 
         if (!file_exists($controllerFile)) {
-            throw new Exception('Page not found');
-        }
-        $controller = new $controllerClass($this->request);
-        return $controller;
+                throw new Exception('Page not found');
+            }
+            // $controller = new $controllerClass($request);
+            $controller = new $controllerClass();
+            $controller->setRequest($request);
+            
+            return $controller;
+
+
+
+        // if (!isset($this->request['controller']) || empty($this->request['controller'])) {
+        //     throw new Exception('Page not found');
+        // }
+        // $controllerName = ucwords(strtolower($this->request['controller']));
+        // $controllerClass = $controllerName . 'Controller' ;
+        // $controllerFile =  '../app/controllers/'  . $controllerClass . '.php';
+
+        // if (!file_exists($controllerFile)) {
+        //     throw new Exception('Page not found');
+        // }
+        // $controller = new $controllerClass($this->request);
+        // return $controller;
     }
 
-    private function getAction($request)
+    private function createAction($request)
     {
-        if (!isset($this->request['action']) || empty($this->request['action'])) {
-            throw new Exception('Page not found');
+        $action = 'index';
+        if($request->paramExist('action'))
+        {
+            $action = $request->getParam('action');
         }
-        $action = $this->request['action'] . 'Action';
         return $action;
+        // if (!isset($this->request['action']) || empty($this->request['action'])) {
+        //     throw new Exception('Page not found');
+        // }
+        // $action = $this->request['action'] . 'Action';
+        // return $action;
     }      
           
-    private function runAction($controller, $action)
-    {
-        if (!method_exists($controller, $action))
-        {
-            throw new Exception('Page not found');
-        }
-        $controller->$action();
-    }
+    // private function runAction($controller, $action)
+    // {
+    //     if (!method_exists($controller, $action))
+    //     {
+    //         throw new Exception('Page not found');
+    //     }
+    //     $controller->$action();
+    // }
     
     private function manageError($exception)
     {
