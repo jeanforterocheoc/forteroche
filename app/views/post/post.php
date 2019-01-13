@@ -15,7 +15,7 @@
             </section>
         </article>
         <hr>
-        
+
         <!-- Fil de commentaires -->
         <h4 class="postComment">Commentaires</h4>
           <?php foreach ($comments as $comment): ?>
@@ -53,43 +53,45 @@
           </div>
 
         <!--Pagination  -->
-        <div class="row">
-            <div class="col-lg-12">
-                <ul class="pagination pagination-lg">
-                    <?php if($currentPage - 1 == 0): ?>
-                        <li class="page-item disabled">
-                            <span><i class="fas fa-arrow-alt-circle-left"></i></span>
-                        </li>
-                    <?php else : ?>
-                        <li class="page-item">
-                            <a href="post/postComment/<?=$postComment->id()?>?page=<?=$currentPage - 1 ?>"><i class="fas fa-arrow-alt-circle-left"></i></a>
-                        </li>
-                    <?php endif;?>
-                    <?php
-                    for ($i = 1; $i <= $nbPages; $i++) {
-                        if($i == $currentPage): ?>
+        <!-- <div class="row"> -->
+            <div class="paginationPostComment">
+              <nav aria-label="...">
+                  <ul class="pagination">
+                      <?php if($currentPage - 1 == 0): ?>
+                          <li class="page-item disabled">
+                              <span><i class="fas fa-arrow-alt-circle-left page-link"></i></span>
+                          </li>
+                      <?php else : ?>
+                          <li class="page-item">
+                              <a class="page-link" href="post/postComment/<?=$postComment->id()?>?page=<?=$currentPage - 1 ?>"><i class="fas fa-arrow-alt-circle-left"></i></a>
+                          </li>
+                      <?php endif;?>
+                      <?php
+                      for ($i = 1; $i <= $nbPages; $i++) {
+                          if($i == $currentPage): ?>
 
-                        <li class="page-item-active">
-                            <a><?= $i ?></a>
-                        </li>
-                    <?php else : ?>
-                        <li class="page-item">
-                            <a href="post/postComment/<?=$postComment->id()?>?page=<?= $i ?>"><i><?= $i ?></i></a>
-                        </li>
-                    <?php endif;
-                    } ?> <!-- Fin boucle -->
-                    <?php if($currentPage + 1 > $nbPages): ?>
-                        <li class="page-item disabled">
-                            <span><i class="fas fa-arrow-alt-circle-right"></i></span>
-                        </li>
-                    <?php else : ?>
-                        <li class="page-item">
-                            <a href="post/postComment/<?=$postComment->id()?>?page=<?=$currentPage + 1 ?>"><i class="fas fa-arrow-alt-circle-right"></i></a>
-                        </li>
-                    <?php endif; ?>
-                </ul>
+                          <li class="page-item-active">
+                              <a class="page-link"><?= $i ?></a>
+                          </li>
+                      <?php else : ?>
+                          <li class="page-item">
+                              <a class="page-link" href="post/postComment/<?=$postComment->id()?>?page=<?= $i ?>"><i><?= $i ?></i></a>
+                          </li>
+                      <?php endif;
+                      } ?> <!-- Fin boucle -->
+                      <?php if($currentPage + 1 > $nbPages): ?>
+                          <li class="page-item disabled">
+                              <span><i class="fas fa-arrow-alt-circle-right page-link"></i></span>
+                          </li>
+                      <?php else : ?>
+                          <li class="page-item">
+                              <a class="page-link" href="post/postComment/<?=$postComment->id()?>?page=<?=$currentPage + 1 ?>"><i class="fas fa-arrow-alt-circle-right"></i></a>
+                          </li>
+                      <?php endif; ?>
+                  </ul>
+                </nav>
             </div>
-        </div>
+        <!-- </div> -->
 
         <!-- Formulaire pour le commentaire user -->
         <hr />

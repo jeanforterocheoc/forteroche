@@ -15,8 +15,7 @@
                 <th scope="col">Auteur</th>
                 <th scope="col">Commentaire</th>
                 <th scope="col"><a href="comment/commentsReported" id="sortReport">Signalement</a></th>
-                <th scope="col">Valider le<br>commentaire</th>
-                <th scope="col">Supprimer le<br>commentaire</th>
+                <th scope="col">Action à<br>réaliser</th>
                 </tr>
             </thead>
             <tbody>
@@ -29,14 +28,11 @@
                 <td><?= htmlspecialchars($comment->getReport()) ?></td>
                 <td>
                     <form action="<?='comment/validate/'. htmlspecialchars($comment->getId()) ?>" method="post">
-                        <input type="hidden" name="comment_id" value="<?=$comment->getReport()?>">
-                        <button type="submit" class="btn btn-success btn-sm" name="validate" id="validate">Approuver</button>
+                        <button type="submit" class="btn btn-success btn-sm" name="validate" id="validate"><span title="Accepter le commentaire"><i class="fas fa-check"></i></span></button>
                     </form>
-                </td>
-                <td>
+
                     <form action="<?='comment/delete/'. htmlspecialchars($comment->getId()) ?>" method="post">
-                        <input type="hidden" name="comment_id" value="<?=$comment->getReport()?>">
-                        <button type="submit" class="btn btn-danger btn-sm" name="deleteComment" id="deleteComment">Supprimer</button>
+                        <button type="submit" class="btn btn-danger btn-sm" name="deleteComment" id="deleteComment"><span title="Supprimer le commentaire"><i class="fas fa-times"></i></span></button>
                     </form>
                 </td>
                 </tr>

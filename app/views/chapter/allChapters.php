@@ -34,7 +34,7 @@
                   <td>
                     <form action="<?='chapter/changeChapter/'. htmlspecialchars($post->id()) ?>" method="post">
                       <!-- <button type="submit" class="btn btn-primary btn-sm" name="changeChapter" id="changeChapter">Modifier</button> -->
-                      <button type="submit" class="btn btn-primary btn-sm" name="changeChapter" id="changeChapter">Modifier</button>
+                      <button type="submit" class="btn btn-primary btn-sm" name="changeChapter" id="changeChapter"><i class="fas fa-pen"></i></button>
 
                     </form>
                   </td>

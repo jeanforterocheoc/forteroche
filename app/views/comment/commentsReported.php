@@ -9,38 +9,34 @@
             <thead>
                 <tr>
                 <!-- <th scope="col">commentId</th> -->
-                <th scope="col">Numéro<br>du chapitre</th>
+                <th scope="col">Nom<br>du chapitre</th>
                 <th scope="col">Date</th>
                 <th scope="col">Auteur</th>
                 <th scope="col">Commentaire</th>
                 <th scope="col"><a href="comment/commentsReported" id="sortReport">Signalement</a></th>
-                <th scope="col">Valider le<br>commentaire</th>
-                <th scope="col">Supprimer le<br>commentaire</th>
+                <th scope="col">Actions à<br>réaliser</th>
                 </tr>
             </thead>
             <tbody>
             <?php foreach ($commentsReported as $comment): ?>
                 <tr>
-                <!-- <td><?= htmlspecialchars($comment->getId()) ?></td> -->
-                <td><?= htmlspecialchars($comment->getChapterId()) ?></td>
-                <td><?= htmlspecialchars($comment->getDate()) ?></td> 
+                <td><?= htmlspecialchars($comment->getChapter()->title()) ?></td>
+                <td><?= htmlspecialchars($comment->getDate()) ?></td>
                 <td><?= htmlspecialchars($comment->getAuthor()) ?></td>
                 <td><?= htmlspecialchars($comment->getContent()) ?></td>
                 <td><?= htmlspecialchars($comment->getReport()) ?></td>
                 <td>
                     <form action="<?='comment/validate/'. htmlspecialchars($comment->getId()) ?>" method="post">
-                        <input type="hidden" name="comment_id" value="<?=$comment->getReport()?>">
-                        <button type="submit" class="btn btn-success btn-sm" name="validate" id="validate">Approuver</button>   
+                        <button type="submit" class="btn btn-success btn-sm" name="validate" id="validate"><span title="Approuver le commentaire"><i class="fas fa-check"></i></span></button>
                     </form>
-                </td>
-                <td>
+
                     <form action="<?='comment/delete/'. htmlspecialchars($comment->getId()) ?>" method="post">
                         <input type="hidden" name="comment_id" value="<?=$comment->getReport()?>">
-                        <button type="submit" class="btn btn-danger btn-sm" name="deleteComment" id="deleteComment">Supprimer</button> 
+                        <button type="submit" class="btn btn-danger btn-sm" name="deleteComment" id="deleteComment"><span title="Supprimer le commentaire"><i class="fas fa-times"></i></span></button>
                     </form>
-                </td>   
+                </td>
                 </tr>
-            <?php endforeach; ?> 
+            <?php endforeach; ?>
             </tbody>
         </table>
     </div>
@@ -61,20 +57,20 @@
                 </li>
                 <br>
             <?php endif;?>
-            <?php 
+            <?php
             for ($i = 1; $i <= $nbPages; $i++) {
                 if($i == $currentPage): ?>
-            
+
                 <li class="page-item-active">
-                    <a><?= $i ?></a>        
+                    <a><?= $i ?></a>
                 </li>
-                <br>           
+                <br>
             <?php else : ?>
                 <li class="page-item">
                     <a href="comment/commentsReported?page=<?= $i ?>"><i><?= $i ?></i></a>
                 </li>
                 <br>
-            <?php endif; 
+            <?php endif;
             } ?> <!-- Fin boucle -->
             <?php if($currentPage + 1 > $nbPages): ?>
                 <li class="page-item disabled">
@@ -86,7 +82,7 @@
                     <a href="comment/commentsReported?page=<?=$currentPage + 1 ?>"><i class="fas fa-arrow-alt-circle-right"></i></a>
                 </li>
                 <br>
-            <?php endif; ?>     
+            <?php endif; ?>
         </ul>
     </div>
 </div>

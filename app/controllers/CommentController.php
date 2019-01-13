@@ -17,8 +17,8 @@ class CommentController extends SecureController
         $this->commentManager = new CommentManager();
         $this->chapterManager = new ChapterManager();
 
-        
-         
+
+
         $nbComments = $this->commentManager->countComments();
         $perPage = 5;
         $nbPages = $this->commentManager->countPages($nbComments, $perPage);
@@ -30,11 +30,11 @@ class CommentController extends SecureController
             }
         $comments = $this->commentManager->commentsAll($currentPage, $perPage);
         $chapters = $this->chapterManager->getAllChapters($currentPage, $perPage);
-        
+
 
        $this->render('AllComments', array('allComments' => $comments,'allChapters' => $chapters, 'currentPage' => $currentPage, 'nbPages' => $nbPages));
     //    $this->render('AllComments', array('allComments' => $comments, 'oneChapter' => $one, 'currentPage' => $currentPage, 'nbPages' => $nbPages));
-            
+
     }
 
     // Validation d'un commentaire par l'admin /comment/validate/commentId
@@ -42,6 +42,8 @@ class CommentController extends SecureController
     {
         $this->commentManager = new CommentManager();
         $commentId = $this->request->getParam("id");
+        // var_dump($commentId);
+        // exit;
         $this->commentManager->validateComment($commentId);
         $this->redirection('comment', 'allComments');
     }
@@ -71,6 +73,6 @@ class CommentController extends SecureController
         $commentsReported = $this->commentManager->getAllCommentsPerReport($currentPage, $perPage);
         $this->render('commentsReported', array('commentsReported' => $commentsReported, 'currentPage' => $currentPage, 'nbPages' => $nbPages));
     }
-    
- 
+
+
 }

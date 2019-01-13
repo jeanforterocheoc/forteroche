@@ -126,6 +126,10 @@ body {
 .row {
   flex-direction: column;
 }
+/* Pagination commentaires */
+ul.pagination > li.page-item.disabled > span > i {
+  padding: 10px;
+}
 
 /* Formulaires
 --------------------------------------------*/

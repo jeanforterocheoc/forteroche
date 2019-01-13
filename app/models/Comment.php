@@ -13,7 +13,7 @@ class Comment extends Model
     private $chapter;
 
     // SETTERS
-    public function setId($id)
+    public function setId_com($id)
     {
         $id = (int) $id;
 

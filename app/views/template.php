@@ -13,7 +13,7 @@
 
     <script type="text/javascript" src="public/js/jquery/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="app/lib/bootstrap/js/bootstrap.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
   </head>
   <body>
     <div class="container">
@@ -30,8 +30,7 @@
           <a href="home/homepage">Accueil</a>
           <a href="posts/posts">Les chapitres</a>
           <a href="auth/login">Connexion</a>
-          <a href="auth/logout">Se déconnecter</a>
-          <!-- <a href="#">Contact</a> -->
+          <a href="">Contact</a>
         </div>
       </div> <!-- burger -->
       <div class="jumbotron bg-white">
@@ -49,7 +48,7 @@
         <br> -->
         <!-- <section class="row">
           <div class="col-lg-12" id="content">
-            
+
           </div>
         </section>
         <hr> -->
