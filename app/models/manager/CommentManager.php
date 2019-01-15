@@ -15,13 +15,6 @@ class CommentManager extends Database
     public function commentsAll($currentPage, $perPage)
     {
         $comments = [];
-        // $req = 'SELECT *
-        //         FROM comment
-        //         ORDER BY id
-        //         DESC
-        //         LIMIT '.(($currentPage - 1) * $perPage).','.$perPage.'';
-
-
         $req = 'SELECT *
                 FROM comment
                 INNER JOIN chapter

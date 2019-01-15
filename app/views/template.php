@@ -11,9 +11,7 @@
     <link href="https://fonts.googleapis.com/css?family=Hind+Madurai" rel="stylesheet">
     <link rel="stylesheet" href="public/css/style.css">
 
-    <script type="text/javascript" src="public/js/jquery/jquery-3.3.1.min.js"></script>
-    <script type="text/javascript" src="app/lib/bootstrap/js/bootstrap.min.js"></script>
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+
   </head>
   <body>
     <div class="container">
@@ -40,24 +38,14 @@
       </div>
     </div> <!-- container -->
 
-      <!-- <div id="container"> -->
-        <!-- <div class="text-center" class="homeText">
-          <p>Bienvenue!<br>Pour mon douzième roman,j'ai souhaité vous le faire découvrir dans un tout autre format que celui d'un livre papier,un blog.</p>
-        </div> -->
-        <!-- <br>
-        <br> -->
-        <!-- <section class="row">
-          <div class="col-lg-12" id="content">
 
-          </div>
-        </section>
-        <hr> -->
         <footer>
           <p>Mentions légales</p>
         </footer>
       <!-- </div>  container-->
-      <script type="text/javascript" src="public/js/navigation.js">
-
-      </script>
+      <script type="text/javascript" src="public/js/jquery/jquery-3.3.1.min.js"></script>
+      <script type="text/javascript" src="app/lib/bootstrap/js/bootstrap.min.js"></script>
+      <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+      <script type="text/javascript" src="public/js/navigation.js"></script>  
   </body>
 </html>

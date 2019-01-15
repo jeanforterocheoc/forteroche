@@ -20,7 +20,7 @@ class CommentController extends SecureController
 
 
         $nbComments = $this->commentManager->countComments();
-        $perPage = 5;
+        $perPage = 15;
         $nbPages = $this->commentManager->countPages($nbComments, $perPage);
             if(isset($_GET['page']) && $_GET['page'] > 0 && $_GET['page'] <= $nbPages)
             {
@@ -33,8 +33,6 @@ class CommentController extends SecureController
 
 
        $this->render('AllComments', array('allComments' => $comments,'allChapters' => $chapters, 'currentPage' => $currentPage, 'nbPages' => $nbPages));
-    //    $this->render('AllComments', array('allComments' => $comments, 'oneChapter' => $one, 'currentPage' => $currentPage, 'nbPages' => $nbPages));
-
     }
 
     // Validation d'un commentaire par l'admin /comment/validate/commentId
@@ -71,7 +69,7 @@ class CommentController extends SecureController
                 $currentPage = 1;
             }
         $commentsReported = $this->commentManager->getAllCommentsPerReport($currentPage, $perPage);
-        $this->render('commentsReported', array('commentsReported' => $commentsReported, 'currentPage' => $currentPage, 'nbPages' => $nbPages));
+        $this->render('allComments', array('commentsReported' => $commentsReported, 'currentPage' => $currentPage, 'nbPages' => $nbPages));
     }
 
 

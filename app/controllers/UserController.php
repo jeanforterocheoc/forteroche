@@ -1,13 +1,13 @@
 <?php
 namespace App\Controllers;
 
-use App\Core\Controller;
-// use App\Core\SecureController;
+// use App\Core\Controller;
+use App\Core\SecureController;
 use App\Models\manager\UserManager;
 use App\Models\Messages;
 
-// class UserController extends SecureController
-class UserController extends Controller
+class UserController extends SecureController
+// class UserController extends Controller
 
 {
     private $userManager;
@@ -34,7 +34,7 @@ class UserController extends Controller
                     );
           }
         }else {
-          
+
         }
         $this->render('createUser');
     }

@@ -95,7 +95,7 @@
 
         <!-- Formulaire pour le commentaire user -->
         <hr />
-        <h4 class="addComment">Ajouter un commentaire</h4>
+        <h4 class="addComment">Ajouter un commentaire</h4>s
         <form class="form-signin" id= "formAjax" action="" method="post">
             <div class="form-label-group">
                 <input type="text" class="form-control" name="author" id="author" placeholder="Votre pseudo"><br>
