@@ -68,7 +68,7 @@ class ChapterManager extends Database
 
     public function countChapters()
     {
-        $nbChapterss='';
+        $nbChapters='';
         $req = 'SELECT COUNT(*) AS nbChapters  FROM chapter';
         $result = $this->runReq($req);
         if(!$result){
