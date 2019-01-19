@@ -10,7 +10,9 @@ class UserManager extends Database
     // Vérifie si utilisateur identifié dans la bdd
     public function getUser($username)
     {
-        $req = 'SELECT id, username, password FROM user WHERE username = ? ';
+        $req = 'SELECT *
+                FROM user
+                WHERE username = ? ';
         $result = $this->show($req, [$username]);
 
         if (!$result) {
@@ -28,13 +30,27 @@ class UserManager extends Database
         return $result;
     }
 
+    // Modification du profil
+    public function modifUser($id, $username, $password, $email){
+      $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+      $req = 'UPDATE user
+              SET username = ?, password = ?, email = ?
+              WHERE id = '.$id ;
+      $result = $this->ina($req, [$username, $passwordHash, $email]);
+      return $result;
+    }
+
     // Création d'un nouveau mot de passe
     public function createNewPass($newPass,$email)
     {
 
         $newPassHash = password_hash($newPass, PASSWORD_DEFAULT);
-        $req = 'UPDATE user SET password = ? WHERE email = ?';
+        $req = 'UPDATE user
+                SET password = ?
+                WHERE email = ?';
         $result = $this->ina($req, [$newPassHash, $email]);
+        var_dump($result);
+        exit;
         return $result;
     }
 

@@ -1,6 +1,9 @@
 
 <?php $this->title = 'Création d\'un profil utilisateur'; ?> 
-<p><a href="user/userAdmin">home</a></p><br>
+<?php use App\models\Messages; ?>
+<?php Messages::displayMsg()?>
+
+<p><a href="user/userAdmin">Accueil administration</a></p><br>
 
   <body class="text-center">
 
@@ -11,22 +14,22 @@
       
       <div class="form-label-group">
         <label for="username">Nom d'utilisateur</label>
-        <input type="text" class="form-control" name="username" id="username" required>
+        <input type="text" class="form-control" name="username" id="username" >
       </div>
 
       <div class="form-label-group">
         <label for="password">Mot de passe</label>
-        <input type="password" class="form-control" name="password" id="password" required>
+        <input type="password" class="form-control" name="password" id="password" >
       </div>
 
       <div class="form-label-group">
         <label for="passwordConfirm">Confirmer le mot de passe</label>
-        <input type="password" class="form-control" name="passwordConfirm" id="passwordConfirm" required>
+        <input type="password" class="form-control" name="passwordConfirm" id="passwordConfirm" >
       </div>
 
        <div class="form-label-group">
         <label for="email">Adresse mail</label>
-        <input type="email" class="form-control" name="email" id="email" required>
+        <input type="email" class="form-control" name="email" id="email" >
       </div>
 
        <button class="btn btn-sm btn-primary " type="submit" name="login" id="login">Créer profil</button>

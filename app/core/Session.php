@@ -3,6 +3,15 @@ namespace App\Core;
 
 class Session
 {
+  static $_instance;
+
+  public static function getInstance()
+  {
+    if(!self::$_instance){
+      self::$_instance = new Session;
+    }
+    return self::$_instance;
+  }
     /**
      * Création d'une session
      */
@@ -47,7 +56,7 @@ class Session
             return $_SESSION[$key];
         }
         else {
-            throw new Exception("L'attribut " . $name . " n'existe pas.");
+            echo("L'attribut " . $key . " n'existe pas.");
         }
     }
 }

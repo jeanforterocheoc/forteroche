@@ -34,8 +34,5 @@
                 <p>Mentions légales</p>
             </footer>
         </div>
-
-
-
     </body>
 </html>

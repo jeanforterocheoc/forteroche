@@ -1,6 +1,6 @@
 <?php
 /**
- * Cette classe stocke l'ensemble des paramètres de la requête de l'utilisateur 
+ * Cette classe stocke l'ensemble des paramètres de la requête de l'utilisateur
  */
 
 namespace App\Core;
@@ -8,13 +8,13 @@ namespace App\Core;
 class Request
 {
 
-    /** 
-     * Tableau des paramètres de la requête 
+    /**
+     * Tableau des paramètres de la requête
      */
     private $params;
 
-    /** 
-     * Objet session associé à la requête 
+    /**
+     * Objet session associé à la requête
      */
     private $session;
 
@@ -25,6 +25,8 @@ class Request
     {
         $this->params = $params;
         $this->session = new Session();
+        // $sessionInstance = Session::getInstance();
+
     }
 
     /** Renvoie l'objet session associé à la requête */
@@ -32,10 +34,11 @@ class Request
     public function getSession()
     {
         return $this->session;
+        // return $sessionInstance;
     }
 
     /**
-     * Renvoie un booléen si le paramètre existe dans la requête 
+     * Renvoie un booléen si le paramètre existe dans la requête
      */
     public function paramExist($name)
     {
@@ -43,7 +46,7 @@ class Request
     }
 
     /**
-     * Renvoie la valeur du paramètre 
+     * Renvoie la valeur du paramètre
     */
     public function getParam($name)
     {

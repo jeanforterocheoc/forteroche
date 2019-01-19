@@ -1,6 +1,6 @@
-<?php $this->title = $postComment->title() ?>
 <?php use App\models\Messages; ?>
 <?php Messages::displayMsg()?>
+<?php $this->title = $postComment->title() ?>
 
 <div class="container-fluid">
   <article>

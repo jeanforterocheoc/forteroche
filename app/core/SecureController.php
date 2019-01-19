@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Core;
+use App\Models\User;
 
-abstract class SecureController extends Controller 
+abstract class SecureController extends Controller
 {
     protected $user;
 
@@ -15,6 +16,7 @@ abstract class SecureController extends Controller
             $this->redirection('Auth', 'login');
 
         }
-        $this->user = $this->request->getSession()->getAttribut('user');
+        $this->user = new User(json_decode($this->request->getSession()->getAttribut('user'), true));
+        // $this->user = $this->request->getSession()->getAttribut('user');  
     }
 }

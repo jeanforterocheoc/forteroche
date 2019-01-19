@@ -6,15 +6,15 @@ use App\Controllers\HomeController;
 use App\Controllers\AdminController;
 
 
-class View 
+class View
 {
     private $file;
     private $title;
-    
-    public function __construct($action, $controller) 
+
+    public function __construct($action, $controller)
     {
         $file = '../app/views/';
-        
+
         $controller = str_replace('Controller', '', $controller);
         $controller = strtolower($controller). '/';
         // var_dump($controller);
@@ -34,17 +34,17 @@ class View
     }
 
     // Génère et affiche la vue
-    public function generate($data) 
+    public function generate($data)
     {
         // Partie spécifique de la vue
         $content = $this->generateFile($this->file, $data);
-        
+
         $racineWeb = Config::get("racineWeb", "/");
 
         // Temlpate
         $view = $this->generateFile('../app/views/'. $this->template, array('title' => $this->title, 'content' => $content, 'racineWeb' => $racineWeb));
-        
-        echo $view; 
+
+        echo $view;
     }
 
     // Genère un fichier vue et renvoie le résultat produit
@@ -62,6 +62,11 @@ class View
         }else{
             throw new \Exception('Le fichier ' .$file. ' est introuvable.' );
         }
+    }
+
+    private function sanitize($value)
+    {
+      return htmlspecialchars($value, ENT_QUOTES, false);
     }
 
 }

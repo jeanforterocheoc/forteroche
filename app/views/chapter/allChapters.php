@@ -1,6 +1,6 @@
 <?php $this->title = 'Tous les chapitres'; ?>
 <p><a href="user/userAdmin">accueil administration</a></p>
-<p><a href="home/homepage">Voir le blog</a></p><br>
+<p><a href="home/homepage" target="_blank">Voir le blog</a></p><br>
 
 <h5>L'ensemble des chapitres</h5><br>
 <div class="container">
@@ -13,9 +13,7 @@
                   <th>Publié le</th>
                   <th>Titre</th>
                   <th>Chapitre</th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
+                  <th>Actions</th>
                   </tr>
               </thead>
 
@@ -24,28 +22,20 @@
               <tr>
                   <td><?= $post->date() ?></td>
                   <td><?= $post->title() ?></td>
-                  <td><?= substr($post->content(), 0, 300) ?></td>
+                  <td><?= substr($post->content(), 0, 100) ?>[...]</td>
                   <td>
                     <form action="<?='chapter/oneChapter/'. htmlspecialchars($post->id()) ?>" method="post">
-                      <!-- <button type="submit" class="btn btn-success btn-sm" name="editer" id="editer">Visualiser</button> -->
-                      <button type="submit" class="btn btn-success btn-sm" name="editer" id="editer"><i class="far fa-eye"></i></button>
+                      <button type="submit" target="_blank" class="btn btn-success btn-sm" name="editer" id="editer"><span title="Editer le chapitre"><i class="far fa-eye"></i></span></button>
                     </form>
-                  </td>
-                  <td>
+                    
                     <form action="<?='chapter/changeChapter/'. htmlspecialchars($post->id()) ?>" method="post">
-                      <!-- <button type="submit" class="btn btn-primary btn-sm" name="changeChapter" id="changeChapter">Modifier</button> -->
-                      <button type="submit" class="btn btn-primary btn-sm" name="changeChapter" id="changeChapter"><i class="fas fa-pen"></i></button>
-
+                      <button type="submit" class="btn btn-primary btn-sm" name="changeChapter" id="changeChapter"><span title="Modifier le chapitre"><i class="fas fa-pen"></i></span></i></button>
                     </form>
-                  </td>
-                  <td>
+
                     <form action="<?='chapter/deleteChapter/'. htmlspecialchars($post->id()) ?>" method="post">
-                      <!-- <button type="submit" class="btn btn-danger btn-sm" name="deleteChapter" id="deleteChapter">Supprimer</button> -->
-                      <button type="submit" class="btn btn-danger btn-sm" name="deleteChapter" id="deleteChapter"><i class="fas fa-times"></i></button>
-
+                      <button type="submit" class="btn btn-danger btn-sm" name="deleteChapter" id="deleteChapter"><span title="Supprimer le chapitre"><i class="fas fa-times"></span></i></button>
                     </form>
                   </td>
-
               </tr>
               <?php endforeach; ?>
               </tbody>

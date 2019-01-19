@@ -3,11 +3,11 @@
 namespace App\Core;
 use App\Core\View;
 
-abstract class Controller 
+abstract class Controller
 {
   private $action;
   protected $request;
-  
+
   public function __construct($request)
   {
       $this->setRequest($request);
@@ -24,10 +24,10 @@ abstract class Controller
     {
       $this->action = $action;
       $this->$action();
-    } 
+    }
     else {
       $controllerClass = get_class($this);
-      throw new \Exception("Action '$action' non définie!");
+      throw new \Exception("Action '.$action.' non définie!");
     }
   }
 
@@ -38,7 +38,7 @@ abstract class Controller
     // var_dump($controllerClass);
     $controller = str_replace("App\\Controllers\\", "", $controllerClass);
     // var_dump($controller);
-    $view = new View($action, $controller); 
+    $view = new View($action, $controller);
     $view->generate($params);
   }
 

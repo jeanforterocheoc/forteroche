@@ -13,26 +13,36 @@
 
     <script type="text/javascript" src="public/js/jquery/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="app/lib/bootstrap/js/bootstrap.min.js"></script>
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+
   </head>
   <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="logo" href="home/homepage"><i class="fas fa-book"></i></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="home/homepage">Accueil <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="posts/posts">Les chapitres</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="auth/login">Connexion</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
     <div class="container">
       <header class="blog-header">
         <h1 class="bookTitle">Billet simple pour l'Alaska par Jean Forteroche</h1>
       </header>
-
-      <div class="burger">
-        <div class="toggle_btn">
-            <span></span>
-        </div>
-        <div class="menu navigation">
-          <a class="logo" href="home/homepage"><i class="fas fa-book"></i></a>
-          <a href="home/homepage">Accueil</a>
-          <a href="posts/posts">Les chapitres</a>
-          <a href="auth/login">Connexion</a>
-          <a href="">Contact</a>
-        </div>
-      </div> <!-- burger -->
       <div class="jumbotron bg-white">
         <div class=" content">
           <?=$content?>
@@ -45,7 +55,7 @@
           <p>Mentions légales</p>
         </footer>
       <!-- </div>  container-->
-      <script type="text/javascript" src="public/js/navigation.js"></script>
-      
+      <!-- <script type="text/javascript" src="public/js/navigation.js"></script> -->
+
   </body>
 </html>

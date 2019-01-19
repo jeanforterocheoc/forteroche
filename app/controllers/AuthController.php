@@ -13,14 +13,12 @@ class AuthController extends Controller
     * Login
     */
     public function login()
-    { 
-        // var_dump($_SESSION);
+    {
         if ($_SERVER['REQUEST_METHOD'] != 'POST') {
             $this->render('Auth');
-            return; 
+            return;
          }
-        if ($this->request->paramExist('username') && $this->request->paramExist('password')) 
-        {
+        if ($this->request->paramExist('username') && $this->request->paramExist('password')) {
             $username = $this->request->getParam("username");
             $password = $this->request->getParam("password");
 
@@ -28,7 +26,7 @@ class AuthController extends Controller
             $user =$this->userManager->getUser($username);
             if (null != $user) {
                 if (password_verify($password, $user->getPassword())) {
-                    $this->request->getSession()->setAttribut('user', $user);
+                    $this->request->getSession()->setAttribut('user', json_encode($user->toArray()));
                     $this->redirection('User', 'userAdmin');
                 }else {
                     $this->messages = new Messages;
@@ -38,7 +36,6 @@ class AuthController extends Controller
                 $this->messages = new Messages;
                 $this->messages->setMsg('Les identifiants sont incorrects !', 'error');
             }
-                 
         }else {
             $this->messages = new Messages;
             $this->messages->setMsg('Veuillez compléter tous les champs !', 'error');

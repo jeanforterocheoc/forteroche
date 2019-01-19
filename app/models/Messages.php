@@ -2,8 +2,6 @@
 
 namespace App\Models;
 
-
-
 /** Gestion des messages 'flash' */
 class Messages 
 {

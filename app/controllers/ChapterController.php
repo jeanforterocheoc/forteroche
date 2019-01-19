@@ -5,23 +5,17 @@ use App\Core\SecureController;
 use App\Models\manager\ChapterManager;
 use App\Models\manager\CommentManager;
 
-//SELECT * FROM `comments` ORDER BY post_id,comment_report DESC
-
 class ChapterController extends SecureController
 {
     private $chapterManager;
     private $commentManager;
-   
-    /** CHAPITRES */    
+
+    /** CHAPITRES */
 
     // Affiche l'ensemble des chapitres /chapter/allChapters
     public function allChapters()
     {
         $this->chapterManager = new ChapterManager();
-        // $allChapters = $this->adminManager->getAllChapters();
-
-        // $this->render('allChapters', array('posts' => $allChapters));
-
         $nbChapters = $this->chapterManager->countChapters();
         $perPage = 5;
         $nbPages = $this->chapterManager->countPages($nbChapters, $perPage);
@@ -32,7 +26,7 @@ class ChapterController extends SecureController
                 $currentPage = 1;
             }
         $chapters = $this->chapterManager->getAllChapters($currentPage, $perPage);
-    
+
        $this->render('AllChapters', array('allChapters' => $chapters, 'currentPage' => $currentPage, 'nbPages' => $nbPages));
     }
 
@@ -55,7 +49,7 @@ class ChapterController extends SecureController
     {
         $title = $this->request->defaultParam('title');
         $content = $this->request->defaultParam('mytextarea');
-        
+
         if($title && $content)
         {
             $this->redirection('Chapter', 'allChapters');
@@ -63,9 +57,9 @@ class ChapterController extends SecureController
             $this->chapterManager = new ChapterManager();
             $this->chapterManager->addChapter( $title, $content);
         }
-        
+
         $this->render('NewChapter', array('title' => $title, 'mytextarea' => $content));
-    } 
+    }
 
     // Modifier un chapitre  /chapter/changeChapter/id
     public function changeChapter()
@@ -74,7 +68,7 @@ class ChapterController extends SecureController
         $postId = $this->request->getParam("id");
         $this->chapterManager = new ChapterManager();
         $post = $this->chapterManager->getOneChapter($postId);
-        
+
         if($this->request->paramExist('title') && $this->request->paramExist('mytextarea'))
         {
             $this->redirection('Chapter', 'allChapters');
@@ -82,7 +76,7 @@ class ChapterController extends SecureController
                  $this->request->getParam("title"),
                  $this->request->getParam("mytextarea"),
                  $postId
-            );    
+            );
         }
        $this->render('changeChapter', array('changeChapter' => $post));
     }
@@ -98,17 +92,16 @@ class ChapterController extends SecureController
         if(isset($_POST['supprimer'])) {
             $this->chapterManager->removeEpisode($postId);
             $this->redirection('Chapter', 'allChapters');
-        }  
-        
+        }
+
        $this->render('DeleteChapter', array('deleteChapter' => $post));
     }
 
-     
     /** PROFIL */
 
-    // // Profil Admin  admin/homeAdmin
+    // Profil Admin  admin/homeAdmin
     public function homeAdmin()
-    {     
-        $this->render('Admin');           
+    {
+        $this->render('Admin');
     }
 }

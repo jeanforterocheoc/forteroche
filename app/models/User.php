@@ -49,7 +49,7 @@ class User extends Model
 
     public function getUsername()
     {
-        return $this->username; 
+        return $this->username;
     }
 
     public function getPassword()
@@ -60,5 +60,10 @@ class User extends Model
     public function getEmail()
     {
         return $this->email;
+    }
+
+    public function toArray()
+    {
+      return get_object_vars($this);
     }
 }
