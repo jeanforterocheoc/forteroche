@@ -14,7 +14,7 @@ class PostController extends Controller
     // Affichage de l'ensemble des commentaires associés à un billet
     public function postComment()
     {
-       $chapterId = $this->request->getParam("id");
+        $chapterId = $this->request->getParam("id");
 
         $this->postManager = new PostManager();
         $this->commentManager = new CommentManager();
@@ -22,36 +22,39 @@ class PostController extends Controller
         $nbComments = $this->commentManager->countComments();
         $perPage = 5;
         $nbPages = $this->commentManager->countPages($nbComments, $perPage);
-            if(isset($_GET['page']) && $_GET['page'] > 0 && $_GET['page'] <= $nbPages)
-            {
-                $currentPage = $_GET['page'];
-            }else {
-                $currentPage = 1;
-            }
+        if (isset($_GET['page']) && $_GET['page'] > 0 && $_GET['page'] <= $nbPages) {
+            $currentPage = $_GET['page'];
+        } else {
+            $currentPage = 1;
+        }
 
         $chapter = $this->postManager->getOne($chapterId);
         $comments = $this->commentManager->getComments($chapterId, $currentPage, $perPage);
 
         $this->render('Post', array('postComment' => $chapter, 'comments' => $comments, 'currentPage' => $currentPage, 'nbPages' => $nbPages));
-
     }
 
     // Permet d'ajouter un commentaire
     public function addComment()
     {
-      if(!empty($_POST['author']) AND !empty($_POST['commentUser']))
-        {
-          $chapterId = $this->request->getParam("postId");
-          $author = $this->request->getParam("author");
-          $content = $this->request->getParam("commentUser");
+        if ($this->request->paramExist('author') && $this->request->paramExist('commentUser')) {
+            $chapterId = htmlspecialchars($this->request->getParam('postId'), ENT_QUOTES) ;
+            $author = htmlspecialchars($this->request->getParam('author'), ENT_QUOTES);
+            $content = htmlspecialchars($this->request->getParam('commentUser'), ENT_QUOTES);
 
-          $this->commentManager = new commentManager();
-          $comment = $this->commentManager->addComment($chapterId, $author, $content);// Ajout dans bdd
-        }
-          // else {
-          //   $this->messages = new Messages;
-          //   $this->messages->setMsg('Veuillez compléter tous les champs !', 'error');
-          // }
+            $this->commentManager = new commentManager(); 
+            $comment = $this->commentManager->addComment($chapterId,$author,$content);
+            $this->redirection('Post','postComment'.$chapterId);
+
+            $this->messages = new Messages;
+            $this->messages->setMsg('Le commentaire a été ajouté !', 'success');
+        } 
+        else {
+            $this->redirection('Post','postComment'.$this->request->getParam('postId'));
+
+            $this->messages = new Messages;
+            $this->messages->setMsg('Veuillez compléter tous les champs !', 'error');
+        }   
     }
 
     // Signale un commentaire pour modération
@@ -63,6 +66,5 @@ class PostController extends Controller
 
         $comment = $this->commentManager->getComment($id);
         $this->commentManager->reportComment($id);
-
     }
 }

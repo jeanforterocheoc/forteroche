@@ -13,4 +13,3 @@
     <button class="btn btn-sm btn-primary " type="submit" name="recup_submit" ">Validez</button>    
 </form>
  
-  

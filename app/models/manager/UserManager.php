@@ -49,8 +49,7 @@ class UserManager extends Database
                 SET password = ?
                 WHERE email = ?';
         $result = $this->ina($req, [$newPassHash, $email]);
-        var_dump($result);
-        exit;
+        
         return $result;
     }
 

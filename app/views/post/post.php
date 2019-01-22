@@ -1,5 +1,4 @@
-<?php use App\models\Messages; ?>
-<?php Messages::displayMsg()?>
+<?php use App\models\Messages;?>
 <?php $this->title = $postComment->title() ?>
 
 <div class="container-fluid">
@@ -21,8 +20,8 @@
     <div id="messages"></div>
     <br>
     <br>
-    <p><?= htmlspecialchars($comment->getAuthor()) ?></P>
-      <p><?= htmlspecialchars($comment->getContent()) ?></p>
+    <p><?= htmlspecialchars($comment->getAuthor(), ENT_QUOTES) ?></P>
+      <p><?= htmlspecialchars($comment->getContent(), ENT_QUOTES) ?></p>
 
       <!-- Bouton signalment modal -->
       <button type="button" id="showModal" class="btn btn-primary btn-sm reporting" data-comment-id = "<?= $comment->getId() ?>" data-toggle="modal" data-target="#reportModal">
@@ -56,7 +55,7 @@
     <div class="paginationPostComment">
       <nav aria-label="...">
         <ul class="pagination">
-          <?php if($currentPage - 1 == 0): ?>
+          <?php if ($currentPage - 1 == 0): ?>
             <li class="page-item disabled">
               <span><i class="fas fa-arrow-alt-circle-left page-link"></i></span>
             </li>
@@ -67,24 +66,24 @@
           <?php endif;?>
           <?php
           for ($i = 1; $i <= $nbPages; $i++) {
-            if($i == $currentPage): ?>
+              if ($i == $currentPage): ?>
 
             <li class="page-item-active">
               <a class="page-link"><?= $i ?></a>
             </li>
           <?php else : ?>
             <li class="page-item">
-              <a class="page-link" href="post/postComment/<?=$postComment->id()?>?page=<?= $i ?>"><i><?= $i ?></i></a>
+              <a class="page-link" href="post/postComment/<?= $postComment->id() ?>?page=<?= $i ?>"><i><?= $i ?></i></a>
             </li>
           <?php endif;
-        } ?> <!-- Fin boucle -->
-        <?php if($currentPage + 1 > $nbPages): ?>
+          } ?> <!-- Fin boucle -->
+        <?php if ($currentPage + 1 > $nbPages): ?>
           <li class="page-item disabled">
             <span><i class="fas fa-arrow-alt-circle-right page-link"></i></span>
           </li>
         <?php else : ?>
           <li class="page-item">
-            <a class="page-link" href="post/postComment/<?=$postComment->id()?>?page=<?=$currentPage + 1 ?>"><i class="fas fa-arrow-alt-circle-right"></i></a>
+            <a class="page-link" href="post/postComment/<?= $postComment->id() ?>?page=<?= $currentPage + 1 ?>"><i class="fas fa-arrow-alt-circle-right"></i></a>
           </li>
         <?php endif; ?>
       </ul>
@@ -95,7 +94,9 @@
   <!-- Formulaire pour le commentaire user -->
   <hr />
   <h4 class="addComment">Ajouter un commentaire</h4>
-  <form class="form-signin" id= "formAjax" action="" method="post">
+  <form class="form-signin" id= "formAjax" action="post/addComment/<?= $postComment->id() ?>" method="post">
+  
+  <?php Messages::displayMsg()?>
     <div class="form-label-group">
       <input type="text" class="form-control" name="author" id="author" placeholder="Votre pseudo"><br>
       <label for="author">Pseudo</label>
@@ -103,14 +104,13 @@
 
     <div class="form-label-group">
       <textarea name="commentUser" class="form-control" id="commentUser" cols="30" rows="10" placeholder="Commentaire"></textarea><br>
-      <!-- <label for="content">Votre commentaire</label> -->
     </div>
 
-    <input type="hidden" name="postId" id="postId" value="<?= $_GET['id'] ?>">
+    <input type="hidden" name="postId" id="postId" value="<?= htmlspecialchars($_GET['id'], ENT_QUOTES) ?>">
     <div id="flash" align="left"></div>
     <button type="submit" class="btn btn-primary submit-commentUser">Envoyer</button>
   </form>
 </div>
 
 <script type="text/javascript" src="public/js/report.js"></script>
-<script type="text/javascript" src="public/js/commentUser.js"></script>
+<!-- <script type="text/javascript" src="public/js/commentUser.js"></script> -->

@@ -4,14 +4,18 @@ namespace App\Controllers;
 use App\Core\SecureController;
 use App\Models\manager\ChapterManager;
 use App\Models\manager\CommentManager;
+use App\Models\Messages;
+
+/**Gestion des chapitres 
+* Côté BackOffice
+*/
 
 class ChapterController extends SecureController
 {
     private $chapterManager;
     private $commentManager;
 
-    /** CHAPITRES */
-
+    
     // Affiche l'ensemble des chapitres /chapter/allChapters
     public function allChapters()
     {
@@ -57,6 +61,10 @@ class ChapterController extends SecureController
             $this->chapterManager = new ChapterManager();
             $this->chapterManager->addChapter( $title, $content);
         }
+        else {
+            $this->messages = new Messages;
+            $this->messages->setMsg('Veuillez complèter l\'ensemble des champs !' , 'error' );
+        }
 
         $this->render('NewChapter', array('title' => $title, 'mytextarea' => $content));
     }
@@ -97,11 +105,11 @@ class ChapterController extends SecureController
        $this->render('DeleteChapter', array('deleteChapter' => $post));
     }
 
-    /** PROFIL */
+    // /** PROFIL */
 
-    // Profil Admin  admin/homeAdmin
-    public function homeAdmin()
-    {
-        $this->render('Admin');
-    }
+    // // Profil Admin  admin/homeAdmin
+    // public function homeAdmin()
+    // {
+    //     $this->render('Admin');
+    // }
 }

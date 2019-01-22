@@ -19,8 +19,8 @@ class AuthController extends Controller
             return;
          }
         if ($this->request->paramExist('username') && $this->request->paramExist('password')) {
-            $username = $this->request->getParam("username");
-            $password = $this->request->getParam("password");
+            $username = htmlspecialchars($this->request->getParam("username"), ENT_QUOTES);
+            $password = htmlspecialchars($this->request->getParam("password"), ENT_QUOTES);
 
             $this->userManager = new UserManager;
             $user =$this->userManager->getUser($username);

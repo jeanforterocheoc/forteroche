@@ -5,7 +5,6 @@ use App\Core\Controller;
 use App\Controllers\HomeController;
 use App\Controllers\AdminController;
 
-
 class View
 {
     private $file;
@@ -17,18 +16,14 @@ class View
 
         $controller = str_replace('Controller', '', $controller);
         $controller = strtolower($controller). '/';
-        // var_dump($controller);
-        // exit;
+    
         $file = $file.strtolower($controller);
-        // var_dump($file);
+        
         $this->file = $file .strtolower($action).'.php';
-        // var_dump($controller);
-        if(($controller == "chapter/") |($controller == "comment/")| ($controller == "user/"))
-        {
+        
+        if (($controller == "chapter/") |($controller == "comment/")| ($controller == "user/")) {
             $this->template = 'templateAdmin.php';
-        }
-        else
-        {
+        } else {
             $this->template = 'template.php';
         }
     }
@@ -59,14 +54,8 @@ class View
             require $file;
 
             return ob_get_clean();
-        }else{
-            throw new \Exception('Le fichier ' .$file. ' est introuvable.' );
+        } else {
+            throw new \Exception('Le fichier ' .$file. ' est introuvable.');
         }
     }
-
-    private function sanitize($value)
-    {
-      return htmlspecialchars($value, ENT_QUOTES, false);
-    }
-
 }

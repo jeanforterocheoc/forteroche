@@ -1,5 +1,5 @@
 <?php $this->title = 'Tous les chapitres'; ?>
-<p><a href="user/userAdmin">accueil administration</a></p>
+<p><a href="user/userAdmin">Accueil administration</a></p>
 <p><a href="home/homepage" target="_blank">Voir le blog</a></p><br>
 
 <h5>L'ensemble des chapitres</h5><br>
@@ -24,15 +24,15 @@
                   <td><?= $post->title() ?></td>
                   <td><?= substr($post->content(), 0, 100) ?>[...]</td>
                   <td>
-                    <form action="<?='chapter/oneChapter/'. htmlspecialchars($post->id()) ?>" method="post">
+                    <form action="<?='chapter/oneChapter/'. $post->id() ?>" method="post">
                       <button type="submit" target="_blank" class="btn btn-success btn-sm" name="editer" id="editer"><span title="Editer le chapitre"><i class="far fa-eye"></i></span></button>
                     </form>
-                    
-                    <form action="<?='chapter/changeChapter/'. htmlspecialchars($post->id()) ?>" method="post">
+                    <br>
+                    <form action="<?='chapter/changeChapter/'. $post->id() ?>" method="post">
                       <button type="submit" class="btn btn-primary btn-sm" name="changeChapter" id="changeChapter"><span title="Modifier le chapitre"><i class="fas fa-pen"></i></span></i></button>
                     </form>
-
-                    <form action="<?='chapter/deleteChapter/'. htmlspecialchars($post->id()) ?>" method="post">
+                    <br>
+                    <form action="<?='chapter/deleteChapter/'. $post->id() ?>" method="post">
                       <button type="submit" class="btn btn-danger btn-sm" name="deleteChapter" id="deleteChapter"><span title="Supprimer le chapitre"><i class="fas fa-times"></span></i></button>
                     </form>
                   </td>

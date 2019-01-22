@@ -1,6 +1,6 @@
 <?php $this->title = "Tous les commentaires" ?>
 <p><a href="user/userAdmin">Accueil administration</a></p>
-<p><a href="home/homepage">Voir le blog</a></p><br>
+<p><a href="home/homepage" target="_blank">Voir le blog</a></p><br>
 
 <!-- Tous les commentaires insérés dans un tableau -->
 <div class="container-fluid">
@@ -29,7 +29,7 @@
             <form action="<?='comment/validate/'. htmlspecialchars($comment->getId()) ?>" method="post">
               <button type="submit"  name="validate" id="validate"><span title="Accepter le commentaire"><i class="fas fa-check"></i></span></button>
             </form>
-
+            <br>
             <form action="<?='comment/delete/'. htmlspecialchars($comment->getId()) ?>" method="post">
               <button type="submit"  name="deleteComment" id="deleteComment"><span title="Supprimer le commentaire"><i class="fas fa-times"></i></span></button>
             </form>

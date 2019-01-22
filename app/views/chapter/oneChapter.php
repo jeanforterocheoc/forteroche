@@ -1,7 +1,7 @@
 <?php $this->title = $oneChapter->title() ?>
 <p><a href="user/userAdmin">Accueil administration</a></p>
-<p><a href="chapter/allChapters">Tous les chapitres</a></p><br>
-<p><a href="home/homepage">Voir le blog</a></p><br>
+<p><a href="chapter/allChapters">Tous les chapitres</a></p>
+<p><a href="home/homepage" target="_blank">Voir le blog</a></p><br>
 
 <div class="container-fluid">
     <article>

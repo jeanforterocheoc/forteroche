@@ -25,6 +25,7 @@ class ComposerStaticInit47531d1b423ac88867114428d78041bd
         'App\\Controllers\\ChapterController' => __DIR__ . '/../..' . '/app/controllers/ChapterController.php',
         'App\\Controllers\\CommentController' => __DIR__ . '/../..' . '/app/controllers/CommentController.php',
         'App\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/controllers/HomeController.php',
+        'App\\Controllers\\PasswordController' => __DIR__ . '/../..' . '/app/controllers/PasswordController.php',
         'App\\Controllers\\PostController' => __DIR__ . '/../..' . '/app/controllers/PostController.php',
         'App\\Controllers\\PostsController' => __DIR__ . '/../..' . '/app/controllers/PostsController.php',
         'App\\Controllers\\UserController' => __DIR__ . '/../..' . '/app/controllers/UserController.php',
