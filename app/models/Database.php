@@ -2,38 +2,9 @@
 namespace App\Models;
 use App\Core\Config;
 
- class Database{
+class Database{
 
     protected static $db;
-
-    // Exécuter une requête sql
-    protected function runReq($req, $params = [])
-    {
-
-        $result = self::getDb()->prepare($req);
-        $result->execute($params);
-
-        return $result->fetchAll(\PDO::FETCH_ASSOC);
-    }
-
-    // Méthode pour insert into car sinon erreur fatale avec un fetch
-    protected function ina($req, $params = [])
-    {
-        $result = self::getDb()->prepare($req);
-        $result->execute($params);
-
-        return $result;
-    }
-
-    // Exécute la requête pour l'affichage du contenu d'un billet
-    protected function show($req, $params = [])
-    {
-        $result = self::getDb()->prepare($req);
-        $result->execute($params);
-
-        return $result->fetch(\PDO::FETCH_ASSOC);
-    }
-
 
     // Connexion à la base de données et gestion des erreurs
     private static function getDb()
@@ -52,4 +23,33 @@ use App\Core\Config;
         }
         return self::$db;
     }
+
+    // Récupère l'ensemble des lignes sous forme de tableau
+    protected function recoverAll($req, $params = [])
+    {
+        $result = self::getDb()->prepare($req);
+        $result->execute($params);
+
+        return $result->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    // Renvoie le résultat d'une ligne sous forme de tableau indexé par la colonne 
+    protected function recoverOne($req, $params = [])
+    {
+        $result = self::getDb()->prepare($req);
+        $result->execute($params);
+
+        return $result->fetch(\PDO::FETCH_ASSOC);
+    }
+
+    // Méthode qui permet d'exécuter, de réaliser des requêtes/actions sql
+    protected function runReq($req, $params = [])
+    {
+        $result = self::getDb()->prepare($req);
+        $result->execute($params);
+
+        return $result;
+    }
+
+    
 }

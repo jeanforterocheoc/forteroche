@@ -3,10 +3,10 @@ namespace App\Models;
 
 class User extends Model
 {
-    private $id;
-    private $username;
-    private $password;
-    private $email;
+    protected $id;
+    protected $username;
+    protected $password;
+    protected $email;
 
     public function setId($userId)
     {

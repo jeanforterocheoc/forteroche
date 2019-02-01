@@ -26,7 +26,6 @@ class ComposerStaticInit47531d1b423ac88867114428d78041bd
         'App\\Controllers\\CommentController' => __DIR__ . '/../..' . '/app/controllers/CommentController.php',
         'App\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/controllers/HomeController.php',
         'App\\Controllers\\PasswordController' => __DIR__ . '/../..' . '/app/controllers/PasswordController.php',
-        'App\\Controllers\\PostController' => __DIR__ . '/../..' . '/app/controllers/PostController.php',
         'App\\Controllers\\PostsController' => __DIR__ . '/../..' . '/app/controllers/PostsController.php',
         'App\\Controllers\\UserController' => __DIR__ . '/../..' . '/app/controllers/UserController.php',
         'App\\Core\\Config' => __DIR__ . '/../..' . '/app/core/Config.php',
@@ -45,7 +44,6 @@ class ComposerStaticInit47531d1b423ac88867114428d78041bd
         'App\\Models\\manager\\ChapterManager' => __DIR__ . '/../..' . '/app/models/manager/ChapterManager.php',
         'App\\Models\\manager\\CommentManager' => __DIR__ . '/../..' . '/app/models/manager/CommentManager.php',
         'App\\Models\\manager\\HomeManager' => __DIR__ . '/../..' . '/app/models/manager/HomeManager.php',
-        'App\\Models\\manager\\PostManager' => __DIR__ . '/../..' . '/app/models/manager/PostManager.php',
         'App\\Models\\manager\\PostsManager' => __DIR__ . '/../..' . '/app/models/manager/PostsManager.php',
         'App\\Models\\manager\\UserManager' => __DIR__ . '/../..' . '/app/models/manager/UserManager.php',
     );

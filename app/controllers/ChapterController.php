@@ -105,11 +105,4 @@ class ChapterController extends SecureController
        $this->render('DeleteChapter', array('deleteChapter' => $post));
     }
 
-    // /** PROFIL */
-
-    // // Profil Admin  admin/homeAdmin
-    // public function homeAdmin()
-    // {
-    //     $this->render('Admin');
-    // }
 }

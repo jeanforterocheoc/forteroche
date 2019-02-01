@@ -40,4 +40,4 @@
   </table>
 </div>
 
-<script type="text/javascript" src="public/js/table.js"></script>
+

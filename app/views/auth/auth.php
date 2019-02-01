@@ -2,7 +2,7 @@
 <?php Messages::displayMsg()?>
 <?php $this->title = 'Page d\'authentification'; ?> 
 
-  <body class="text-center">
+  
 
     <form class="form-signin" action="<?='auth/login'?>" method="post">
       <div class="text-center mb-4">
@@ -23,6 +23,6 @@
       <p><a href="Password/forgetPass" class="forgetPassword"><b>Mot de passe oublié</b></a></p>
       <p class="mt-5 mb-3 text-muted text-center">&copy; 2018-2019</p>
     </form> 
-  </body> 
   
-</html>
+  
+

@@ -1,13 +1,15 @@
 #content {
-    width: 80%;
-    /* height: 100%; */
+    /* width: 40%; */
     margin: 0 auto;
     background-color: whitesmoke;
-    text-align: center;
+    /* text-align: center; */
   }
 
   .row {
-    flex-direction: column;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
   }
 
   .form-signin {
@@ -39,6 +41,7 @@
     cursor: text; /* Match the input under the label */
     border: 1px solid transparent;
     border-radius: .25rem;
+    -webkit-transition: all .1s ease-in-out;
     transition: all .1s ease-in-out;
   }
 
@@ -51,10 +54,6 @@
   }
 
   .form-label-group input::-ms-input-placeholder {
-    color: transparent;
-  }
-
-  .form-label-group input::-moz-placeholder {
     color: transparent;
   }
 

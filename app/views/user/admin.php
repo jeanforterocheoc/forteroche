@@ -1,30 +1,31 @@
 <?php $this->title = 'Espace d\'administration du site'; ?>
-
-
-<div class="container">
-    <div>
-        <h4>Les chapitres</h4><br>
-        <p><a href="chapter/allChapters">Tous les chapitres</a></p><br>
-        <p><a href="chapter/newChapter">Rédiger un nouveau chapitre</a></p><br>
-    </div>
-    <hr>
-    <div>
-        <h4>Les commentaires</h4><br>
-        <p><a href="comment/allComments">L'ensemble des commentaires</a></p><br>
-        <!-- <p><a href="comment/commentsReported">Voir les signalements</a></p><br> -->
-    </div>
-    <hr>
-    <div>
-        <h4>Profil</h4><br>
-        <p><a href="user/modifyUser">Modifier un profil</a></p><br>
-        <p><a href="user/createUser">Créer un profil</a></p><br>
-
-    </div>
-    <hr>
-    <div>
-        <h4>Mais aussi ...</h4><br>
-        <p><a href="home/homepage" target="_blank">Voir le blog</a></p><br>
-        <p><a href="auth/logout">Se déconnecter</a></p><br>
-    </div>
-
-</div>
+            <div class="container">
+              <div class="row">
+              <div class="col-sm">
+                  <h4>Bienvenue, userAdmin</h4>
+                  <p><a href="user/modifyUser">Modifier mon profil</a></p><br>
+                  <p><a href="home/homepage" target="_blank">Voir le blog</a></p><br>
+                  <p><a href="auth/logout">Se déconnecter</a></p><br>  
+                </div>
+                <div class="col-sm ">
+                    <h4>Les chapitres</h4><br>
+                    <p><a href="chapter/allChapters">Tous les chapitres</a></p><br>
+                    <p><a href="chapter/newChapter">Rédiger un nouveau chapitre</a></p><br>
+                
+                    <h4>Les commentaires</h4><br>
+                    <p><a href="comment/allComments">L'ensemble des commentaires</a></p><br>
+                
+                    <h4>Profil</h4><br>
+                    <p><a href="user/listUser">Liste des profils</a></p><br>
+                    <p><a href="user/createUser">Créer un profil</a></p><br>
+                </div>
+                
+                <div class="col-sm">
+                  <h4>Quelques chiffres !</h4>
+                  <p class='profilUser'><?= $profil ?> profil(s) enregistré(s).</p>
+                  <p class='nbChapter'>Le blog contient <?= $chapter ?> chapitre(s).</p>
+                  <p class='nbComments'>Au total, <?= $comments ?> commentaires ont été postés.</p>
+                  <p class='nbReport'> <?= $report ?> signalement(s).</p>
+                </div>
+              </div> <!-- row -->
+            </div> <!-- Container -->

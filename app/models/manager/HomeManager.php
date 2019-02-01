@@ -13,7 +13,7 @@ class HomeManager extends Database
                 ORDER BY id
                 DESC
                 LIMIT '.(($currentPage - 1) * $perPage).','.$perPage.'';
-        $result = $this->runReq($req, [$currentPage, $perPage]);
+        $result = $this->recoverAll($req, [$currentPage, $perPage]);
 
         foreach($result as $post)
         {
@@ -26,7 +26,7 @@ class HomeManager extends Database
     {
         $nbChapters='';
         $req = 'SELECT COUNT(*) AS nbChapters  FROM chapter';
-        $result = $this->runReq($req);
+        $result = $this->recoverAll($req);
         if(!$result){
             return $nbChapters;
         }

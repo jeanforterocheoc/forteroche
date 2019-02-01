@@ -6,23 +6,23 @@ use App\Models\Post;
 
 class ChapterManager extends Database
 {
-     // Affiche l'ensemble des chapitres
-     public function getAllChapters()
-     {
-         $posts = [];
-         $req = 'SELECT id as id, title as title, content as content, DATE_FORMAT (date, \'%d/%m/%Y\') as date
+    // Affiche l'ensemble des chapitres
+    public function getAllChapters()
+    {
+        $posts = [];
+        $req = 'SELECT id as id, title as title, content as content, DATE_FORMAT (date, \'%d/%m/%Y\') as date
                 FROM chapter
                 ORDER BY id
                 DESC';
 
-         $result = $this->runReq($req, $posts);
+        $result = $this->recoverAll($req, $posts);
 
-         foreach($result as $post)
-         {
-             $posts[] = new Post($post);
-         }
-         return $posts;
-     }
+        foreach($result as $post)
+        {
+            $posts[] = new Post($post);
+        }
+        return $posts;
+    }
 
      // Lire un chapitre
      public function getOneChapter($chapterId)
@@ -31,7 +31,7 @@ class ChapterManager extends Database
                 FROM chapter
                 WHERE id = ?';
 
-        $result = $this->show($req, [$chapterId]);
+        $result = $this->recoverOne($req, [$chapterId]);
         return new Post($result) ;
      }
 
@@ -40,7 +40,7 @@ class ChapterManager extends Database
     public function addChapter($title, $content)
     {
         $req = 'INSERT INTO chapter(title, content, date) VALUES (?, ?, NOW())';
-        $result = $this->ina($req, [$title, $content]);
+        $result = $this->runReq($req, [$title, $content]);
         return $result;
     }
 
@@ -50,7 +50,7 @@ class ChapterManager extends Database
         $req = 'UPDATE chapter
                 SET title = ?, content = ?, date = NOW()
                 WHERE id = ?';
-        $result = $this->ina($req, [$title, $content, $chapterId]);
+        $result = $this->runReq($req, [$title, $content, $chapterId]);
         return $result;
     }
 
@@ -58,27 +58,24 @@ class ChapterManager extends Database
     public function removeEpisode($chapterId)
     {
         $req = 'DELETE FROM chapter WHERE id = ?';
-        $result = $this->ina($req, [$chapterId]);
+        $result = $this->runReq($req, [$chapterId]);
         return $result;
     }
 
     /**
      * Compte la totalité des chapitres enregistrés dans la bdd
      */
-
     public function countChapters()
     {
         $nbChapters='';
         $req = 'SELECT COUNT(*) AS nbChapters  FROM chapter';
-        $result = $this->runReq($req);
+        $result = $this->recoverAll($req);
         if(!$result){
             return $nbChapters;
         }
         foreach($result as $value){
             $nbChapters = $value['nbChapters'];
         }
-        // var_dump($nbChapters);
-        // exit;
         return $nbChapters;
     }
 

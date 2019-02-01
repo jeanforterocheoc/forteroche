@@ -24,7 +24,7 @@
                   <td><?= $post->title() ?></td>
                   <td><?= substr($post->content(), 0, 100) ?>[...]</td>
                   <td>
-                    <form action="<?='chapter/oneChapter/'. $post->id() ?>" method="post">
+                    <form action="<?='posts/postComment/'. $post->id() ?>" method="post">
                       <button type="submit" target="_blank" class="btn btn-success btn-sm" name="editer" id="editer"><span title="Editer le chapitre"><i class="far fa-eye"></i></span></button>
                     </form>
                     <br>

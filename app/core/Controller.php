@@ -18,7 +18,7 @@ abstract class Controller
     $this->request = $request;
   }
 
-  public function runAction($action)
+  public function runAction(string $action)
   {
     if (method_exists($this, $action))
     {
@@ -42,7 +42,7 @@ abstract class Controller
     $view->generate($params);
   }
 
-  protected function redirection($controller, $action = null)
+  protected function redirection(string $controller, string $action = null)
   {
     $racineWeb = Config::get("racineWeb", "/");
     header("location:".$racineWeb .$controller.'/'.$action);

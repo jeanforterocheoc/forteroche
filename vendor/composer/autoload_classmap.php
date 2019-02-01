@@ -11,7 +11,6 @@ return array(
     'App\\Controllers\\CommentController' => $baseDir . '/app/controllers/CommentController.php',
     'App\\Controllers\\HomeController' => $baseDir . '/app/controllers/HomeController.php',
     'App\\Controllers\\PasswordController' => $baseDir . '/app/controllers/PasswordController.php',
-    'App\\Controllers\\PostController' => $baseDir . '/app/controllers/PostController.php',
     'App\\Controllers\\PostsController' => $baseDir . '/app/controllers/PostsController.php',
     'App\\Controllers\\UserController' => $baseDir . '/app/controllers/UserController.php',
     'App\\Core\\Config' => $baseDir . '/app/core/Config.php',
@@ -30,7 +29,6 @@ return array(
     'App\\Models\\manager\\ChapterManager' => $baseDir . '/app/models/manager/ChapterManager.php',
     'App\\Models\\manager\\CommentManager' => $baseDir . '/app/models/manager/CommentManager.php',
     'App\\Models\\manager\\HomeManager' => $baseDir . '/app/models/manager/HomeManager.php',
-    'App\\Models\\manager\\PostManager' => $baseDir . '/app/models/manager/PostManager.php',
     'App\\Models\\manager\\PostsManager' => $baseDir . '/app/models/manager/PostsManager.php',
     'App\\Models\\manager\\UserManager' => $baseDir . '/app/models/manager/UserManager.php',
 );

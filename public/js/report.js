@@ -11,8 +11,10 @@ $(document).ready(function(){
   $('.submit-reporting').click(function(e) {
     e.preventDefault();
     var commentId = $('#commentId').val();
-    $.ajax({
-      url: 'post/moderateComment/' + commentId,
+    
+    
+    $.post({
+      url: 'posts/moderateComment/' + commentId,
       success: function(){
                   $(".modal-body").html("<p><b>Le signalement a été transmis !</b></p>");
                   $('.submit-reporting').attr("disabled", "disabled");
