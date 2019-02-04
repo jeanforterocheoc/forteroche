@@ -1,4 +1,4 @@
-<?php use App\models\Messages; ?>
+<?php use App\Models\Entity\Messages; ?>
 <?php Messages::displayMsg()?>
 <?php $this->title = 'Page d\'authentification'; ?> 
 

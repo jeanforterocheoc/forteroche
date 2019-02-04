@@ -1,5 +1,5 @@
 <?php $this->title = 'Liste des profils utilisateurs'; ?>
-<?php use App\models\Messages; ?>
+<?php use App\Models\Entity\Messages; ?>
 <?php Messages::displayMsg()?>
 
 <p><a href="user/userAdmin">Accueil administration</a></p>
@@ -29,7 +29,7 @@
               <form action="<?= 'user/oneUser/' .$user->getId() ?>" method="post">
                 <input type="hidden" value="<?= $user->getId() ?>">
                 <button type="submit" class="btn btn-primary btn-sm">Modifier</button>
-                <!-- Bouton signalment modal -->
+                <!-- Bouton modal -->
                 <button type="button" id="showModal" class="btn btn-primary btn-sm deleteUser" data-user-id = "<?= $user->getId() ?>"  data-toggle="modal" data-target="#deleteModal">
                    Supprimer
                 </button>

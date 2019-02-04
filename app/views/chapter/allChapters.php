@@ -20,19 +20,19 @@
               <tbody>
               <?php foreach ($allChapters as $post) : ?>
               <tr>
-                  <td><?= $post->date() ?></td>
-                  <td><?= $post->title() ?></td>
-                  <td><?= substr($post->content(), 0, 100) ?>[...]</td>
+                  <td><?= $post->getDate() ?></td>
+                  <td><?= $post->getTitle() ?></td>
+                  <td><?= substr($post->getContent(), 0, 100) ?>[...]</td>
                   <td>
-                    <form action="<?='posts/postComment/'. $post->id() ?>" method="post">
+                    <form action="<?='chapter/oneChapter/'. $post->getId() ?>" method="post">
                       <button type="submit" target="_blank" class="btn btn-success btn-sm" name="editer" id="editer"><span title="Editer le chapitre"><i class="far fa-eye"></i></span></button>
                     </form>
                     <br>
-                    <form action="<?='chapter/changeChapter/'. $post->id() ?>" method="post">
+                    <form action="<?='chapter/changeChapter/'. $post->getId() ?>" method="post">
                       <button type="submit" class="btn btn-primary btn-sm" name="changeChapter" id="changeChapter"><span title="Modifier le chapitre"><i class="fas fa-pen"></i></span></i></button>
                     </form>
                     <br>
-                    <form action="<?='chapter/deleteChapter/'. $post->id() ?>" method="post">
+                    <form action="<?='chapter/deleteChapter/'. $post->getId() ?>" method="post">
                       <button type="submit" class="btn btn-danger btn-sm" name="deleteChapter" id="deleteChapter"><span title="Supprimer le chapitre"><i class="fas fa-times"></span></i></button>
                     </form>
                   </td>
@@ -55,7 +55,7 @@
                 </li>
             <?php else : ?>
                 <li class="page-item">
-                    <a href="admin/allChapters?page=<?=$currentPage - 1 ?>"><i class="fas fa-arrow-alt-circle-left"></i></a>
+                    <a href="chapter/allChapters?page=<?=$currentPage - 1 ?>"><i class="fas fa-arrow-alt-circle-left"></i></a>
                 </li>
             <?php endif;?>
             <?php
@@ -67,7 +67,7 @@
                 </li>
             <?php else : ?>
                 <li class="page-item">
-                    <a href="admin/allChapters?page=<?= $i ?>"><i><?= $i ?></i></a>
+                    <a href="chapter/allChapters?page=<?= $i ?>"><i><?= $i ?></i></a>
                 </li>
             <?php endif;
             } ?> <!-- Fin boucle -->
@@ -77,7 +77,7 @@
                 </li>
             <?php else : ?>
                 <li class="page-item">
-                    <a href="admin/allChapters?page=<?=$currentPage + 1 ?>"><i class="fas fa-arrow-alt-circle-right"></i></a>
+                    <a href="chapter/allChapters?page=<?=$currentPage + 1 ?>"><i class="fas fa-arrow-alt-circle-right"></i></a>
                 </li>
             <?php endif; ?>
         </ul>

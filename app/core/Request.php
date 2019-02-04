@@ -1,76 +1,60 @@
 <?php
-/**
- * Cette classe stocke l'ensemble des paramètres de la requête de l'utilisateur
- */
-
 namespace App\Core;
 
 class Request
 {
+  private $params;
+  private $session;
 
-    /**
-     * Tableau des paramètres de la requête
-     */
-    private $params;
+  /**
+   * Instancie les paramètres de la requête et l'objet Session
+   */
+  public function __construct(array $params)
+  {
+    $this->params = $params;
+    $this->session = new Session();
+  }
 
-    /**
-     * Objet session associé à la requête
-     */
-    private $session;
+  /** 
+  * Renvoie l'objet session associé à la requête 
+  */
+  public function getSession()
+  {
+    return $this->session;
+  }
 
-    /**
-     * Instancie les paramètres de la requête
-     */
-    public function __construct(array $params)
+  /**
+   * Renvoie un booléen si le paramètre existe dans la requête
+   */
+  public function paramExist(string $name)
+  {
+    return (isset($this->params[$name]) && $this->params[$name] != "");
+  }
+
+  /**
+  * Renvoie la valeur du paramètre
+  */
+  public function getParam(string $name)
+  {
+    if ($this->paramExist($name)) {
+      return $this->params[$name];
+    } else {
+        throw new \Exception("Paramètre '$name' introuvable!");
+      }
+  }
+
+  /**
+  * Renvoie les valeurs des paramètres par défaut
+  */
+  public function defaultParam($name, $default = null)
+  {
+    try
     {
-        $this->params = $params;
-        $this->session = new Session();
-        // $sessionInstance = Session::getInstance();
-
+      return $this->getParam($name);
     }
-
-    /** Renvoie l'objet session associé à la requête */
-
-    public function getSession()
+    catch(\Exception $e)
     {
-        return $this->session;
-        // return $sessionInstance;
+      return $default;
     }
-
-    /**
-     * Renvoie un booléen si le paramètre existe dans la requête
-     */
-    public function paramExist($name)
-    {
-        return (isset($this->params[$name]) && $this->params[$name] != "");
-    }
-
-    /**
-     * Renvoie la valeur du paramètre
-    */
-    public function getParam($name)
-    {
-        if ($this->paramExist($name))
-        {
-            return $this->params[$name];
-        }
-        else {
-            throw new \Exception("Paramètre '$name' introuvable!");
-        }
-    }
-
-    /**
-     * Renvoie les valeurs des paramètres par défaut
-    */
-    public function defaultParam($name, $default = null)
-    {
-        try
-        {
-            return $this->getParam($name);
-        }
-        catch(\Exception $e)
-        {
-            return $default;
-        }
-    }
+  }
 }

@@ -7,10 +7,10 @@
     <article>
         <form action="" method="post">
             <label for="title">Titre du chapitre</label><br>
-            <input type="text"  name="title" id="title" value="<?= $changeChapter->title() ?>"><br><br>
+            <input type="text"  name="title" id="title" value="<?= $changeChapter->getTitle() ?>"><br><br>
             
             <label for="content">Contenu du chapitre</label><br>
-            <textarea name="mytextarea" id="mytextarea" cols="100" rows="30" ><?= $changeChapter->content() ?></textarea><br><br>    
+            <textarea name="mytextarea" id="mytextarea" cols="100" rows="30" ><?= $changeChapter->getContent() ?></textarea><br><br>    
             
             <button type="submit" id="btn_changeChapter">Modifier</button>
             <br>

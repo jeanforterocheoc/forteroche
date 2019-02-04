@@ -10,12 +10,12 @@
             <h2 class="lastChapter"><i class="fas fa-book-open"></i>Dernier chapitre</h2>
             
         <?php foreach ($homePage as $post) : ?>
-            <h3 class='postTitle'><?= $post->title() ?></h3>
+            <h3 class='postTitle'><?= $post->getTitle() ?></h3>
             <hr>
-            <time><i class="far fa-calendar-alt"></i>Publié le : <?= $post->date() ?></time>
+            <time><i class="far fa-calendar-alt"></i>Publié le : <?= $post->getDate() ?></time>
             <hr>
-            <p><?= substr($post->content(), 0, 100)?>[...]</p>
-            <p><a class= "btn btn-primary" href="<?='posts/postComment/'. htmlspecialchars($post->id()) ?>">Lire la suite</a></p>
+            <p><?= substr($post->getContent(), 0, 100)?>[...]</p>
+            <p><a class= "btn btn-primary" href="<?='posts/postComment/'. htmlspecialchars($post->getId()) ?>">Lire la suite</a></p>
         <?php endforeach; ?>
         </article>
     </div> 

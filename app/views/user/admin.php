@@ -2,7 +2,7 @@
             <div class="container">
               <div class="row">
               <div class="col-sm">
-                  <h4>Bienvenue, userAdmin</h4>
+                  <h4>Bienvenue, <?= $user->getUsername()?></h4>
                   <p><a href="user/modifyUser">Modifier mon profil</a></p><br>
                   <p><a href="home/homepage" target="_blank">Voir le blog</a></p><br>
                   <p><a href="auth/logout">Se déconnecter</a></p><br>  

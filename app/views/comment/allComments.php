@@ -20,7 +20,7 @@
     <tbody>
       <?php foreach ($allComments as $comment): ?>
         <tr>
-          <td><?= htmlspecialchars($comment->getchapter()->title()) ?></td>
+          <td><?= htmlspecialchars($comment->getchapter()->getTitle()) ?></td>
           <td><?= htmlspecialchars($comment->getDate()) ?></td>
           <td><?= htmlspecialchars($comment->getAuthor()) ?></td>
           <td><?= htmlspecialchars($comment->getContent()) ?></td>

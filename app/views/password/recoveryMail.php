@@ -1,5 +1,5 @@
 <?php $this->title = 'Code de vérification'; ?>
-<?php use App\models\Messages; ?>
+<?php use App\Models\Entity\Messages; ?>
 <?php Messages::displayMsg()?>
 
 <h4>Code de vérification</h4>

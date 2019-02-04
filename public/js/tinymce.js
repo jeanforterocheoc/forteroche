@@ -1,3 +1,4 @@
+// Editeur WYSIWYG pour la partie administration
 tinymce.init({
     selector: '#mytextarea',
     theme: 'modern',

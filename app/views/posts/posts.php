@@ -7,10 +7,10 @@
       Billet simple pour l'Alaska - Jean Forteroche
     </div>
     <div class="card-body">
-      <h5 class=" card-title chapterTitle"><?= htmlspecialchars($post->title()) ?></h3>
-      <time>Publié le <?= htmlspecialchars($post->date()) ?></time>
-      <p class="card-text"><?=substr($post->content(), 0, 100)?>[...]</p>
-      <a class= " card-link btn btn-primary" href="<?='posts/postComment/'. htmlspecialchars($post->id()) ?>">Lire la suite</a>
+      <h5 class=" card-title chapterTitle"><?= htmlspecialchars($post->getTitle()) ?></h3>
+      <time>Publié le <?= htmlspecialchars($post->getDate()) ?></time>
+      <p class="card-text"><?=substr($post->getContent(), 0, 100)?>[...]</p>
+      <a class= " card-link btn btn-primary" href="<?='posts/postComment/'. htmlspecialchars($post->getId()) ?>">Lire la suite</a>
     </div>
   </div>
 <?php endforeach; ?>

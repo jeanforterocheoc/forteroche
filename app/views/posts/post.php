@@ -1,13 +1,13 @@
-<?php use App\models\Messages;?>
-<?php $this->title = $postComment->title() ?>
+<?php use App\Models\Entity\Messages;?>
+<?php $this->title = $postComment->getTitle() ?>
 
 <section class="oneChapter">
   <div class="jumbotron bg-white">
     <article>
       <h2><i class="fas fa-book-reader">Bonne lecture...</i></h2>
-      <h3 class='postTitle'><?= $postComment->title() ?></h3>
-      <!-- <b><time>Publié le <?= $postComment->date() ?></time></b> -->
-      <p><?= $postComment->content() ?></p>
+      <h3 class='postTitle'><?= $postComment->getTitle() ?></h3>
+      <!-- <b><time>Publié le <?= $postComment->getDate() ?></time></b> -->
+      <p><?= $postComment->getContent() ?></p>
     </article>
   </div>
 </section>
@@ -62,7 +62,7 @@
         </li>
       <?php else : ?>
         <li class="page-item">
-          <a class="page-link" href="posts/postComment/<?= $postComment->id() ?>?page=<?=$currentPage - 1 ?>"><i class="fas fa-arrow-alt-circle-left"></i></a>
+          <a class="page-link" href="posts/postComment/<?= $postComment->getId() ?>?page=<?=$currentPage - 1 ?>"><i class="fas fa-arrow-alt-circle-left"></i></a>
         </li>
       <?php endif;?>
       <?php
@@ -73,7 +73,7 @@
             </li>
         <?php else : ?>
             <li class="page-item">
-              <a class="page-link" href="posts/postComment/<?= $postComment->id()?>?page=<?= $i ?>"><i><?= $i ?></i></a>
+              <a class="page-link" href="posts/postComment/<?= $postComment->getId()?>?page=<?= $i ?>"><i><?= $i ?></i></a>
             </li>
         <?php endif;
         } ?> <!-- Fin boucle -->
@@ -83,7 +83,7 @@
           </li>
         <?php else : ?>
           <li class="page-item">
-            <a class="page-link" href="posts/postComment/<?= $postComment->id() ?>?page=<?=$currentPage + 1 ?>"><i class="fas fa-arrow-alt-circle-right"></i></a>
+            <a class="page-link" href="posts/postComment/<?= $postComment->getId() ?>?page=<?=$currentPage + 1 ?>"><i class="fas fa-arrow-alt-circle-right"></i></a>
           </li>
         <?php endif; ?>
       </ul>
@@ -95,7 +95,7 @@
   <section class="addComment">
     <div class="jumbotron bg-white">
       <h4 class="addComment">Ajouter un commentaire</h4>
-      <form class="form-signin" id= "formAjax" action="posts/addComment/<?= $postComment->id() ?>" method="post">
+      <form class="form-signin" id= "formAjax" action="posts/addComment/<?= $postComment->getId() ?>" method="post">
         <div class="form-label-group">
           <input type="text" class="form-control" name="author" id="author" placeholder="Votre pseudo"><br>
           <label for="author">Pseudo</label>

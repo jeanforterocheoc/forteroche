@@ -1,3 +1,4 @@
+// Signalement d'un commentaire pour qu'il soit éventuellement modéré
 $(document).ready(function(){
   // Affichage de la fenêtre modale
   $('.reporting').click(function(e) {
@@ -7,12 +8,11 @@ $(document).ready(function(){
     $('#commentId').val($(this).data('comment-id'));
   });
 
-  // Envoie d'un signalement
+  // Signalement
   $('.submit-reporting').click(function(e) {
     e.preventDefault();
     var commentId = $('#commentId').val();
-    
-    
+     
     $.post({
       url: 'posts/moderateComment/' + commentId,
       success: function(){

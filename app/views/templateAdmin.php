@@ -24,7 +24,7 @@
     </div>
     <hr>
     <footer>
-      <p>Mentions légales</p>
+      <p>Espace administration</p>
     </footer>
     
     <script type="text/javascript" src="public/js/tinymce/tinymce.min.js"></script>
@@ -34,5 +34,7 @@
     <script type="text/javascript" src="app/lib/DataTables/media/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="public/js/table.js"></script>
     <script type="text/javascript" src="public/js/deleteUser.js"></script>
+    <script type="text/javascript" src="public/js/modifyUser.js"></script>
+
   </body>
 </html>

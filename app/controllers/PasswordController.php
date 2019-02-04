@@ -1,20 +1,21 @@
 <?php
+/**
+* Cette classe permet de réinitialiser le mot de passe du user
+*/
 namespace App\Controllers;
 
 use App\Core\Controller;
-use App\Core\View;
-use App\Models\manager\UserManager;
-use App\Models\User;
-use App\Models\Messages;
+use App\Models\Manager\UserManager;
+use App\Models\Entity\User;
+use App\Models\Entity\Messages;
 
 class PasswordController extends Controller
 {
     private $userManager;
 
-    /**
-  * MOT DE PASSE OUBLIÉ
+  /**
+  * Vérification de la validité du mail transmis
   */
-  // Vérification de la validité du mail transmis
   public function forgetPass()
   {
     if ($_SERVER['REQUEST_METHOD'] != 'POST') {
@@ -23,35 +24,36 @@ class PasswordController extends Controller
     }
 
     if (isset($_POST['recup_submit'])) {
-      if (isset($_POST['recup_mail']) && !empty($_POST['recup_mail'])){
-        $recup_mail = $_POST['recup_mail'];
-        if(filter_var($recup_mail,FILTER_VALIDATE_EMAIL)){
+      if (isset($_POST['recup_mail']) && !empty($_POST['recup_mail'])) {
+        $recup_mail = htmlspecialchars($_POST['recup_mail'], ENT_QUOTES);
+        if (filter_var($recup_mail,FILTER_VALIDATE_EMAIL)) {
           $this->userManager = new UserManager;
           $mailExist = $this->userManager->mailExist($recup_mail);
-          if($mailExist){
+          if ($mailExist) {
             $this->request->getSession()->setAttribut("recup_mail", $recup_mail);
             $this->redirection('Password', 'recoveryMail');
-          }else {
+          } else {
+              $this->messages = new Messages;
+              $this->messages->setMsg('Adresse mail incorrecte !', 'error');
+            }
+        } else {
             $this->messages = new Messages;
-            $this->messages->setMsg('Adresse mail incorrecte !', 'error');
+            $this->messages->setMsg('Adresse mail non valide !', 'error');
           }
-        }else {
+      } else {
           $this->messages = new Messages;
-          $this->messages->setMsg('Adresse mail non valide !', 'error');
+          $this->messages->setMsg('Veuillez entrer une adresse mail !', 'error');
         }
-      }else {
-        $this->messages = new Messages;
-        $this->messages->setMsg('Veuillez entrer une adresse mail !', 'error');
-      }
     }
     $this->render('forgetPass');
   }
 
-  // Création du code de vérification et envoyé par mail
+  /**
+   * Création du code de vérification et envoyé par mail
+   */
   public function recoveryMail()
   {
-    // var_dump($_SESSION['recup_mail']);
-    $recup_mail = $_SESSION['recup_mail'];
+    $recup_mail = $this->request->getSession()->getAttribut('recup_mail');
     if ($recup_mail ) {
       $recup_code = "";
       for ($i=1; $i < 9; $i++) {
@@ -68,15 +70,16 @@ class PasswordController extends Controller
     }
   }
 
-  // Vérification du code transmis
+  /**
+  * Vérification du code transmis
+  */
   public function verifCode($recup_code)
   {
-    // var_dump($recup_code);
-    if (isset($_POST['verif_submit'])){
+    if (isset($_POST['verif_submit'])) {
       if(isset($_POST['verif_code']) && !empty($_POST['verif_code'])){
-        $verif_code = $_POST['verif_code'];
+        $verif_code = htmlspecialchars($_POST['verif_code'], ENT_QUOTES);
         $this->userManager = new UserManager;
-        $recup_mail = $_SESSION['recup_mail'];
+        $recup_mail = $this->request->getSession()->getAttribut('recup_mail');
         $is_Code = $this->userManager->isCode($recup_mail,$verif_code);
         if($is_Code == 1){
           $this->redirection('Password', 'newPass');
@@ -93,37 +96,36 @@ class PasswordController extends Controller
     $this->render('recoveryMail');
   }
 
-
-  // Modification du mot de passe
+  /**
+  * Modification du mot de passe
+  */
   public function newPass()
   {
-    if(isset($_POST['validate_submit'])){
-      if(isset($_POST['newPass']) && !empty($_POST['newPass'])){
-        if(isset($_POST['newPassVerif']) && !empty($_POST['newPassVerif'])){
-          $newPass = $_POST['newPass'];
-          $newPassVerif = $_POST['newPassVerif'];
-          if($newPass == $newPassVerif){
+    if (isset($_POST['validate_submit'])) {
+      if (isset($_POST['newPass']) && !empty($_POST['newPass'])) {
+        if (isset($_POST['newPassVerif']) && !empty($_POST['newPassVerif'])) {
+          $newPass = htmlspecialchars($_POST['newPass'], ENT_QUOTES);
+          $newPassVerif = htmlspecialchars($_POST['newPassVerif'], ENT_QUOTES);
+          if ($newPass == $newPassVerif) {
             $this->request->getSession()->setAttribut("newPass", $newPass);
             $this->userManager = new UserManager;
-            $newPass = $_SESSION['newPass'];
-            $email = $_SESSION['recup_mail'];
+            $newPass = $this->request->getSession()->getAttribut('newPass');
+            $email = $this->request->getSession()->getAttribut('recup_mail');
             $createNewPass = $this->userManager->createNewPass($newPass,$email);
             $this->redirection('user', 'userAdmin');
-          }else {
+          } else {
+              $this->messages = new Messages;
+              $this->messages->setMsg('Les mots de passe ne correspondent pas!', 'error');
+            }
+        } else {
             $this->messages = new Messages;
-            $this->messages->setMsg('Les mots de passe ne correspondent pas!', 'error');
+            $this->messages->setMsg('Veuillez confirmer votre nouveau mot de passe', 'error');
           }
-        }else {
+      } else {
           $this->messages = new Messages;
-          $this->messages->setMsg('Veuillez confirmer votre nouveau mot de passe', 'error');
+          $this->messages->setMsg('Veuillez indiquer votre nouveau mot de passe', 'error');
         }
-      }else {
-        $this->messages = new Messages;
-        $this->messages->setMsg('Veuillez indiquer votre nouveau mot de passe', 'error');
-      }
-
     }
     $this->render('newPass');
-
   }
 }

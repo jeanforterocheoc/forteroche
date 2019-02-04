@@ -1,183 +1,159 @@
 <?php
-namespace App\Models\manager;
+namespace App\Models\Manager;
 
-use App\Models\Database;
-use App\Models\Comment;
-use App\Models\Post;
-
+use App\Models\Entity\Database;
+use App\Models\Entity\Comment;
+use App\Models\Entity\Chapter;
 
 class CommentManager extends Database
 {
-
-    /**
-     * Renvoie tous les commentaires
-     */
-    public function commentsAll($currentPage, $perPage)
-    {
-        $comments = [];
-        $req = 'SELECT *
-                FROM comment
-                INNER JOIN chapter
-                ON comment.chapter_id = chapter.id
-                ORDER BY chapter_id
-                LIMIT '.(($currentPage - 1) * $perPage).','.$perPage.'
-                ';
-
-                $results = $this->recoverAll($req,[$currentPage, $perPage]);
-
-                if (!$results) {
-                    return $comments;
-                }
-                foreach($results as $result)
-                {
-
-                  $comment = new Comment($result);
-                  $comment->setChapter(new Post($result));
-                  $comments[] = $comment;
-                }
-                // print_r($comments);
-                return $comments;
+  /**
+  * Renvoie tous les commentaires
+  */
+  public function commentsAll($currentPage, $perPage)
+  {
+    $comments = [];
+    $req = 'SELECT *
+            FROM comment
+            INNER JOIN chapter
+            ON comment.chapter_id = chapter.id
+            ORDER BY chapter_id
+            LIMIT '.(($currentPage - 1) * $perPage).','.$perPage.'
+            ';
+    $results = $this->findAll($req,[$currentPage, $perPage]);
+    if (!$results) {
+      return $comments;
     }
-
-    /**
-     * Renvoie tous les commentaires par ordre de signalement
-     */
-    public function getAllCommentsPerReport($currentPage, $perPage)
+    foreach($results as $result)
     {
-        $commentsWithReporting = [];
-        $req = 'SELECT *
-        FROM comment
-        INNER JOIN chapter
-        ON comment.chapter_id = chapter.id
-        WHERE report > 0
-        ORDER BY report DESC
-        LIMIT '.(($currentPage - 1) * $perPage).','.$perPage.'';
+      $comment = new Comment($result);
+      $comment->setChapter(new Chapter($result));
+      $comments[] = $comment;
+    }          
+    return $comments;
+  }
 
-        $results = $this->recoverAll($req,[$currentPage, $perPage]);
-        // var_dump($result);
-        // die();
-        if(!$results){
-            return $commentsWithReporting;
-        }
-        foreach($results as $result)
-        {
-          $comment = new Comment($result);
-          $comment->setChapter(new Post($result));
-          $commentsWithReporting[] = $comment;
-        }
-        return $commentsWithReporting;
+  /**
+  * Compte la totalité des commentaires enregistrés dans la bdd
+  */
+  public function countComments()
+  {
+    $nbComments='';
+    $req = 'SELECT COUNT(*) AS nbComments  FROM comment';
+    $result = $this->findAll($req);
+    if (!$result) {
+      return $nbComments;
     }
-
-    /**
-     * Compte la totalité des commentaires enregistrés dans la bdd
-     */
-    public function countComments()
-    {
-        $nbComments='';
-        $req = 'SELECT COUNT(*) AS nbComments  FROM comment';
-        $result = $this->recoverAll($req);
-        if(!$result){
-            return $nbComments;
-        }
-        foreach($result as $value){
-            $nbComments = $value['nbComments'];
-        }
-        return $nbComments;
+    foreach($result as $value){
+      $nbComments = $value['nbComments'];
     }
+    return $nbComments;
+  }
 
-    /**
-     * Additionne les signalements enregistrés dans la bdd
-     */
-    public function countReport()
-    {
-        $nbReport='';
-        $req = 'SELECT SUM(report) AS nbReport  FROM comment';
-        $result = $this->recoverAll($req);
-        if(!$result){
-            return $nbReport;
-        }
-        foreach($result as $value){
-            $nbReport = $value['nbReport'];
-        }
-        return $nbReport;
+  /**
+  * Additionne les signalements enregistrés dans la bdd
+  */
+  public function countReport()
+  {
+    $nbReport='';
+    $req = 'SELECT SUM(report) AS nbReport  FROM comment';
+    $result = $this->findAll($req);
+    if(!$result){
+      return $nbReport;
     }
-
-    /**
-     * Permet de définir le nombre de commentaires affichés par page
-     */
-    public function countPages($nbComments, $perPage)
+    foreach($result as $value)
     {
-        $nbPages = ceil($nbComments / $perPage);
-        return $nbPages;
+      $nbReport = $value['nbReport'];
     }
+    return $nbReport;
+  }
 
-    // Renvoie l'ensemble des commentaires associés à un billet
-    public function getComments($chapterId, $start, $perPage)
-    {
-        $comments = [];
-        $req = 'SELECT id_com, author, content_com, DATE_FORMAT(date_com, \'%d/%m/%Y\') as date
-                FROM comment
-                WHERE chapter_id = ?
-                GROUP BY id_com
-                DESC
-                LIMIT '.$start.','.$perPage.'
-                 ';
+  /**
+  * Permet de définir le nombre de commentaires affichés par page
+  */
+  public function countPages($nbComments, $perPage)
+  {
+    $nbPages = ceil($nbComments / $perPage);
+    return $nbPages;
+  }
+
+  /**
+  * Renvoie l'ensemble des commentaires associés à un chapitre
+  */
+  public function getComments($chapterId, $start, $perPage)
+  {
+    $comments = [];
+    $req = 'SELECT id_com, author, content_com, DATE_FORMAT(date_com, \'%d/%m/%Y\') AS date
+            FROM comment
+            WHERE chapter_id = ?
+            GROUP BY id_com
+            DESC
+            LIMIT '.$start.','.$perPage.'
+            ';
                 
-        $result = $this->recoverAll($req, [$chapterId]);
-        if(!$result){
-            return $comments;
-        }
-        foreach($result as $comment)
-        {
-            $comments[] = new Comment($comment);
-        }
-        return $comments;
+    $result = $this->findAll($req, [$chapterId]);
+    if(!$result){
+      return $comments;
     }
-
-    // Renvoie un seul commentaire
-    public function getComment($id)
+    foreach($result as $comment)
     {
-        $req = 'SELECT id_com, author, content_com, DATE_FORMAT(date_com, \'%d/%m/%Y\') as date, report
-                FROM comment
-                WHERE id_com = ?';
-
-        $comment = $this->recoverOne($req, [$id]);
-
-        return new Comment($comment) ;
+      $comments[] = new Comment($comment);
     }
+    return $comments;
+  }
 
-    // Ajoute un commentaire dans la BDD (espace users)
-    public function addComment($chapterId, $author, $content)
-    {
-        $req = 'INSERT INTO comment(chapter_id, author, content_com, date_com)
-                VALUES (?, ?, ?,NOW())';
+  /**
+  * Retourne un commentaire 
+  */
+  public function getComment($id)
+  {
+    $req = 'SELECT id_com, author, content_com, DATE_FORMAT(date_com, \'%d/%m/%Y\') as date, report
+            FROM comment
+            WHERE id_com = ?
+            ';
+    $comment = $this->findOne($req, [$id]);
+    return new Comment($comment);
+  }
+  
+  /**
+  * Enregistre un commentaire  
+  */
+  public function addComment($chapterId, $author, $content)
+  {
+    $req = 'INSERT INTO comment(chapter_id, author, content_com, date_com)
+            VALUES (?, ?, ?,NOW())
+            ';
+    $result = $this->runReq($req, [$chapterId, $author, $content]);
+    return $result;
+  }
 
-        $result = $this->runReq($req, [$chapterId, $author, $content]);
+  /**
+  * Ajoute un signalement pour modération éventuelle 
+  */ 
+  public function reportComment($commentId)
+  {
+    $req = 'UPDATE comment SET report = report + 1 WHERE id_com = ?';
+    $result = $this->runReq($req, [$commentId]);
+    return $result;
+  }
 
-        return $result;
-    }
+  /**
+  * Validation d'un commentaire 
+  */ 
+  public function validateComment($commentId)
+  {
+    $req = 'UPDATE comment SET report = 0 WHERE id_com = ?';
+    $result = $this->runReq($req, [$commentId]);
+    return $result;
+  }
 
-    // Ajoute un signalement pour modération (espace users)
-    public function reportComment($commentId)
-    {
-        $req = 'UPDATE comment SET report = report + 1 WHERE id_com = ?';
-        $result = $this->runReq($req, [$commentId]);
-        return $result;
-    }
-
-    // Validation d'un commentaire (espace admin)
-    public function validateComment($commentId)
-    {
-        $req = 'UPDATE comment SET report = 0 WHERE id_com = ?';
-        $result = $this->runReq($req, [$commentId]);
-        return $result;
-    }
-
-    // suppression d'un commentaire (espace admin)
-    public function deleteComment($commentId)
-    {
-        $req = 'DELETE FROM comment WHERE id_com = ?';
-        $result = $this->runReq($req, [$commentId]);
-        return $result;
-    }
+  /**
+  * Suppression d'un commentaire  
+  */  
+  public function deleteComment($commentId)
+  {
+    $req = 'DELETE FROM comment WHERE id_com = ?';
+    $result = $this->runReq($req, [$commentId]);
+    return $result;
+  }
 }

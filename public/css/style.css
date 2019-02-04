@@ -111,7 +111,8 @@ header > nav.navbar {
   border-radius: 1.3rem;
   overflow-wrap: break-word;
 }
-/* Footer*/
+/* Footer
+---------------------------------*/
 footer {
   background-color: #A4A3A1; 
   margin-top: 15%;
@@ -212,8 +213,8 @@ footer > .py-3 {
 .row {
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
+  -ms-flex-direction: row;
+  flex-direction: row;
 }
 
 /* Page d'un chapitre avec les commentaires associés
@@ -271,6 +272,13 @@ ul.pagination>li.page-item.disabled>span>i {
 
 /* Formulaires
 --------------------------------------------*/
+/* 
+*Contact auteur
+*/
+
+/*
+*
+*/
 .form-signin {
   width: 100%;
   max-width: 420px;

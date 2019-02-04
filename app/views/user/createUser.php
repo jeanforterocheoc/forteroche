@@ -1,6 +1,6 @@
 
 <?php $this->title = 'Création d\'un profil utilisateur'; ?> 
-<?php use App\models\Messages; ?>
+<?php use App\Models\Entity\Messages; ?>
 <?php Messages::displayMsg()?>
 
 <p><a href="user/userAdmin">Accueil administration</a></p><br>

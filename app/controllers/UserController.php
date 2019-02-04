@@ -1,27 +1,28 @@
 <?php
+/**
+ * Cette classe gère le profil de l'utilisateur
+ */
 namespace App\Controllers;
 
-use App\Core\SecureController;
-use App\Models\manager\UserManager;
-use App\Models\manager\ChapterManager;
-use App\Models\manager\CommentManager;
-use App\Models\User;
-use App\Models\Messages;
+use App\Controllers\SecureController;
+use App\Models\Manager\UserManager;
+use App\Models\Manager\ChapterManager;
+use App\Models\Manager\CommentManager;
+use App\Models\Entity\User;
+use App\Models\Entity\Messages;
 
 
 class UserController extends SecureController
 {
   private $userManager;
 
-
-  // Page accueil de l'administration
+  /** 
+  * Page accueil de l'administration  
+  */ 
   public function userAdmin()
   {
-    // var_dump($_SESSION);
     $this->userManager = new UserManager;
     $user = $this->user;
-    // var_dump($user);
-    // $username = $this->userManager->getUser(json_decode($this->user, true));
     $nbProfil = $this->userManager->countUsers();
 
     $this->chapterManager = new ChapterManager;
@@ -31,80 +32,84 @@ class UserController extends SecureController
     $nbComments = $this->commentManager->countComments();
     $nbReport = $this->commentManager->countReport();
 
-    $this->render('Admin', array('profil' => $nbProfil, 'chapter' => $nbChapter, 'comments' => $nbComments, 'report' => $nbReport));
+    $this->render('Admin', array('user' => $this->user, 'profil' => $nbProfil, 'chapter' => $nbChapter, 'comments' => $nbComments, 'report' => $nbReport));
   }
 
-  // Editer un profil
-  public function ListUser()
+  /**
+  * Editer un profil
+  */
+  public function listUser()
   {
     $this->userManager = new UserManager;
     $users = $this->userManager->listUser();
-    $profil = $this->userManager->countUsers();
-    $this->render('listUser', array('listUser' => $users, 'profil' => $profil));
+    $this->render('listUser', array('listUser' => $users));
   } 
 
-  // Modifier un profil utilisateur
+  /**
+  * Modifier un profil 
+  */
   public function oneUser()
   {
-    $id = htmlspecialchars($_GET['id']);
+    $id = htmlspecialchars($_GET['id'], ENT_QUOTES);
     $this->userManager = new UserManager;
     $oneProfilUser = $this->userManager->getOneUser($id);
     
     if (isset($_POST['changeProfileUser'])) {
       if ($this->request->paramExist('changeUsername') && $this->request->paramExist('password') && $this->request->paramExist('passwordConfirm') && $this->request->paramExist('email')) {
         if($_POST['password']  ==  $_POST['passwordConfirm']) {
-          $id = $_POST['id'];
-          $username = $this->request->getParam("changeUsername");
-          $password = $this->request->getParam("password");
-          $email = $this->request->getParam("email");
+          $id = htmlspecialchars($_POST['id'], ENT_QUOTES);
+          $username = htmlspecialchars($this->request->getParam("changeUsername"), ENT_QUOTES);
+          $password = htmlspecialchars($this->request->getParam("password"), ENT_QUOTES);
+          $email = htmlspecialchars($this->request->getParam("email"), ENT_QUOTES);
          
           $this->userManager = new UserManager;
           $this->userManager->changeProfUser($id, $username, $password, $email);
-          // $this->redirection('User', 'oneUser/'.$id); 
+           
           $this->redirection('User', 'listUser'); 
-        }
-        else {
+        } else {
+            $this->messages = new Messages;
+            $this->messages->setMsg('Les mots de passe ne correspondent pas !', 'error');
+          }
+      } else {
           $this->messages = new Messages;
-          $this->messages->setMsg('Les mots de passe ne correspondent pas !', 'error');
-        }
-      }
-      else {
-        $this->messages = new Messages;
-        $this->messages->setMsg('Veuillez remplir tous les champs !', 'error');
-      } 
+          $this->messages->setMsg('Veuillez remplir tous les champs !', 'error');
+        } 
     }
   $this->render('changeprofilUser', array('oneUser' => $oneProfilUser));
   }
   
-  // Création d'un profil utilisateur
+  /**
+   * Création d'un profil utilisateur
+   */
   public function createUser()
   {
     if (isset($_POST['login'])) {
       if ($this->request->paramExist('username') && $this->request->paramExist('password') && $this->request->paramExist('passwordConfirm') && $this->request->paramExist('email')) {
         if ($_POST['password'] == $_POST['passwordConfirm']) {
+          $username = htmlspecialchars($this->request->getParam("username"), ENT_QUOTES);
+          $password = htmlspecialchars($this->request->getParam("password"), ENT_QUOTES);
+          $email = htmlspecialchars($this->request->getParam("email"), ENT_QUOTES);
+
           $this->userManager = new UserManager;
-          $user = $this->userManager->newUser(
-                  $this->request->getParam("username"),
-                  $this->request->getParam("password"),
-                  $this->request->getParam("email")
-                );
+          $user = $this->userManager->newUser($username, $password, $email);
+                  
           $this->messages = new Messages;
           $this->messages->setMsg('Le profil a été créé !', 'success');
-        }
-        else {
+        } else {
+            $this->messages = new Messages;
+            $this->messages->setMsg('Les mots de passe ne correspondent pas !', 'error');
+          } 
+      } else {
           $this->messages = new Messages;
-          $this->messages->setMsg('Les mots de passe ne correspondent pas !', 'error');
+          $this->messages->setMsg('Veuillez remplir tous les champs !', 'error');
         }
-      }
-      else {
-        $this->messages = new Messages;
-        $this->messages->setMsg('Veuillez remplir tous les champs !', 'error');
-      }
     }
     $this->render('createUser');
   }
 
-  // Supprimer un profil utilisateur
+  /**
+   * Supprimer un profil utilisateur
+   */
   public function deleteUser()
   {
     $this->userManager = new UserManager;
@@ -113,23 +118,25 @@ class UserController extends SecureController
      
   }
 
-  // Modifier un profil (du user Session)
+  /**
+   * Modifier profil user Session
+   */
   public function modifyUser()
   {
-    // var_dump($_SESSION);
+    
     $user = $this->user;
 
     if (isset($_POST['changeProfile'])) {
       if ($this->request->paramExist('username') && $this->request->paramExist('password') && $this->request->paramExist('passwordConfirm') && $this->request->paramExist('email')) {
         if($_POST['password']  ==  $_POST['passwordConfirm']) {
-          $id = $_POST['id'];
-          $username = $this->request->getParam("username");
-          $password = $this->request->getParam("password");
-          $email = $this->request->getParam("email");
+          $id = htmlspecialchars($_POST['id'], ENT_QUOTES);
+          $username = htmlspecialchars($this->request->getParam("username"), ENT_QUOTES);
+          $password = htmlspecialchars($this->request->getParam("password"), ENT_QUOTES);
+          $email = htmlspecialchars($this->request->getParam("email"), ENT_QUOTES);
           
           $this->userManager = new UserManager;
           $this->userManager->modifUser($id, $username, $password, $email);
-
+          
           $this->messages = new Messages;
           $this->messages->setMsg('Les modifications ont été prises en compte !', 'success');
         }
