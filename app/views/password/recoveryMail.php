@@ -2,15 +2,17 @@
 <?php use App\Models\Entity\Messages; ?>
 <?php Messages::displayMsg()?>
 
-<h4>Code de vérification</h4>
-<form action="" method='post'class="default-form">
-    <div>
-        <!-- <label for="email">Votre adresse mail</label><br> -->
-        <input type="text" name="verif_code" id="verif_code" placeholder="Code de vérification" >
+<form action="" method='post'class="form-signin">
+    <div class="text-center mb-4">
+        <h4 class="h3 mb-3 font-weight-normal">Code de vérification</h4>
+        <p>Entrez votre code reçu par mail</p>
     </div>
-    <br>
-    <button class="btn btn-sm btn-primary " type="submit" name="verif_submit">Envoyer</button>    
-    <br>
+    <div class="form-label-group">
+        <input type="text" class="form-control" name="verif_code" id="verif_code" placeholder="Code">
+        <label for="verif_code">Code</label>
+    </div>
+
+    <button class="btn btn-primary " type="submit" name="verif_submit">Envoyer</button>    
 </form>
         
 

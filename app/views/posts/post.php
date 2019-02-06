@@ -25,7 +25,7 @@
             <h5 class="card-title"><?= htmlspecialchars($comment->getAuthor(), ENT_QUOTES) ?></h5>
             <p class="card-text"><?= htmlspecialchars($comment->getContent(), ENT_QUOTES) ?></p>
             <!-- Bouton signalment modal -->
-            <button type="button" id="showModal" class="btn btn-primary btn-sm reporting" data-comment-id = "<?= $comment->getId() ?>" data-toggle="modal" data-target="#reportModal">
+            <button type="button" id="showModal" class="btn btn-outline-warning btn-sm reporting" data-comment-id = "<?= $comment->getId() ?>" data-toggle="modal" data-target="#reportModal">
               Signaler
             </button>
           </div>

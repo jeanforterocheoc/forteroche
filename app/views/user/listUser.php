@@ -2,12 +2,8 @@
 <?php use App\Models\Entity\Messages; ?>
 <?php Messages::displayMsg()?>
 
-<p><a href="user/userAdmin">Accueil administration</a></p>
-<p><a href="home/homepage" target="_blank">Voir le blog</a></p>
-
-
 <div class="container" >
-  <h4>Liste des profils utilisateurs</h4>
+  <h5>Liste des profils utilisateurs</h5>
   <table class="table table-dark">
     <thead>
         <tr>
@@ -30,7 +26,7 @@
                 <input type="hidden" value="<?= $user->getId() ?>">
                 <button type="submit" class="btn btn-primary btn-sm">Modifier</button>
                 <!-- Bouton modal -->
-                <button type="button" id="showModal" class="btn btn-primary btn-sm deleteUser" data-user-id = "<?= $user->getId() ?>"  data-toggle="modal" data-target="#deleteModal">
+                <button type="button" id="showModal" class="btn btn-danger btn-sm deleteUser" data-user-id = "<?= $user->getId() ?>"  data-toggle="modal" data-target="#deleteModal">
                    Supprimer
                 </button>
               </form>

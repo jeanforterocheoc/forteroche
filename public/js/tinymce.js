@@ -2,6 +2,7 @@
 tinymce.init({
     selector: '#mytextarea',
     theme: 'modern',
+    language: 'fr_FR',
     // width: 600,
     height: 300,
     plugins: [

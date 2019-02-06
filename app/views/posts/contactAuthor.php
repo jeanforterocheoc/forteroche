@@ -1,7 +1,6 @@
-
   <section class="my-5 contactAuthor">
-    <div class="jumbotron bg-white">
-      <h2 class="h1-responsive font-weight-bold text-center my-5">Me contacter</h2>
+    <div class="jumbotron bg-black">
+      <h2 class="h1-responsive font-weight-bold text-center my-5">Contact</h2>
       <p class="text-center w-responsive mx-auto mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
         Fugit, error amet numquam iure provident voluptate esse quasi, veritatis totam voluptas nostrum quisquam
         eum porro a pariatur veniam.</p>

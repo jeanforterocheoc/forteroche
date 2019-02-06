@@ -2,14 +2,16 @@
 <?php use App\Models\Entity\Messages; ?>
 <?php Messages::displayMsg()?>
 
-<h4>Réinitialisation du mot de passe</h4>
-<p>Entrez votre adresse mail pour recevoir un code de vérification</p>
-<form action="" method='post'class="default-form">
-    <div>
-        <!-- <label for="email">Votre adresse mail</label><br> -->
-        <input type="email" name="recup_mail" id="recup_mail" placeholder="Votre adresse mail" >
+<form action="" method='post'class="form-signin">
+    <div class="text-center mb-4">
+        <h4 class="h3 mb-3 font-weight-normal">Réinitialisation du mot de passe</h4>
+        <p>Entrez votre adresse mail afin d'obtenir un code de vérification</p>
     </div>
-    <br>
+    <div class="form-label-group">
+        <input type="email" class="form-control" name="recup_mail" id="recup_mail" placeholder="Email">
+        <label for="recup_mail">Email</label>
+      </div>
+
     <button class="btn btn-sm btn-primary " type="submit" name="recup_submit" ">Validez</button>    
 </form>
  

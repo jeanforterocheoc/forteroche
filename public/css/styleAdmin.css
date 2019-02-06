@@ -1,22 +1,190 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: 'Hind Madurai', sans-serif;
+}
+/* Navbar
+-----------------------------------*/
+nav.admin {
+  background-color: #ffeaa7;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: #b71540;
+}   
+
+.navbar-dark .navbar-nav .nav-link:hover {
+  color: #212223;
+}
+/*
+----------------------------------*/
 #content {
-    /* width: 40%; */
     margin: 0 auto;
-    background-color: whitesmoke;
-    /* text-align: center; */
   }
 
   .row {
-    -webkit-box-orient: vertical;
+    -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
         -ms-flex-direction: row;
             flex-direction: row;
   }
 
+/*
+UserAdmin (accueil)
+-----------------------------------------*/
+.userAdminProfil {
+  background-color: #ffeaa7;
+  border-radius: 30px;
+  text-align: center;
+  padding: 1em;
+  margin: 1em;
+}
+
+.chapterComment {
+  background-color: #f5f6fa;
+  border-radius: 30px;
+  padding: 1em;
+  margin: 1em;
+  text-align: center;
+}
+
+.number {
+  background-color: #f5f6fa;
+  border-radius: 30px;
+  padding: 1em;
+  margin: 1em;
+  text-align: center;
+}
+
+.userAdminProfil h4 {
+  background-color: #f5f6fa;
+  border-radius: 1em;
+  margin: 1em 0 .8em 0;
+}
+
+.chapterComment h4 {
+  background-color: #ffeaa7;
+  border-radius: 1em;
+  margin: 1em 0 .8em 0;
+}
+
+.number h4 {
+  background-color: #ffeaa7;
+  border-radius: 1em;
+  margin: 1em 0 .8em 0;
+}
+
+p a {
+  color: #212223;
+}
+
+p a:hover {
+  text-decoration: none;
+  color: #b71540;
+  font-weight: 900;
+  
+}
+/* L'ensemble des chapitres
+-------------------------------------*/
+caption {
+  caption-side: top;
+  color: #212223;
+}
+
+.tableAllchapters thead {
+  text-align: center;
+}
+
+.tableAllchapters tbody {
+  text-align: center;
+}
+
+.tableAllchapters td {
+  vertical-align: middle;
+}
+
+.tableAllchapters td form {
+  margin-bottom: .5em;
+}
+
+.tableAllchapters .btn-danger i {
+  padding: .2em;
+}
+
+#content > div.row > div > ul.allChapters {
+  margin: 1em;
+}
+
+#content > div.row > div > ul.allChapters > li {
+  padding: .5em;
+}
+
+/* Un chapitre
+--------------------------------------*/
+h2.postTitle {
+  text-align: center;
+}
+
+p.returnChapters a, p.returnChapters i {
+  color: #1682ed;
+}
+
+form.deleteChapter, .changeChapter {
+  text-align: center;
+}
+
+form .content {
+  margin: 1.5em 1em;
+}
+
+.title label {
+  margin-right: 1em;
+}
+/* Nouveau chapitre
+-------------------------------------*/
+form.newChapter, .newChapter h5 {
+  margin: 1em;
+  text-align: center;
+}
+/* Tableau des commentaires
+-------------------------------------*/
+h4 {
+  margin: .5em;
+  padding: .2em;
+  color: #fff;
+  background: -webkit-gradient( linear, left top, left bottom, from(#938E8E), to(#B8BCB9));
+  background: linear-gradient( #938E8E, #B8BCB9);
+  border-radius: 5px 5px 0 0;
+  text-align: center; 
+}
+#tab {
+  text-align: center;
+}
+
+#deleteComment > span > i {
+  padding: .2em;
+}
+
+/* Tableau liste des profils
+--------------------------------------*/
+.table-dark, .container h5 {
+  text-align: center;
+  margin-top: 1em;
+}
+
+
+/* Formulaires
+-------------------------------------*/
   .form-signin {
     width: 100%;
     max-width: 420px;
     padding: 15px;
     margin: auto;
+    background-color: #f5f6fa;
   }
 
   .form-label-group {

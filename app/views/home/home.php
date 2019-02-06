@@ -1,7 +1,8 @@
 <?php $this->title = 'Billet simple pour l\'Alaska'; ?>
 <section class="container">
-    <div class="jumbotron bg-white">
-        <p>Bienvenue!<br>Pour mon douzième roman,j'ai souhaité vous le faire découvrir dans un tout autre format que celui d'un livre papier,un blog.<br>Jean Forteroche</p>
+    <div class="jumbotron bg-white textAuthor">
+        <p>Bienvenue !<br>Pour mon douzième roman , j'ai souhaité vous le faire découvrir dans un tout autre format que celui d'un livre papier , un blog .<br>Plaisir est le maître mot . </p>
+        <p class="signAuthor">Jean Forteroche</p>
     </div>  
 </section>
 <section class="container">

@@ -7,7 +7,7 @@ body {
 
 body {
   font-family: 'Hind Madurai', sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(86, 192, 224, 0.45)), to(rgba(86, 192, 224, 0.45))), url(../images/snow.jpg);
   background: linear-gradient(rgba(86, 192, 224, 0.45), rgba(86, 192, 224, 0.45)), url(../images/snow.jpg);
   -webkit-box-align: center;
@@ -114,7 +114,7 @@ header > nav.navbar {
 /* Footer
 ---------------------------------*/
 footer {
-  background-color: #A4A3A1; 
+  background-color: #343A40; 
   margin-top: 15%;
   width: 100%;
   color: #e9ecef;
@@ -122,8 +122,26 @@ footer {
 footer > .py-3 {
   font-size: 1.2em;
 }
+
+footer a {
+  color: #e9ecef;
+}
+
 /* Homepage
 ------------------------------------*/
+.textAuthor {
+  padding: 2rem 1rem;
+  text-align: center;
+  font-size: 1.1em;
+  font-family: 'Indie Flower', cursive, sans-serif;
+  line-height: 2em;
+}
+
+.signAuthor {
+  text-align: end;
+  font-family: 'Indie Flower', cursive, sans-serif;
+}
+
 .drop-shadow {
   position:relative;
   padding:1em; 
@@ -270,15 +288,34 @@ ul.pagination>li.page-item.disabled>span>i {
   padding: 10px;
 }
 
+/* Page de tous les chapitres
+--------------------------------------------*/
+time {
+  float: left;
+  font-size: 14px;
+}
+
+time .fa-calendar-alt {
+  margin-right: .5em;
+  font-size: 1.2em;
+}
+
+.pagPosts {
+  margin-top: 1em;
+}
+
+/* Page d'authentification
+--------------------------------------------*/
+.loginAuth {
+  margin-bottom: 1em;
+}
+
+.copyrightYear {
+  margin-top: 0!important;
+}
+
 /* Formulaires
 --------------------------------------------*/
-/* 
-*Contact auteur
-*/
-
-/*
-*
-*/
 .form-signin {
   width: 100%;
   max-width: 420px;

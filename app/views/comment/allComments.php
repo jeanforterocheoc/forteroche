@@ -1,11 +1,6 @@
 <?php $this->title = "Tous les commentaires" ?>
-<p><a href="user/userAdmin">Accueil administration</a></p>
-<p><a href="home/homepage" target="_blank">Voir le blog</a></p><br>
-
-<!-- Tous les commentaires insérés dans un tableau -->
-<div class="container-fluid">
-</div>
-<div class="table-responsive">
+<h4>Tous les commentaires et signalements</h4>
+<div class="table-responsive tableComments">
   <table id='tab'class="display">
     <thead>
       <tr>
@@ -13,7 +8,7 @@
         <th scope="col">Date</th>
         <th scope="col">Auteur</th>
         <th scope="col">Commentaires</th>
-        <th scope="col">Signalement</th>
+        <th scope="col">Signalements</th>
         <th scope="col">Action</th>
       </tr>
     </thead>
@@ -27,11 +22,11 @@
           <td><?= htmlspecialchars($comment->getReport()) ?></td>
           <td>
             <form action="<?='comment/validate/'. htmlspecialchars($comment->getId()) ?>" method="post">
-              <button type="submit"  name="validate" id="validate"><span title="Accepter le commentaire"><i class="fas fa-check"></i></span></button>
+              <button type="submit" class="btn btn-success btn-sm" name="validate" id="validate"><span title="Accepter le commentaire"><i class="fas fa-check"></i></span></button>
             </form>
             <br>
             <form action="<?='comment/delete/'. htmlspecialchars($comment->getId()) ?>" method="post">
-              <button type="submit"  name="deleteComment" id="deleteComment"><span title="Supprimer le commentaire"><i class="fas fa-times"></i></span></button>
+              <button type="submit" class="btn btn-danger btn-sm" name="deleteComment" id="deleteComment"><span title="Supprimer le commentaire"><i class="fas fa-times"></i></span></button>
             </form>
           </td>
         </tr>
