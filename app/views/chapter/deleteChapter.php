@@ -6,7 +6,7 @@
   <div class="jumbotron bg-black">
     <article>
         <header>
-            <h2 class='postTitle'><?= $deleteChapter->getTitle() ?></h2> 
+          <h2 class='postTitle'><?= $deleteChapter->getTitle() ?></h2> 
         </header>
         <section><?= $deleteChapter->getContent() ?></section>  
     </article>

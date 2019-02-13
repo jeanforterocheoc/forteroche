@@ -1,11 +1,11 @@
 <?php
 namespace App\Models\Manager;
 
-use App\Models\Entity\Database;
+use App\Models\Manager\Manager;
 use App\Models\Entity\Comment;
 use App\Models\Entity\Chapter;
 
-class CommentManager extends Database
+class CommentManager extends Manager
 {
   /**
   * Renvoie tous les commentaires
@@ -124,16 +124,22 @@ class CommentManager extends Database
             VALUES (?, ?, ?,NOW())
             ';
     $result = $this->runReq($req, [$chapterId, $author, $content]);
+    if (!$result) {
+      return null;
+    }
     return $result;
   }
 
   /**
-  * Ajoute un signalement pour modération éventuelle 
+  * Ajoute un signalement pour modération éventuelle par admin
   */ 
   public function reportComment($commentId)
   {
     $req = 'UPDATE comment SET report = report + 1 WHERE id_com = ?';
     $result = $this->runReq($req, [$commentId]);
+    if (!$result) {
+      return null;
+    }
     return $result;
   }
 
@@ -144,6 +150,9 @@ class CommentManager extends Database
   {
     $req = 'UPDATE comment SET report = 0 WHERE id_com = ?';
     $result = $this->runReq($req, [$commentId]);
+    if (!$result) {
+      return null;
+    }
     return $result;
   }
 
@@ -154,6 +163,9 @@ class CommentManager extends Database
   {
     $req = 'DELETE FROM comment WHERE id_com = ?';
     $result = $this->runReq($req, [$commentId]);
+    if (!$result) {
+      return null;
+    }
     return $result;
   }
 }

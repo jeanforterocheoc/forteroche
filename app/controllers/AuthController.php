@@ -7,14 +7,14 @@ namespace App\Controllers;
 
 use App\Core\Controller;
 use App\Models\Manager\UserManager;
-use App\Models\Entity\Messages;
+use App\Services\Messages;
 
 class AuthController extends Controller
 {
   private $userManager;
   /**
   * Après une vérification de l'existence des identifiants dans la bdd
-  * Ajout à la session des données au format json dans un tableau
+  * Ajout à la session des données dans un tableau au format json 
   */
   public function login()
   {
@@ -26,23 +26,23 @@ class AuthController extends Controller
       $username = htmlspecialchars($this->request->getParam("username"), ENT_QUOTES);
       $password = htmlspecialchars($this->request->getParam("password"), ENT_QUOTES);
 
-      $this->userManager = new UserManager;
-      $user = $this->userManager->getUser($username);
+      $userManager = new UserManager;
+      $user = $userManager->checkUser($username);
       if (null != $user) {
         if (password_verify($password, $user->getPassword())) {
           $this->request->getSession()->setAttribut('user', json_encode($user->toArray()));
-          $this->redirection('User', 'userAdmin');
+          $this->redirection('user', 'homepageUserAdmin');
         } else {
-            $this->messages = new Messages;
-            $this->messages->setMsg('Erreur d\'identifiants !', 'error');
+            $messages = new Messages;
+            $messages->setMsg('Erreur d\'identifiants !', 'error');
           }
       } else {
-          $this->messages = new Messages;
-          $this->messages->setMsg('Les identifiants sont incorrects !', 'error');
+          $messages = new Messages;
+          $messages->setMsg('Les identifiants sont incorrects !', 'error');
         }
     } else {
-            $this->messages = new Messages;
-            $this->messages->setMsg('Veuillez compléter tous les champs !', 'error');
+            $messages = new Messages;
+            $messages->setMsg('Veuillez compléter tous les champs !', 'error');
       }
     $this->render('Auth');
   }
@@ -53,6 +53,6 @@ class AuthController extends Controller
   public function logout()
   {
     $this->request->getSession()->destroy();
-    $this->redirection('Auth', 'login');
+    $this->redirection('auth', 'login');
   }
 }

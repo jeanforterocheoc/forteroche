@@ -1,4 +1,5 @@
 <?php $this->title = "Tous les commentaires" ?>
+
 <h4>Tous les commentaires et signalements</h4>
 <div class="table-responsive tableComments">
   <table id='tab'class="display">

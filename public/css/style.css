@@ -91,8 +91,8 @@ header > nav.navbar {
 
 .btnBurger {
   text-align: end;
-}
 
+}
 .logo {
   text-transform: uppercase;
   font-weight: bold;
@@ -247,7 +247,8 @@ footer a {
 }
 
 .oneChapter h2,
-.comments h4 {
+.comments h4,
+.addComment h4 {
   margin: .2em;
   padding: .2em;
   color: #fff;
@@ -340,12 +341,10 @@ time .fa-calendar-alt {
   left: 0;
   display: block;
   width: 100%;
-  margin-bottom: 0;
-  /* Remplace la marge <label> par défaut */
+  margin-bottom: 0; /* Remplace la marge <label> par défaut */
   line-height: 1.5;
   color: #495057;
-  cursor: text;
-  /* Faire correspondre l'entrée sous le label */
+  cursor: text; /* Faire correspondre l'entrée sous le label */
   border: 1px solid transparent;
   border-radius: .25rem;
   -webkit-transition: all .1s ease-in-out;
@@ -382,10 +381,6 @@ time .fa-calendar-alt {
 /* Media Queries
 ---------------------------------------------------*/
 
-@media screen and (max-width: 568px) {
-  
- }
-
  @media screen and (max-width: 768px) {
   .titleNav {
     font-size: 1.5em;
@@ -408,10 +403,6 @@ time .fa-calendar-alt {
     width: 100%;
   }
 
-  .fa-book-open {
-    display: none;
-  }
-  
   .lastChapter {
     text-align: center;
   }
@@ -423,14 +414,10 @@ time .fa-calendar-alt {
   section > div > article > a {
     margin-bottom: 1.2em;
   }
-
-@media screen and (max-width: 992px) {
-
- }
-
-
-@media screen and (max-width: 1200px) { 
-
+  
+  footer {
+    margin-top: 35%;
+  }
 }
 
 

@@ -44,7 +44,7 @@ class Router
 
     if (!file_exists($controllerFile)) {
           throw new \Exception("File '$controllerFile' not found");
-        }    
+    }    
     $controller = new $ctrl($request);
         
     return $controller;

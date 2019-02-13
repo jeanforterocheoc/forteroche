@@ -10,7 +10,9 @@ use App\Core\Controller;
 use App\Models\Manager\UserManager;
 use App\Models\Manager\ChapterManager;
 use App\Models\Manager\CommentManager;
-use App\Models\Entity\Messages;
+use App\Services\Messages;
+use App\Services\Mailer;
+
 
 class PostsController extends Controller
 {
@@ -21,10 +23,10 @@ class PostsController extends Controller
   */
   public function posts()
   {
-    $this->chapterManager = new ChapterManager();
-    $nbChapters = $this->chapterManager->countChapters();
+    $chapterManager = new ChapterManager();
+    $nbChapters = $chapterManager->countChapters();
     $perPage = 3;
-    $nbPages = $this->chapterManager->countPages($nbChapters, $perPage);
+    $nbPages = $chapterManager->countPages($nbChapters, $perPage);
     if (isset($_GET['page']) && $_GET['page'] > 0 && $_GET['page'] <= $nbPages) {
       $currentPage = $_GET['page'];
     } else {
@@ -33,25 +35,25 @@ class PostsController extends Controller
     // Début dans l'élément LIMIT de la requête
     $start = ($currentPage-1)*$perPage;
 
-    $posts = $this->chapterManager->getAllChapters($start, $perPage);
+    $posts = $chapterManager->getAllChapters($start, $perPage);
         
     $this->render('Posts', array('posts' => $posts, 'currentPage' => $currentPage, 'nbPages' => $nbPages));
   }
 
   /**
-  * Affichage de l'ensemble des commentaires associés à un post
+  * Affiche l'ensemble des commentaires associés à un post
   */
   public function postComment()
   {
     $chapterId = $this->request->getParam("id");
 
-    $this->chapterManager = new ChapterManager();
-    $this->commentManager = new CommentManager();
+    $chapterManager = new ChapterManager();
+    $commentManager = new CommentManager();
 
     // Pagination comments
-    $nbComments = $this->commentManager->countComments();
+    $nbComments = $commentManager->countComments();
     $perPage = 5;
-    $nbPages = $this->commentManager->countPages($nbComments, $perPage);
+    $nbPages = $commentManager->countPages($nbComments, $perPage);
     if (isset($_GET['page']) && $_GET['page'] > 0 && $_GET['page'] <= $nbPages) {
       $currentPage = $_GET['page'];
     } else {
@@ -59,8 +61,8 @@ class PostsController extends Controller
       }
     $start = ($currentPage-1)*$perPage;
 
-    $chapter = $this->chapterManager->getOneChapter($chapterId);
-    $comments = $this->commentManager->getComments($chapterId, $start, $perPage);
+    $chapter = $chapterManager->getOneChapter($chapterId);
+    $comments = $commentManager->getComments($chapterId, $start, $perPage);
 
     $this->render('Post', array('postComment' => $chapter, 'comments' => $comments, 'currentPage' => $currentPage, 'nbPages' => $nbPages));
   }
@@ -75,18 +77,18 @@ class PostsController extends Controller
       $author = htmlspecialchars($this->request->getParam('author'), ENT_QUOTES);
       $content = htmlspecialchars($this->request->getParam('commentUser'), ENT_QUOTES);
 
-      $this->commentManager = new commentManager();
-      $comment = $this->commentManager->addComment($chapterId, $author, $content);
-      $this->redirection('Posts', 'postComment'.$chapterId);
+      $commentManager = new commentManager();
+      $comment = $commentManager->addComment($chapterId, $author, $content);
+      $this->redirection('posts', 'postComment'.$chapterId);
 
-      $this->messages = new Messages;
-      $this->messages->setMsg('Le commentaire a été ajouté !', 'success');
+      $messages = new Messages;
+      $messages->setMsg('Le commentaire a été ajouté !', 'success');
     } else {
-        $this->redirection('Posts', 'postComment'.$this->request->getParam('postId'));
+        $this->redirection('posts', 'postComment'.$this->request->getParam('postId'));
 
-        $this->messages = new Messages;
-        $this->messages->setMsg('Veuillez compléter tous les champs !', 'error');
-    }
+        $messages = new Messages;
+        $messages->setMsg('Veuillez compléter tous les champs !', 'error');
+      }
   }
 
   /**
@@ -94,12 +96,12 @@ class PostsController extends Controller
   */
   public function moderateComment()
   {
-    $this->commentManager = new commentManager();
+    $commentManager = new commentManager();
 
     $id = $this->request->getParam("id");
 
-    $comment = $this->commentManager->getComment($id);
-    $this->commentManager->reportComment($id);
+    $comment = $commentManager->getComment($id);
+    $commentManager->reportComment($id);
   }
 
   /**
@@ -112,8 +114,8 @@ class PostsController extends Controller
       $email = htmlspecialchars($this->request->getParam('email'), ENT_QUOTES);
       $messageUser = htmlspecialchars($this->request->getParam('messageUser'), ENT_QUOTES);
             
-      $this->userManager = new UserManager();
-      $this->userManager->sendMailAuthor($pseudo, $email, $messageUser);
+      $mailer = new Mailer;
+      $mailer->sendMailAuthor($pseudo, $email, $messageUser);
     }
     $this->render('contactAuthor');
   }

@@ -1,5 +1,6 @@
 <?php $this->title = 'Modifier un profil utilisateur'; ?>
-<?php use App\Models\Entity\Messages; ?>
+
+<?php use App\Services\Messages; ?>
 <?php Messages::displayMsg()?>
 
 <div class="text-center changeProfil">

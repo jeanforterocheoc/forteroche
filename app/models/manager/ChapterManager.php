@@ -1,10 +1,10 @@
 <?php
 namespace App\Models\Manager;
 
-use App\Models\Entity\Database;
+use App\Models\Manager\Manager;
 use App\Models\Entity\Chapter;
 
-class ChapterManager extends Database
+class ChapterManager extends Manager
 {
   /**
   * Affiche l'ensemble des chapitres
@@ -49,6 +49,9 @@ class ChapterManager extends Database
   {
     $req = 'INSERT INTO chapter(title, content, date) VALUES (?, ?, NOW())';
     $result = $this->runReq($req, [$title, $content]);
+    if (!$result) {
+      return null;
+    }
     return $result;
   }
 
@@ -61,6 +64,9 @@ class ChapterManager extends Database
             SET title = ?, content = ?, date = NOW()
             WHERE id = ?';
     $result = $this->runReq($req, [$title, $content, $chapterId]);
+    if (!$result) {
+      return null;
+    }
     return $result;
   }
 
@@ -71,6 +77,9 @@ class ChapterManager extends Database
   {
     $req = 'DELETE FROM chapter WHERE id = ?';
     $result = $this->runReq($req, [$chapterId]);
+    if (!$result) {
+      return null;
+    }
     return $result;
   }
 

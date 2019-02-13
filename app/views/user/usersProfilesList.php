@@ -1,5 +1,6 @@
 <?php $this->title = 'Liste des profils utilisateurs'; ?>
-<?php use App\Models\Entity\Messages; ?>
+
+<?php use App\Services\Messages; ?>
 <?php Messages::displayMsg()?>
 
 <div class="container" >
@@ -13,7 +14,7 @@
         </tr>
     </thead>
     <tbody>
-        <?php foreach ($listUser as $user ) : ?>
+        <?php foreach ($usersProfilesList as $user ) : ?>
           <tr class="deleteProfile<?= $user->getId() ?>">
             <td>
               <?= $user->getUsername(); ?>
@@ -22,7 +23,7 @@
               <?= $user->getemail(); ?>
             </td>
             <td>
-              <form action="<?= 'user/oneUser/' .$user->getId() ?>" method="post">
+              <form action="<?= 'user/changeProfilUser/' .$user->getId() ?>" method="post">
                 <input type="hidden" value="<?= $user->getId() ?>">
                 <button type="submit" class="btn btn-primary btn-sm">Modifier</button>
                 <!-- Bouton modal -->
@@ -42,7 +43,7 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="title-delete">Confirmer la suppression du profil</h5>
+              <h5 class="modal-title" id="title-delete">Confirmez-vous la suppression du profil</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -50,7 +51,7 @@
             <div class="modal-body">
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-primary submit-delete">Valider</button>
+              <button type="button" class="btn btn-primary submit-delete">Confirmer</button>
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
             </div>
           </div>

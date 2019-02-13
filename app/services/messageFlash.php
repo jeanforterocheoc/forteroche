@@ -1,5 +1,5 @@
 <?php
-namespace App\Models\Entity;
+namespace App\Services;
 
 /** 
 * Gestion des messages 'flash' 
@@ -20,8 +20,7 @@ class Messages
     if (isset($_SESSION['errorMsg'])) {
         echo '<div class="alert alert-danger" role="alert"><strong>'. $_SESSION['errorMsg'].'</strong></div>';
         unset($_SESSION['errorMsg']);
-    } 
-    elseif (isset($_SESSION['successMsg'])) {
+    } elseif (isset($_SESSION['successMsg'])) {
         echo '<div class="alert alert-success" role="alert"><strong>'. $_SESSION['successMsg'].'</strong></div>';
         unset($_SESSION['successMsg']);
     }

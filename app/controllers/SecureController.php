@@ -13,14 +13,14 @@ abstract class SecureController extends Controller
 {
   protected $user;
   /**
-  * Fait appel au contructeur parent (celui de la requête) et instancie la classe User
+  * Fait appel au contructeur parent et instancie la classe User
   * Decode les données reçues au format json 
   */
   public function __construct($request)
   {
     parent::__construct($request);
     if (!$this->request->getSession()->isAttribut('user')) {
-      $this->redirection('Auth', 'login');
+      $this->redirection('auth', 'login');
     }
     $this->user = new User(json_decode($this->request->getSession()->getAttribut('user'), true));  
   }

@@ -59,11 +59,10 @@
       <div class="container text-center text-md-left">
         <div class="row text-center text-md-left mt-3 pb-3">
 
-          
           <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
-            <h6 class="text-uppercase mb-4 font-weight-bold">Lorem ipsum</h6>
-            <p> Lorem ipsum dolor sit amet, consectetur
-              adipisicing elit.</p>
+            <blockquote> La culture , c'est comme la confiture , moins on en a , plus on
+              l'étale.</blockquote>
+            <cite>Françoise Sagan</cite>
           </div>
           <hr class="w-100 clearfix d-md-none">
 

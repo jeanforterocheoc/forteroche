@@ -7,7 +7,7 @@ namespace App\Controllers;
 use App\Controllers\SecureController;
 use App\Models\Manager\CommentManager;
 use App\Models\Manager\ChapterManager;
-use App\Models\Entity\Messages;
+use App\Services\Messages;
 
 class CommentController extends SecureController
 {
@@ -19,19 +19,19 @@ class CommentController extends SecureController
   */ 
   public function allComments()
   {
-    $this->commentManager = new CommentManager();
-    $this->chapterManager = new ChapterManager();
+    $commentManager = new CommentManager();
+    $chapterManager = new ChapterManager();
 
-    $nbComments = $this->commentManager->countComments();
+    $nbComments = $commentManager->countComments();
     $perPage = 15;
-    $nbPages = $this->commentManager->countPages($nbComments, $perPage);
+    $nbPages = $commentManager->countPages($nbComments, $perPage);
     if (isset($_GET['page']) && $_GET['page'] > 0 && $_GET['page'] <= $nbPages) {
       $currentPage = $_GET['page'];
     } else {
         $currentPage = 1;
       }
-    $comments = $this->commentManager->commentsAll($currentPage, $perPage);
-    $chapters = $this->chapterManager->getAllChapters($currentPage, $perPage);
+    $comments = $commentManager->commentsAll($currentPage, $perPage);
+    $chapters = $chapterManager->getAllChapters($currentPage, $perPage);
 
     $this->render('AllComments', array('allComments' => $comments,'allChapters' => $chapters, 'currentPage' => $currentPage, 'nbPages' => $nbPages));
   }
@@ -42,8 +42,8 @@ class CommentController extends SecureController
   public function validate()
   {
     $commentId = $this->request->getParam("id");
-    $this->commentManager = new CommentManager();        
-    $this->commentManager->validateComment($commentId);
+    $commentManager = new CommentManager();        
+    $commentManager->validateComment($commentId);
 
     $this->redirection('comment', 'allComments');
   }
@@ -54,8 +54,8 @@ class CommentController extends SecureController
   public function delete()
   {
     $commentId = $this->request->getParam("id");
-    $this->commentManager = new CommentManager();
-    $this->commentManager->deleteComment($commentId);
+    $commentManager = new CommentManager();
+    $commentManager->deleteComment($commentId);
     
     $this->redirection('comment', 'allComments');
   }

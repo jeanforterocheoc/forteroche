@@ -37,14 +37,15 @@ class ComposerStaticInit47531d1b423ac88867114428d78041bd
         'App\\Core\\View' => __DIR__ . '/../..' . '/app/core/View.php',
         'App\\Models\\Entity\\Chapter' => __DIR__ . '/../..' . '/app/models/entity/Chapter.php',
         'App\\Models\\Entity\\Comment' => __DIR__ . '/../..' . '/app/models/entity/Comment.php',
-        'App\\Models\\Entity\\Database' => __DIR__ . '/../..' . '/app/models/entity/Database.php',
-        'App\\Models\\Entity\\Messages' => __DIR__ . '/../..' . '/app/models/entity/Messages.php',
         'App\\Models\\Entity\\Model' => __DIR__ . '/../..' . '/app/models/entity/Model.php',
         'App\\Models\\Entity\\User' => __DIR__ . '/../..' . '/app/models/entity/User.php',
         'App\\Models\\Manager\\ChapterManager' => __DIR__ . '/../..' . '/app/models/manager/ChapterManager.php',
         'App\\Models\\Manager\\CommentManager' => __DIR__ . '/../..' . '/app/models/manager/CommentManager.php',
-        'App\\Models\\Manager\\HomeManager' => __DIR__ . '/../..' . '/app/models/manager/HomeManager.php',
+        'App\\Models\\Manager\\Manager' => __DIR__ . '/../..' . '/app/models/manager/Manager.php',
+        'App\\Models\\Manager\\PdoManager' => __DIR__ . '/../..' . '/app/models/manager/PdoManager.php',
         'App\\Models\\Manager\\UserManager' => __DIR__ . '/../..' . '/app/models/manager/UserManager.php',
+        'App\\Services\\Messages' => __DIR__ . '/../..' . '/app/services/messageFlash.php',
+        'App\\Services\\mailer' => __DIR__ . '/../..' . '/app/services/mailer.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

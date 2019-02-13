@@ -14,14 +14,19 @@
 
   <body>
     <!--Navbar -->
-    <nav class="mb-1 navbar navbar-expand-lg navbar-dark orange lighten-1 admin">
-      <div class="navbar-header col-md-4  titleAdminNav">
+    <nav class="navbar navbar-expand-lg navbar-dark admin">
+      <div class="navbar-header col-md-4  titleNav">
           <p>Espace d'administration</p>
+          <!-- bouton menu burger -->
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+              aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
       </div>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent-555">
-        <ul class="navbar-nav mr-auto">
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav navbar-right">
           <li class="nav-item">
-            <a class="nav-link" href="user/userAdmin">Accueil administration</a>
+            <a class="nav-link" href="user/homepageUserAdmin">Accueil administration</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="home/homepage" target="_blank">Voir le blog</a>

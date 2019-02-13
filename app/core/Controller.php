@@ -34,7 +34,7 @@ abstract class Controller
       $this->$action();
     } else {
       $controllerClass = get_class($this);
-      throw new \Exception("Action '$action' non définie!");
+      // throw new \Exception("Action '$action' non définie!");
     }
   }
 

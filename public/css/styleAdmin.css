@@ -7,11 +7,21 @@ body {
 body {
   font-family: 'Hind Madurai', sans-serif;
 }
+/*Template
+---------------------------------*/
+footer {
+  text-align: center;
+}
 /* Navbar
 -----------------------------------*/
 nav.admin {
   background-color: #ffeaa7;
+  margin-bottom: 1.5em;
 }
+
+.navbar-dark .navbar-toggler-icon {
+  background-color: #0b0b0b7a;
+} 
 
 .navbar-dark .navbar-nav .nav-link {
   color: #b71540;
@@ -20,6 +30,20 @@ nav.admin {
 .navbar-dark .navbar-nav .nav-link:hover {
   color: #212223;
 }
+
+ #navbarNav {
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  text-align: right;
+}
+
+#navbarNav>ul>li>a {
+  text-align: center;
+} 
+
+
+
 /*
 ----------------------------------*/
 #content {
@@ -34,7 +58,7 @@ nav.admin {
   }
 
 /*
-UserAdmin (accueil)
+UserAdmin (dashboard)
 -----------------------------------------*/
 .userAdminProfil {
   background-color: #ffeaa7;
@@ -203,10 +227,10 @@ h4 {
     left: 0;
     display: block;
     width: 100%;
-    margin-bottom: 0; /* Override default `<label>` margin */
+    margin-bottom: 0; 
     line-height: 1.5;
     color: #495057;
-    cursor: text; /* Match the input under the label */
+    cursor: text; /* input sous le label */
     border: 1px solid transparent;
     border-radius: .25rem;
     -webkit-transition: all .1s ease-in-out;
@@ -241,7 +265,7 @@ h4 {
     color: #777;
   }
 
-  /* Fallback for Edge
+  /* Ajustement légende champs formulaires pour Edge
   -------------------------------------------------- */
   @supports (-ms-ime-align: auto) {
     .form-label-group > label {
@@ -252,7 +276,7 @@ h4 {
     }
   }
 
-  /* Fallback for IE
+  /* Ajustement légende champs formulaires pour IE
   -------------------------------------------------- */
   @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
     .form-label-group > label {
@@ -262,5 +286,97 @@ h4 {
       color: #777;
     }
   }
+/* Media Queries
+---------------------------------------------------*/
 
+@media screen and (max-width: 575px) {
+  .titleNav {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .titleNav p {
+    margin: auto;
+  }
+
+  .container-fluid {
+    padding: 0;
+  }
+
+  /* Avatar profil dans navbar
+  ----------------------------------*/
+  .rounded-circle {
+    display: none;
+  }
+
+  /* Rediger un nouveau chapitre
+  ----------------------------------*/
+  form.newChapter {
+    margin: .1em .2em;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+
+  body {
+    font-size: 19px;
+  }
+
+  h4 {
+    font-size: 1.4em;
+  }
+
+  /* Menu burger
+  ------------------------------------*/
+  .form-label-group input:not(:placeholder-shown) ~ label {
+    font-size: 18px;
+    display: none;
+  }
+
+  .form-control {
+    font-size: 1.2em;
+  }
+
+  /* Tableau des chapitres
+  ----------------------------------*/
+  .btn-sm {
+    font-size: 1em;
+  }
   
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+
+  body {
+    font-size: 24px;
+  }
+  .container-fluid {
+    margin-top: 20px;
+  }
+
+  .container {
+    max-width: 834px;
+    font-size: 1.3em;
+  }
+
+  h5 {
+    font-size: 1.5em;
+  }
+
+  .navbar-header {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+
+  .rounded-circle {
+    display: none;
+  }
+
+  .titleNav p{
+    margin: auto;
+  }
+}

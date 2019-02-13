@@ -1,20 +1,17 @@
 <?php
 namespace App\Models\Manager;
 
-use App\Models\Entity\Database;
+use App\Models\Manager\Manager;
 use App\Models\Entity\User;
 
-class UserManager extends Database
+class UserManager extends Manager
 {
   /**
   *  Vérifie si l'utilisateur est enregistré
   */
-  public function getUser($username)
+  public function checkUser($username)
   {
-    $req = 'SELECT *
-            FROM user
-            WHERE username = ? 
-            ';
+    $req = 'SELECT * FROM user WHERE username = ?';
     $result = $this->findOne($req, [$username]);
     if (!$result) {
         return null;
@@ -27,17 +24,18 @@ class UserManager extends Database
   */
   public function getOneUser($id)
   {
-    $req = 'SELECT * 
-            FROM user 
-            WHERE id = ?';
+    $req = 'SELECT * FROM user WHERE id = ?';
     $result = $this->findOne($req, [$id]);
+    if (!$result) {
+      return null;
+    }
     return new User($result);
   }
 
   /**
   * Retourne l'ensemble des profils
   */
-  public function listUser()
+  public function listUsers()
   {
     $users = [];
     $req = 'SELECT * FROM user';
@@ -55,26 +53,23 @@ class UserManager extends Database
   {
     $nbUser = '';
     $req ='SELECT COUNT(*) AS nbUsers FROM user';
-    $result = $this->findAll($req);
-    if (!$result) {
-      return $nbUser;
-      }
-      foreach ($result as $value) {
-        $nbUser = $value['nbUsers'];
-      }
-      return $nbUser;
-    }
+    $result = $this->findOne($req);
+    return $result['nbUsers'];
+  }
 
-    /**
-    * Création du profil utilisateur
-    */
-    public function newUser($username, $password, $email)
-    {
-        $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-        $req = 'INSERT INTO user(username, password, email) VALUES (?, ?, ?)';
-        $result = $this->runReq($req, [$username, $passwordHash, $email]);
-        return $result;
-    }
+  /**
+  * Création du profil utilisateur
+  */
+  public function newUser($username, $password, $email)
+  {
+      $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+      $req = 'INSERT INTO user(username, password, email) VALUES (?, ?, ?)';
+      $result = $this->runReq($req, [$username, $passwordHash, $email]);
+      if ($result) {
+        return new User(['username' => $username, 'email' => $email]);
+      }
+      return null;
+  }
 
   /**
   * Modification du profil user session
@@ -82,24 +77,26 @@ class UserManager extends Database
   public function modifUser($id, $username, $password, $email)
   {
     $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-    $req = 'UPDATE user
-            SET username = ?, password = ?, email = ?
-            WHERE id = '.$id ;
+    $req = 'UPDATE user SET username = ?, password = ?, email = ? WHERE id = '.$id ;
     $result = $this->runReq($req, [$username, $passwordHash, $email]);
-    return $result;
+    if ($result) {
+      return new User(['username' => $username, 'email' => $email]);
+    }
+    return null;
   }
 
   /**
-  * Modifier un profil utilisateur
+  * Modifier un profil 
   */
-  public function changeProfUser($id, $username, $password, $email)
+  public function changeProfil($id, $username, $password, $email)
   {
     $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-    $req = 'UPDATE user
-            SET username = ?, password = ?, email = ?
-            WHERE id = '.$id ;
+    $req = 'UPDATE user SET username = ?, password = ?, email = ? WHERE id = '.$id ;
     $result = $this->runReq($req, [$username, $passwordHash, $email]);
-    return $result;
+    if ($result) {
+      return new User(['username' => $username, 'email' => $email]);
+    }
+    return null;
   }
 
   /**
@@ -108,10 +105,7 @@ class UserManager extends Database
   public function createNewPass($newPass, $email)
   {
     $newPassHash = password_hash($newPass, PASSWORD_DEFAULT);
-    $req = 'UPDATE user
-            SET password = ?
-            WHERE email = ?
-            ';
+    $req = 'UPDATE user SET password = ? WHERE email = ?';
     $result = $this->runReq($req, [$newPassHash, $email]);
     return $result;
   }
@@ -126,98 +120,57 @@ class UserManager extends Database
     return $result;
   }
 
-  /**
-  * Envoi un mail à l'auteur(formulaire contact)
-  */
-  public function sendMailAuthor($pseudo, $email, $messageUser)
-  {
-    ini_set('SMTP', 'smtp.free.fr');
-    ini_set('sendmail_from', 'ocphpyb@gmail.com');
-    $mail = 'jeanforte49@gmail.com';
-    $sujet = 'Message pour Jean Forteroche' ;
-    $message = 'De: '.$pseudo.' Email: '.$email.' Voici le message : '.$messageUser.'
-    ';
-    
-    mail($mail, $sujet, $message);
-  }
-
-  
   // REINITIALISATION DU MOT DE PASSE
   
   /**
-  * Vérifie si l'email est présent dans la bdd
+  * Vérifie si l'email est présent dans la bdd (checkEmail)
   */
-  public function mailExist($recup_mail)
+  public function mailExist($recupMail)
   {
     $req = 'SELECT id FROM user  WHERE email = ?';
-    $result = $this->findOne($req, [$recup_mail]);
+    $result = $this->findOne($req, [$recupMail]);
     return $result;
   }
 
   /**
   * Récupération de l'email
   */
-  public function emailRecupExist($recup_mail)
+  public function emailRecupExist($recupMail)
   {
     $req = 'SELECT id FROM forgetpass  WHERE email = ?';
-    $result = $this->runReq($req, [$recup_mail]);
+    $result = $this->runReq($req, [$recupMail]);
     $result = $result->rowCount();
     return $result;
   }
 
   /**
-  * Mise à jour dans la table forgetpass de l'email et du code associé
+  * Enregistre email et code dans la table forgetpass
   */
-  public function recupUpdate($recup_code, $recup_mail)
-  {
-    $req = 'UPDATE forgetpass SET code = ? WHERE email = ?';
-    $result = $this->runReq($req, [$recup_code, $recup_mail]);
-    return $result;
-  }
-
-  /**
-  * Enregistre email et code si pas présents dans la table forgetpass
-  */
-  public function recupInsert($recup_mail, $recup_code)
+  public function recordEmailCode($recupMail, $recupCode)
   {
     $req = 'INSERT INTO forgetpass(email,code) VALUES (?, ?)';
-    $result = $this->runReq($req, [$recup_mail, $recup_code]);
+    $result = $this->runReq($req, [$recupMail, $recupCode]);
     return $result;
   }
-
-  /**
-  * Envoi d'un mail à l'utilisateur avec le code
-  */
-  public function sendMail($recup_code)
-  {
-    ini_set('SMTP', 'smtp.free.fr');
-    ini_set('sendmail_from', 'ocphpyb@gmail.com');
-    $mail = 'jeanforte49@gmail.com';
-    $sujet = 'Récupération de mot de passe';
-    $message = 'Voici votre code de récupération : '.$recup_code.'
-    ';
-    
-    mail($mail, $sujet, $message);
-    }
 
   /**
   * Récupère l'association email/code
   */
-  public function isCode($recup_mail, $verif_code)
+  public function isCode($recupMail, $checkCode)
   {
     $req = 'SELECT id FROM forgetpass  WHERE email = ? AND code = ?';
-    $result = $this->runReq($req, [$recup_mail, $verif_code]);
+    $result = $this->runReq($req, [$recupMail, $checkCode]);
     $result = $result->rowCount();
     return $result;
   }
 
   /**
-  * Supprime l'enregistrement
+  * Supprime l'enregistrement dans la table forgetPass
   */
-  public function delMail($recup_mail)
+  public function deleteMail($recupMail)
   {
     $req ='DELETE FROM forgetpass WHERE email = ?';
-    $result = $this->runReq($req, [$recup_mail]);
+    $result = $this->runReq($req, [$recupMail]);
     return $result;
   }
 }

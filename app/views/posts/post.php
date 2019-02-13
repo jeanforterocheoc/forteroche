@@ -1,5 +1,6 @@
-<?php use App\Models\Entity\Messages;?>
 <?php $this->title = $postComment->getTitle() ?>
+
+<?php use App\Services\Messages;?>
 
 <section class="oneChapter">
   <div class="jumbotron bg-white">
@@ -16,7 +17,6 @@
 <section class="comments">
   <div class="jumbotron bg-white">
     <h4 class="postComment">Commentaires</h4>
-    <?php Messages::displayMsg()?>
     <?php foreach ($comments as $comment): ?>
       <div id="messages"></div>
       
@@ -30,14 +30,14 @@
             </button>
           </div>
         </div>
-      <?php endforeach; ?>
+    <?php endforeach; ?>
 
       <!-- Fenêtre modale -->
       <div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="title-report" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="title-report">Confirmer le signalement</h5>
+              <h5 class="modal-title" id="title-report">Confirmez-vous le signalement?</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -45,7 +45,7 @@
             <div class="modal-body">
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-primary submit-reporting">Valider</button>
+              <button type="button" class="btn btn-primary submit-reporting">Oui</button>
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
             </div>
           </div>
@@ -53,7 +53,7 @@
         </div>
       </div>
 
-  <!--Pagination pour les commentaires -->
+    <!--Pagination pour les commentaires -->
     <nav aria-label="Page postComment">
       <ul class="pagination pagination-sm postCommentPag">
       <?php if ($currentPage - 1 == 0): ?>
@@ -87,29 +87,31 @@
           </li>
         <?php endif; ?>
       </ul>
-    </nav>
-</div> 
+    </nav><!--pagination-->
+  </div> <!--jumbotron-->
+</section>     
+
+<!-- Formulaire pour le commentaire user -->
+<section class="addComment">
+  <div class="jumbotron bg-white">
+    <h4 class="addComment">Ajouter un commentaire</h4>
+    <?php Messages::displayMsg()?>
+    <form class="form-signin" id= "formAjax" action="posts/addComment/<?= $postComment->getId() ?>" method="post">
       
+      <div class="form-label-group">
+        <input type="text" class="form-control" name="author" id="author" placeholder="Votre pseudo"><br>
+        <label for="author">Pseudo</label>
+      </div>
 
-  <!-- Formulaire pour le commentaire user -->
-  <section class="addComment">
-    <div class="jumbotron bg-white">
-      <h4 class="addComment">Ajouter un commentaire</h4>
-      <form class="form-signin" id= "formAjax" action="posts/addComment/<?= $postComment->getId() ?>" method="post">
-        <div class="form-label-group">
-          <input type="text" class="form-control" name="author" id="author" placeholder="Votre pseudo"><br>
-          <label for="author">Pseudo</label>
-        </div>
+      <div class="form-label-group">
+        <textarea name="commentUser" class="form-control" id="commentUser" cols="30" rows="10" placeholder="Commentaire"></textarea><br>
+      </div>
 
-        <div class="form-label-group">
-          <textarea name="commentUser" class="form-control" id="commentUser" cols="30" rows="10" placeholder="Commentaire"></textarea><br>
-        </div>
-
-        <input type="hidden" name="postId" id="postId" value="<?= $_GET['id'] ?>">
-        <div id="flash" align="left"></div>
-        <button type="submit" class="btn btn-primary submit-commentUser">Envoyer</button>
-      </form>
-    </div>  
-  </section>
+      <input type="hidden" name="postId" id="postId" value="<?= $_GET['id'] ?>">
+      <!-- <div id="flash" align="left"></div> -->
+      <button type="submit" class="btn btn-primary submit-commentUser">Envoyer</button>
+    </form>
+  </div>  
+</section>
 
 
