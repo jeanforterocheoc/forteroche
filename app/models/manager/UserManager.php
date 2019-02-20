@@ -80,7 +80,7 @@ class UserManager extends Manager
     $req = 'UPDATE user SET username = ?, password = ?, email = ? WHERE id = '.$id ;
     $result = $this->runReq($req, [$username, $passwordHash, $email]);
     if ($result) {
-      return new User(['username' => $username, 'email' => $email]);
+      return new User(['id' => $id, 'username' => $username, 'email' => $email]);
     }
     return null;
   }
@@ -94,7 +94,7 @@ class UserManager extends Manager
     $req = 'UPDATE user SET username = ?, password = ?, email = ? WHERE id = '.$id ;
     $result = $this->runReq($req, [$username, $passwordHash, $email]);
     if ($result) {
-      return new User(['username' => $username, 'email' => $email]);
+      return new User(['id' => $id, 'username' => $username, 'email' => $email]);
     }
     return null;
   }

@@ -4,7 +4,7 @@ namespace App\Services;
 /** 
 * Gestion des messages 'flash' 
 */
-class Messages 
+class MessageFlash 
 {
   public static function setMsg(string $text, string $type) 
   {

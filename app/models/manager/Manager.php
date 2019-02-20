@@ -6,7 +6,7 @@ use App\Models\Manager\PdoManager;
 class Manager extends PdoManager
 {
     
-    /**
+  /**
   * Retourne l'ensemble des lignes sous forme de tableau
   */
   protected function findAll($req, array $params = [])

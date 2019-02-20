@@ -1,4 +1,4 @@
-<?php $this->title = 'Nouveau roman de Jean Forteroche : Billet simple pour l\'Alaska'; ?>
+<?php $this->title = 'Billet simple pour l\'Alaska - Jean Forteroche'; ?>
 
 <div class="container">
 <?php foreach ($posts as $post) : ?>

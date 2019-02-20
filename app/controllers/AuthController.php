@@ -1,13 +1,13 @@
 <?php
 /**
- * La classe AuthController permet de vérifier l'identité de l'utilisateur
+ * La classe permet de vérifier l'identité de l'utilisateur
  * et de mettre l'objet user en session si toutes les garanties sont réunies
  */
 namespace App\Controllers;
 
 use App\Core\Controller;
 use App\Models\Manager\UserManager;
-use App\Services\Messages;
+use App\Services\MessageFlash;
 
 class AuthController extends Controller
 {
@@ -31,18 +31,18 @@ class AuthController extends Controller
       if (null != $user) {
         if (password_verify($password, $user->getPassword())) {
           $this->request->getSession()->setAttribut('user', json_encode($user->toArray()));
-          $this->redirection('user', 'homepageUserAdmin');
+          $this->redirection('user', 'homepageAdmin');
         } else {
-            $messages = new Messages;
-            $messages->setMsg('Erreur d\'identifiants !', 'error');
+            $messageFlash = new MessageFlash;
+            $messageFlash->setMsg('Erreur d\'identifiants !', 'error');
           }
       } else {
-          $messages = new Messages;
-          $messages->setMsg('Les identifiants sont incorrects !', 'error');
+          $messageFlash = new MessageFlash;
+          $messageFlash->setMsg('Les identifiants sont incorrects !', 'error');
         }
     } else {
-            $messages = new Messages;
-            $messages->setMsg('Veuillez compléter tous les champs !', 'error');
+          $messageFlash = new MessageFlash;
+          $messageFlash->setMsg('Veuillez compléter tous les champs !', 'error');
       }
     $this->render('Auth');
   }

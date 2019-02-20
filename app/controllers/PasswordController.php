@@ -7,7 +7,7 @@ namespace App\Controllers;
 use App\Core\Controller;
 use App\Models\Manager\UserManager;
 use App\Models\Entity\User;
-use App\Services\Messages;
+use App\Services\MessageFlash;
 use App\Services\Mailer;
 
 class PasswordController extends Controller
@@ -34,16 +34,16 @@ class PasswordController extends Controller
             $this->request->getSession()->setAttribut("recupMail", $recupMail);
             $this->redirection('password', 'generateCode');
           } else {
-              $messages = new Messages;
-              $messages->setMsg('Adresse mail incorrecte !', 'error');
+              $messageFlash = new MessageFlash;
+              $messageFlash->setMsg('Adresse mail incorrecte !', 'error');
             }
         } else {
-            $messages = new Messages;
-            $messages->setMsg('Adresse mail non valide !', 'error');
+            $messageFlash = new MessageFlash;
+            $messageFlash->setMsg('Adresse mail non valide !', 'error');
           }
       } else {
-          $messages = new Messages;
-          $messages->setMsg('Veuillez entrer une adresse mail !', 'error');
+          $messageFlash = new MessageFlash;
+          $messageFlash->setMsg('Veuillez entrer une adresse mail !', 'error');
         }
     }
     $this->render('checkEmail');
@@ -87,12 +87,12 @@ class PasswordController extends Controller
           $this->redirection('password', 'newPass');
           $deleteMail = $userManager->deleteMail($recupMail);
         } else {
-            $messages = new Messages;
-            $messages->setMsg('Code incorrect !', 'error');
+            $messageFlash = new MessageFlash;
+            $messageFlash->setMsg('Code incorrect !', 'error');
           }
       } else {
-          $messages = new Messages;
-          $messages->setMsg('Veuillez entrer votre code', 'error');
+          $messageFlash = new MessageFlash;
+          $messageFlash->setMsg('Veuillez entrer votre code', 'error');
         }
     }
     $this->render('checkCodeUser');
@@ -116,16 +116,16 @@ class PasswordController extends Controller
             $createNewPass = $this->userManager->createNewPass($newPass,$email);
             $this->redirection('user', 'userAdmin');
           } else {
-              $messages = new Messages;
-              $messages->setMsg('Les mots de passe ne correspondent pas!', 'error');
+              $messageFlash = new MessageFlash;
+              $messageFlash->setMsg('Les mots de passe ne correspondent pas!', 'error');
             }
         } else {
-            $messages = new Messages;
-            $messages->setMsg('Veuillez confirmer votre nouveau mot de passe', 'error');
+            $messageFlash = new MessageFlash;
+            $messageFlash->setMsg('Veuillez confirmer votre nouveau mot de passe', 'error');
           }
       } else {
-          $messages = new Messages;
-          $messages->setMsg('Veuillez indiquer votre nouveau mot de passe', 'error');
+          $messageFlash = new MessageFlash;
+          $messageFlash->setMsg('Veuillez indiquer votre nouveau mot de passe', 'error');
         }
     }
     $this->render('newPass');

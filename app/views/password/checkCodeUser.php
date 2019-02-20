@@ -1,7 +1,7 @@
 <?php $this->title = 'Code de vérification'; ?>
 
-<?php use App\Services\Messages; ?>
-<?php Messages::displayMsg()?>
+<?php use App\Services\MessageFlash; ?>
+<?php MessageFlash::displayMsg()?>
 
 <form action="" method='post'class="form-signin">
   <div class="text-center mb-4">

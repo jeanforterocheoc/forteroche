@@ -26,7 +26,7 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav navbar-right">
           <li class="nav-item">
-            <a class="nav-link" href="user/homepageUserAdmin">Accueil administration</a>
+            <a class="nav-link" href="user/homepageAdmin">Accueil administration</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="home/homepage" target="_blank">Voir le blog</a>

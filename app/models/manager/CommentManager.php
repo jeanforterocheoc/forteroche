@@ -34,7 +34,7 @@ class CommentManager extends Manager
   }
 
   /**
-  * Compte la totalité des commentaires enregistrés dans la bdd
+  * Comptabilise les commentaires enregistrés dans la bdd
   */
   public function countComments()
   {

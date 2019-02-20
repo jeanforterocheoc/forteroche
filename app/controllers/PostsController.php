@@ -10,7 +10,7 @@ use App\Core\Controller;
 use App\Models\Manager\UserManager;
 use App\Models\Manager\ChapterManager;
 use App\Models\Manager\CommentManager;
-use App\Services\Messages;
+use App\Services\MessageFlash;
 use App\Services\Mailer;
 
 
@@ -81,13 +81,13 @@ class PostsController extends Controller
       $comment = $commentManager->addComment($chapterId, $author, $content);
       $this->redirection('posts', 'postComment'.$chapterId);
 
-      $messages = new Messages;
-      $messages->setMsg('Le commentaire a été ajouté !', 'success');
+      $messageFlash = new MessageFlash;
+      $messageFlash->setMsg('Le commentaire a été ajouté !', 'success');
     } else {
         $this->redirection('posts', 'postComment'.$this->request->getParam('postId'));
 
-        $messages = new Messages;
-        $messages->setMsg('Veuillez compléter tous les champs !', 'error');
+        $messageFlash = new MessageFlash;
+        $messageFlash->setMsg('Veuillez compléter tous les champs !', 'error');
       }
   }
 

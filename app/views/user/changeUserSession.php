@@ -1,11 +1,11 @@
 <?php $this->title = 'Modifier votre profil'; ?>
 
-<?php use App\Services\Messages; ?>
-<?php Messages::displayMsg()?>
+<?php use App\Services\MessageFlash; ?>
 
 <div class="text-center modProfil">
   <form class="form-signin " action="user/changeUserSession" method="post" >
     <div class="text-center mb-4">
+      <?php MessageFlash::displayMsg()?>
       <h5 class="h3 mb-3 font-weight-normal"><?= $user->getUsername()?> ,voici vos informations </h5>
     </div>
     <div class="form-label-group">

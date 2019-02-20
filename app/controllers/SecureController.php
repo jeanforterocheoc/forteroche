@@ -1,6 +1,6 @@
 <?php
 /**
- * Cette classe permet de sécuriser la connection
+ * Cette classe permet de sécuriser la connexion
  * Si les données du user ne sont pas en session,il est
  * redirigé sur la page de connexion
  */
@@ -22,6 +22,8 @@ abstract class SecureController extends Controller
     if (!$this->request->getSession()->isAttribut('user')) {
       $this->redirection('auth', 'login');
     }
+    
     $this->user = new User(json_decode($this->request->getSession()->getAttribut('user'), true));  
+  
   }
 }

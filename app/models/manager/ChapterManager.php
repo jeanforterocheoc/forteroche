@@ -7,7 +7,7 @@ use App\Models\Entity\Chapter;
 class ChapterManager extends Manager
 {
   /**
-  * Affiche l'ensemble des chapitres
+  * Récupère l'ensemble des chapitres
   */
   public function getAllChapters($start, $perPage)
   {

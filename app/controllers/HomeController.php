@@ -1,4 +1,8 @@
 <?php
+/** 
+ * Cette classe gère la page d'accueil
+ * Côté Frontend
+ */
 namespace App\Controllers;
 
 use App\Core\Controller;

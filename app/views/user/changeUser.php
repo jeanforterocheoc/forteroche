@@ -1,7 +1,7 @@
 <?php $this->title = 'Modifier un profil utilisateur'; ?>
 
-<?php use App\Services\Messages; ?>
-<?php Messages::displayMsg()?>
+<?php use App\Services\MessageFlash; ?>
+<?php MessageFlash::displayMsg()?>
 
 <div class="text-center changeProfil">
   <form class="form-signin" action="" method="post">

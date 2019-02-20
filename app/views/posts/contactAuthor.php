@@ -1,7 +1,7 @@
 <?php $this->title = 'Contactez l\'auteur'; ?>
 
-<?php use App\Services\Messages; ?>
-<?php Messages::displayMsg()?>
+<?php use App\Services\MessageFlash; ?>
+<?php MessageFlash::displayMsg()?>
 
 <section class="my-5 contactAuthor">
   <div class="jumbotron bg-black">

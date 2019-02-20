@@ -19,7 +19,7 @@
     <p><a href="comment/allComments">L'ensemble des commentaires</a></p>
 
     <h4>Profil</h4>
-    <p><a href="user/usersProfilesList">Liste des profils</a></p>
+    <p><a href="user/usersList">Liste des profils</a></p>
     <p><a href="user/createUser">Créer un profil</a></p>
   </div>
   

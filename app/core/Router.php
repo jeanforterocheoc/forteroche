@@ -2,6 +2,7 @@
 namespace App\Core;
 
 use App\Core\Controller;
+use App\Controllers\ErrorsController;
 
 class Router 
 {
@@ -31,8 +32,7 @@ class Router
   */
   private function createController($request)
   {
-    if ($request->paramExist('controller'))
-    {
+    if ($request->paramExist('controller')) {
       $controller = $request->getParam('controller');
       $controller = ucfirst(strtolower($controller));
     }
@@ -43,7 +43,7 @@ class Router
     $ctrl = 'App\\Controllers\\'. $controllerClass;
 
     if (!file_exists($controllerFile)) {
-          throw new \Exception("File '$controllerFile' not found");
+      $this->errorRedirection('errors','error404');
     }    
     $controller = new $ctrl($request);
         
@@ -55,10 +55,22 @@ class Router
   */
   private function createAction($request)
   {
-    if($request->paramExist('action'))
-    {
+    if ($request->paramExist('action')) {
       $action = $request->getParam('action');
+    } 
+
+    if (!$request->paramExist('action')) {
+      $this->errorRedirection('errors','error404');
     }
     return $action;
-  }      
+  }  
+  
+  /**
+  * Redirige vers la page d'erreur
+  */
+  public function errorRedirection(string $controller, string $action = null)
+  {
+    $racineWeb = Config::get("racineWeb", "/");
+    header("location:".$racineWeb .$controller.'/'.$action);
+  }
 }

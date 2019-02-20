@@ -39,14 +39,14 @@ class Request
     if ($this->paramExist($name)) {
       return $this->params[$name];
     } else {
-        throw new \Exception("Paramètre '$name' introuvable!");
+        throw new \Exception('Paramètre'.$name.'introuvable!');
       }
   }
 
   /**
   * Renvoie les valeurs des paramètres par défaut
   */
-  public function defaultParam($name, $default = null)
+  public function defaultParam(string $name, $default = null)
   {
     try
     {

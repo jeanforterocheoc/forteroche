@@ -15,31 +15,30 @@ class Chapter extends Model
   {
     $chapterId = (int) $chapterId;
 
-    if ($chapterId > 0) 
-    {
+    if ($chapterId > 0) {
       $this->id = $chapterId;
     }
   }
 
   public function setTitle($title)
   {
-    if (is_string($title))
-    {
+    if (is_string($title)) {
       $this->title = $title;
     }
   }
 
   public function setContent($content)
   {
-    if(is_string($content))
-    {
+    if(is_string($content)) {
       $this->content = $content;
     }
-    }
+  }
 
   public function setDate($date)
   {
-    $this->date = $date;
+    if (isset($date)) {
+      $this->date = $date;
+    } 
   }
 
   // GETTERS

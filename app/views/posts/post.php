@@ -1,13 +1,12 @@
 <?php $this->title = $postComment->getTitle() ?>
 
-<?php use App\Services\Messages;?>
+<?php use App\Services\MessageFlash;?>
 
 <section class="oneChapter">
   <div class="jumbotron bg-white">
     <article>
       <h2><i class="fas fa-book-reader">Bonne lecture...</i></h2>
       <h3 class='postTitle'><?= $postComment->getTitle() ?></h3>
-      <!-- <b><time>Publié le <?= $postComment->getDate() ?></time></b> -->
       <p><?= $postComment->getContent() ?></p>
     </article>
   </div>
@@ -19,7 +18,7 @@
     <h4 class="postComment">Commentaires</h4>
     <?php foreach ($comments as $comment): ?>
       <div id="messages"></div>
-      
+      <?php MessageFlash::displayMsg()?>
         <div class="card">
           <div class="card-body">
             <h5 class="card-title"><?= htmlspecialchars($comment->getAuthor(), ENT_QUOTES) ?></h5>
@@ -37,7 +36,7 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="title-report">Confirmez-vous le signalement?</h5>
+              <h5 class="modal-title" id="title-report">Confirmez-vous le signalement ?</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -46,7 +45,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-primary submit-reporting">Oui</button>
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Non</button>
             </div>
           </div>
           <input type="hidden" name="commentId" id="commentId"  value="">
@@ -95,7 +94,6 @@
 <section class="addComment">
   <div class="jumbotron bg-white">
     <h4 class="addComment">Ajouter un commentaire</h4>
-    <?php Messages::displayMsg()?>
     <form class="form-signin" id= "formAjax" action="posts/addComment/<?= $postComment->getId() ?>" method="post">
       
       <div class="form-label-group">

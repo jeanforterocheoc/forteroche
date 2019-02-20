@@ -1,7 +1,7 @@
 <?php $this->title = 'Liste des profils utilisateurs'; ?>
 
-<?php use App\Services\Messages; ?>
-<?php Messages::displayMsg()?>
+<?php use App\Services\MessageFlash; ?>
+<?php MessageFlash::displayMsg()?>
 
 <div class="container" >
   <h5>Liste des profils utilisateurs</h5>
@@ -14,7 +14,7 @@
         </tr>
     </thead>
     <tbody>
-        <?php foreach ($usersProfilesList as $user ) : ?>
+        <?php foreach ($usersList as $user ) : ?>
           <tr class="deleteProfile<?= $user->getId() ?>">
             <td>
               <?= $user->getUsername(); ?>
@@ -23,7 +23,7 @@
               <?= $user->getemail(); ?>
             </td>
             <td>
-              <form action="<?= 'user/changeProfilUser/' .$user->getId() ?>" method="post">
+              <form action="<?= 'user/changeUser/' .$user->getId() ?>" method="post">
                 <input type="hidden" value="<?= $user->getId() ?>">
                 <button type="submit" class="btn btn-primary btn-sm">Modifier</button>
                 <!-- Bouton modal -->
@@ -43,7 +43,7 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="title-delete">Confirmez-vous la suppression du profil</h5>
+              <h5 class="modal-title" id="title-delete">Confirmez-vous la suppression du profil ?</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -51,8 +51,8 @@
             <div class="modal-body">
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-primary submit-delete">Confirmer</button>
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+              <button type="button" class="btn btn-primary submit-delete">Oui</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Non</button>
             </div>
           </div>
           <input type="hidden" name="id" id="userId"  value="">

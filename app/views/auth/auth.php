@@ -1,7 +1,7 @@
 <?php $this->title = 'Authentification'; ?> 
 
-<?php use App\Services\Messages; ?>
-<?php Messages::displayMsg()?>
+<?php use App\Services\MessageFlash; ?>
+<?php MessageFlash::displayMsg()?>
 
 <form class="form-signin" action="<?='auth/login'?>" method="post">
   <div class="text-center mb-4">

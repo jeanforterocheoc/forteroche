@@ -8,6 +8,9 @@ class View
   private $file;
   private $title;
 
+  /** 
+  * Permet d'instancier le controller et l'action
+  */ 
   public function __construct(string $action, string $controller)
   {
     $file = '../app/views/';
@@ -42,7 +45,7 @@ class View
     echo $view;
   }
 
-  // Genère un fichier vue et renvoie le résultat produit
+  // Genère un fichier vue et renvoie le résultat
   private function generateFile($file, $data)
   {
     if (file_exists($file)) {

@@ -7,7 +7,7 @@ namespace App\Controllers;
 
 use App\Controllers\SecureController;
 use App\Models\Manager\ChapterManager;
-use App\Services\Messages;
+use App\Services\MessageFlash;
 
 class ChapterController extends SecureController
 {
@@ -61,8 +61,8 @@ class ChapterController extends SecureController
       $chapterManager = new ChapterManager();
       $chapterManager->addChapter( $title, $content);
     } else {
-        $this->messages = new Messages;
-        $this->messages->setMsg('Veuillez complèter l\'ensemble des champs !' , 'error' );
+        $messageFlash = new MessageFlash;
+        $messageFlash->setMsg('Veuillez complèter l\'ensemble des champs !' , 'error' );
       } 
 
     $this->render('NewChapter', array('title' => $title, 'mytextarea' => $content));

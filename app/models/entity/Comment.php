@@ -17,40 +17,28 @@ class Comment extends Model
   public function setId_com($id)
   {
     $id = (int) $id;
-    if($id > 0)
-    {
+    if ($id > 0) {
       $this->id = $id;
     }
   }
 
-  /**
-  * Ajout de l'objet Chapter  
-  */ 
-  public function setChapter(Chapter $chapter)
-  {
-    $this->chapter = $chapter;
-  }
-
   public function setAuthor($author)
   {
-    if(is_string($author))
-    {
+    if (is_string($author)) {
       $this->author = $author;
     }
   }
 
   public function setContent_com($content)
   {
-    if(is_string($content))
-    {
-        $this->content = $content;
+    if (is_string($content)) {
+      $this->content = $content;
     }
   }
 
   public function setDate_com($date)
   {
-    if(isset($date))
-    {
+    if (isset($date)) {
       $this->date = $date;
     }
   }
@@ -58,17 +46,21 @@ class Comment extends Model
   public function setReport($commentReport)
   {
     $commentReport = (int) $commentReport;
-    if($commentReport >= 0)
-    {
+    if ($commentReport >= 0) {
       $this->report = $commentReport;
     }
+  }
+
+  public function setChapter(Chapter $chapter) // Ajout de l'objet Chapter
+  {
+    $this->chapter = $chapter;
   }
 
   // GETTERS
 
   public function getId()
   {
-      return $this->id;
+    return $this->id;
   }
 
   public function getAuthor()
