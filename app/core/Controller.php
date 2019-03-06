@@ -3,7 +3,7 @@
 namespace App\Core;
 use App\Core\View;
 
-abstract class Controller
+ abstract class Controller
 {
   private $action;
   protected $request;
@@ -33,7 +33,7 @@ abstract class Controller
       $this->action = $action;
       $this->$action();
     } else {
-      $controllerClass = get_class($this);
+      $this->redirection('errors','error404');
     }
   }
 
@@ -49,7 +49,7 @@ abstract class Controller
   }
 
   /**
-  * Redirige vers le controller désiré
+  * Redirige vers le controller désiré et l'action demandée
   */
   protected function redirection(string $controller, string $action = null)
   {

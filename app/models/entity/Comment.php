@@ -7,7 +7,6 @@ class Comment extends Model
 {
   private $id;
   private $author;
-  private $title;
   private $content;
   private $date;
   private $report;
@@ -36,7 +35,7 @@ class Comment extends Model
     }
   }
 
-  public function setDate_com($date)
+  public function setDate($date)
   {
     if (isset($date)) {
       $this->date = $date;

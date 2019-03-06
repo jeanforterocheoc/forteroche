@@ -6,14 +6,12 @@ namespace App\Controllers;
 
 use App\Core\Controller;
 use App\Models\Manager\UserManager;
-use App\Models\Entity\User;
 use App\Services\MessageFlash;
 use App\Services\Mailer;
 
 class PasswordController extends Controller
 {
-  private $userManager;
-
+  
   /**
   * Vérification de la validité du mail transmis
   */
@@ -64,9 +62,9 @@ class PasswordController extends Controller
       $userManager = new UserManager;
       $emailRecupExist = $userManager->emailRecupExist($recupMail);
       if ($emailRecupExist == 0) {
-        $recordEmailCode = $userManager->recordEmailCode($recupMail, $recupCode);
+        $userManager->recordEmailCode($recupMail, $recupCode);
         $mailer = new Mailer;
-        $sendmail = $mailer->sendMail($recupCode);
+        $mailer->sendMail($recupCode);
       }
       $this->checkCode($recupCode);
     }
@@ -85,7 +83,7 @@ class PasswordController extends Controller
         $isCode = $userManager->isCode($recupMail,$checkCode);
         if ($isCode == 1) {
           $this->redirection('password', 'newPass');
-          $deleteMail = $userManager->deleteMail($recupMail);
+          $userManager->deleteMail($recupMail);
         } else {
             $messageFlash = new MessageFlash;
             $messageFlash->setMsg('Code incorrect !', 'error');
@@ -110,10 +108,10 @@ class PasswordController extends Controller
           $checkNewPass = htmlspecialchars($_POST['checkNewPass'], ENT_QUOTES);
           if ($newPass == $checkNewPass) {
             $this->request->getSession()->setAttribut("newPass", $newPass);
-            $this->userManager = new UserManager;
             $newPass = $this->request->getSession()->getAttribut('newPass');
             $email = $this->request->getSession()->getAttribut('recupMail');
-            $createNewPass = $this->userManager->createNewPass($newPass,$email);
+            $userManager = new UserManager;
+            $userManager->createNewPass($newPass,$email);
             $this->redirection('user', 'userAdmin');
           } else {
               $messageFlash = new MessageFlash;

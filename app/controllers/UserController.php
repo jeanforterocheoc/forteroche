@@ -8,14 +8,12 @@ use App\Controllers\SecureController;
 use App\Models\Manager\UserManager;
 use App\Models\Manager\ChapterManager;
 use App\Models\Manager\CommentManager;
-use App\Models\Entity\User;
 use App\Services\MessageFlash;
 
 
 class UserController extends SecureController
 {
-  private $userManager;
-
+  
   /** 
   * Page accueil de l'administration  
   */ 
@@ -23,6 +21,7 @@ class UserController extends SecureController
   {
     $userManager = new UserManager;
     $user = $this->user;
+    
     $nbProfil = $userManager->countUsers();
 
     $chapterManager = new ChapterManager;
@@ -32,7 +31,7 @@ class UserController extends SecureController
     $nbComments = $commentManager->countComments();
     $nbReport = $commentManager->countReport();
 
-    $this->render('homepageAdmin', array('user' => $this->user, 'profil' => $nbProfil, 'chapter' => $nbChapter, 'comments' => $nbComments, 'report' => $nbReport));
+    $this->render('homepageAdmin', array('user' => $user, 'profil' => $nbProfil, 'chapter' => $nbChapter, 'comments' => $nbComments, 'report' => $nbReport));
   }
 
   /**
@@ -99,7 +98,7 @@ class UserController extends SecureController
         $email = htmlspecialchars($this->request->getParam("email"), ENT_QUOTES);
 
         $userManager = new UserManager;
-        $user = $userManager->newUser($username, $password, $email);
+        $userManager->newUser($username, $password, $email);
                 
         $messageFlash = new MessageFlash;
         $messageFlash->setMsg('Le profil a été créé !', 'success');
@@ -151,7 +150,7 @@ class UserController extends SecureController
         $messageFlash = new MessageFlash;
         $messageFlash->setMsg('Les modifications ont été prises en compte!', 'success');
 
-        $this->redirection('user', 'changeUserSession');
+        // $this->redirection('user', 'changeUserSession');
       } else {
           $messageFlash = new MessageFlash;
           $messageFlash->setMsg('Les mots de passe ne correspondent pas!', 'error');

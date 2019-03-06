@@ -22,11 +22,11 @@
           <td><?= htmlspecialchars($comment->getContent()) ?></td>
           <td><?= htmlspecialchars($comment->getReport()) ?></td>
           <td>
-            <form action="<?='comment/validate/'. htmlspecialchars($comment->getId()) ?>" method="post">
+            <form action="<?='comment/validate/'. htmlspecialchars($comment->getId())?>" method="post">
               <button type="submit" class="btn btn-success btn-sm" name="validate" id="validate"><span title="Accepter le commentaire"><i class="fas fa-check"></i></span></button>
             </form>
             <br>
-            <form action="<?='comment/delete/'. htmlspecialchars($comment->getId()) ?>" method="post">
+            <form action="<?='comment/delete/'. htmlspecialchars($comment->getId())?>" method="post">
               <button type="submit" class="btn btn-danger btn-sm" name="deleteComment" id="deleteComment"><span title="Supprimer le commentaire"><i class="fas fa-times"></i></span></button>
             </form>
           </td>

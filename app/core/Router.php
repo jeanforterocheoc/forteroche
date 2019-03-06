@@ -1,9 +1,6 @@
 <?php
 namespace App\Core;
 
-use App\Core\Controller;
-use App\Controllers\ErrorsController;
-
 class Router 
 {
   /**
@@ -39,10 +36,9 @@ class Router
 
     // Création du nom du fichier du contrôleur
     $controllerClass = $controller . 'Controller' ;
-    $controllerFile =  '..\\app\\controllers\\'  . $controllerClass . '.php';
     $ctrl = 'App\\Controllers\\'. $controllerClass;
 
-    if (!file_exists($controllerFile)) {
+    if (!class_exists($ctrl)) {
       $this->errorRedirection('errors','error404');
     }    
     $controller = new $ctrl($request);
@@ -63,14 +59,15 @@ class Router
       $this->errorRedirection('errors','error404');
     }
     return $action;
-  }  
+  } 
   
   /**
-  * Redirige vers la page d'erreur
+  * Redirige vers le controller désiré
   */
-  public function errorRedirection(string $controller, string $action = null)
+  protected function errorRedirection(string $controller, string $action = null)
   {
     $racineWeb = Config::get("racineWeb", "/");
     header("location:".$racineWeb .$controller.'/'.$action);
   }
+  
 }

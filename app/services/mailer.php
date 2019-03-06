@@ -8,8 +8,8 @@ class Mailer
   */
   public function sendMailAuthor($pseudo, $email, $messageUser)
   {
-      // ini_set('SMTP', 'smtp.free.fr');
-      // ini_set('sendmail_from', 'ocphpyb@gmail.com');
+      ini_set('SMTP', 'smtp.free.fr');
+      ini_set('sendmail_from', 'ocphpyb@gmail.com');
       $mail = 'jeanforte49@gmail.com';
       $sujet = 'Message pour Jean Forteroche' ;
       $message = 'De: '.$pseudo.' Email: '.$email.' Voici le message : '.$messageUser.'
@@ -23,8 +23,8 @@ class Mailer
   */
   public function sendMail($recup_code)
   {
-    // ini_set('SMTP', 'smtp.free.fr');
-    // ini_set('sendmail_from', 'ocphpyb@gmail.com');
+    ini_set('SMTP', 'smtp.free.fr');
+    ini_set('sendmail_from', 'ocphpyb@gmail.com');
     $mail = 'jeanforte49@gmail.com';
     $sujet = 'Récupération de mot de passe';
     $message = 'Voici votre code de récupération : '.$recup_code.'

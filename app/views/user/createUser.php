@@ -1,11 +1,11 @@
 <?php $this->title = 'Création d\'un profil utilisateur'; ?> 
 
 <?php use App\Services\MessageFlash; ?>
-<?php MessageFlash::displayMsg()?>
 
 <div class="text-center">
   <form class="form-signin" action="<?='user/createUser'?>" method="post">
     <div class="text-center mb-4">
+      <?php MessageFlash::displayMsg()?>
       <h5 class="h3 mb-3 font-weight-normal">Création du profil utilisateur</h5>
     </div>
     

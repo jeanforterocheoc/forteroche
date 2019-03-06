@@ -22,8 +22,6 @@ abstract class SecureController extends Controller
     if (!$this->request->getSession()->isAttribut('user')) {
       $this->redirection('auth', 'login');
     }
-    
     $this->user = new User(json_decode($this->request->getSession()->getAttribut('user'), true));  
-  
   }
 }

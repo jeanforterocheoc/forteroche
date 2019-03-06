@@ -7,7 +7,6 @@
 namespace App\Controllers;
 
 use App\Core\Controller;
-use App\Models\Manager\UserManager;
 use App\Models\Manager\ChapterManager;
 use App\Models\Manager\CommentManager;
 use App\Services\MessageFlash;
@@ -16,7 +15,6 @@ use App\Services\Mailer;
 
 class PostsController extends Controller
 {
-  private $chapterManager;
     
   /**
   * Affiche l'ensemble des posts du blog
@@ -32,9 +30,8 @@ class PostsController extends Controller
     } else {
         $currentPage = 1;
       }
-    // Début dans l'élément LIMIT de la requête
-    $start = ($currentPage-1)*$perPage;
-
+    
+    $start = ($currentPage-1)*$perPage; // Début dans l'élément LIMIT de la requête
     $posts = $chapterManager->getAllChapters($start, $perPage);
         
     $this->render('Posts', array('posts' => $posts, 'currentPage' => $currentPage, 'nbPages' => $nbPages));
@@ -78,7 +75,7 @@ class PostsController extends Controller
       $content = htmlspecialchars($this->request->getParam('commentUser'), ENT_QUOTES);
 
       $commentManager = new commentManager();
-      $comment = $commentManager->addComment($chapterId, $author, $content);
+      $commentManager->addComment($chapterId, $author, $content);
       $this->redirection('posts', 'postComment'.$chapterId);
 
       $messageFlash = new MessageFlash;
@@ -100,7 +97,7 @@ class PostsController extends Controller
 
     $id = $this->request->getParam("id");
 
-    $comment = $commentManager->getComment($id);
+    $commentManager->getComment($id);
     $commentManager->reportComment($id);
   }
 

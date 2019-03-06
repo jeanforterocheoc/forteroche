@@ -29,7 +29,7 @@ class Manager extends PdoManager
   }
 
   /**
-  * Méthode qui permet d'exécuter une requête simple sans fetch
+  * Permet d'exécuter une requête sans afficher le résultat 
   */
   protected function runReq($req, array $params = [])
   {

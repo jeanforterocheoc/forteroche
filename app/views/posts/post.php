@@ -18,7 +18,6 @@
     <h4 class="postComment">Commentaires</h4>
     <?php foreach ($comments as $comment): ?>
       <div id="messages"></div>
-      <?php MessageFlash::displayMsg()?>
         <div class="card">
           <div class="card-body">
             <h5 class="card-title"><?= htmlspecialchars($comment->getAuthor(), ENT_QUOTES) ?></h5>
@@ -45,7 +44,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-primary submit-reporting">Oui</button>
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Non</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
             </div>
           </div>
           <input type="hidden" name="commentId" id="commentId"  value="">
@@ -94,6 +93,7 @@
 <section class="addComment">
   <div class="jumbotron bg-white">
     <h4 class="addComment">Ajouter un commentaire</h4>
+    <?php MessageFlash::displayMsg()?>
     <form class="form-signin" id= "formAjax" action="posts/addComment/<?= $postComment->getId() ?>" method="post">
       
       <div class="form-label-group">

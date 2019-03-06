@@ -5,7 +5,7 @@ use App\Core\Config;
 
 class PdoManager{
 
-  protected static $db;
+  private static $db;
 
   /**
   * Connexion à la base de données et gestion des erreurs 

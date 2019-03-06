@@ -6,16 +6,16 @@ use App\Core\Controller;
 
 class ErrorsController extends Controller 
 {
-    private $error404;
+  private $error404;
 
-   function __construct()
-   {
+  function __construct()
+  {
     //    echo('Erreur 404 : La page n\'existe pas!');
-        $error404 = $this->error404();
+    $error404 = $this->error404();
    }
 
-   public function error404()
-   {
-        $this->render('error404');
-   }
+  public function error404()
+  {
+    $this->render('error404');
+  }
 }

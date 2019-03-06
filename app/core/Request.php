@@ -39,7 +39,7 @@ class Request
     if ($this->paramExist($name)) {
       return $this->params[$name];
     } else {
-        throw new \Exception('Paramètre'.$name.'introuvable!');
+        throw new \Exception('Paramètre ' .$name. ' introuvable !');
       }
   }
 

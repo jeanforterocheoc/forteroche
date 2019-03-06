@@ -11,7 +11,6 @@ use App\Services\MessageFlash;
 
 class ChapterController extends SecureController
 {
-  private $chapterManager;
   
   /**
   * Affichage de l'ensemble des chapitres 
@@ -29,8 +28,8 @@ class ChapterController extends SecureController
     } else {
         $currentPage = 1;
       }
-    //Début dans l'élément LIMIT de la requête
-    $start = ($currentPage-1)*$perPage; 
+    
+    $start = ($currentPage-1)*$perPage; // Début dans l'élément LIMIT de la requête
     $chapters = $chapterManager->getAllChapters($start, $perPage);
 
     $this->render('AllChapters', array('allChapters' => $chapters, 'currentPage' => $currentPage, 'nbPages' => $nbPages));

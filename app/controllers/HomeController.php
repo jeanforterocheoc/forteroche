@@ -10,8 +10,7 @@ use App\Models\Manager\ChapterManager;
 
 class HomeController extends Controller
 {
-  private $chapterManager;
-
+  
   public function homepage()
   {
     $chapterManager = new ChapterManager();

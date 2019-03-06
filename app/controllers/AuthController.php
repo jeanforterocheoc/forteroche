@@ -11,7 +11,6 @@ use App\Services\MessageFlash;
 
 class AuthController extends Controller
 {
-  private $userManager;
   /**
   * Après une vérification de l'existence des identifiants dans la bdd
   * Ajout à la session des données dans un tableau au format json 

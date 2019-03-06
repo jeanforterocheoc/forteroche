@@ -7,13 +7,11 @@ namespace App\Controllers;
 use App\Controllers\SecureController;
 use App\Models\Manager\CommentManager;
 use App\Models\Manager\ChapterManager;
-use App\Services\MessageFlash;
+
 
 class CommentController extends SecureController
 {
-  private $commentManager;
-  private $chapterManager;
-
+  
   /**
   * Affiche l'ensemble des commentaires 
   */ 

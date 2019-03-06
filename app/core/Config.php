@@ -1,24 +1,9 @@
 <?php
 namespace App\Core;
 
-class Config {
-
+class Config 
+{
   private static $params;
-
-  /**
-  * Renvoie la valeur d'un paramètre de configuration 
-  */
-  public static function get($name, $paramsValue = null) 
-  {
-    $params =self::getParams();
-    if(isset(self::getParams()[$name])) {
-        $value = self::getParams()[$name];
-    }
-    else {
-        $value = $paramsValue;
-    }    
-    return $value;
-  }
 
   /**
   * Renvoie le tableau des paramètres
@@ -38,5 +23,19 @@ class Config {
       } 
     }
     return self::$params;
+  }
+
+  /**
+  * Renvoie la valeur d'un paramètre de configuration 
+  */
+  public static function get($name, $paramsValue = null) 
+  {
+    if(isset(self::getParams()[$name])) {
+        $value = self::getParams()[$name];
+    }
+    else {
+        $value = $paramsValue;
+    }    
+    return $value;
   }
 }
